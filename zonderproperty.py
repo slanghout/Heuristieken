@@ -64,25 +64,6 @@ class house(object):
 		self.y = y
 		self.coordinates = [x,y]		
 
-	@property
-	def leftupper(self):
-		return self.coordinates
-
-	@property
-	def rightupper(self):
-		return [self.coordinates[0] + self.width, self.coordinates[1]]
-
-	@property
-	def leftlower(self):
-		return [self.coordinates[0], self.coordinates[1] + self.height]
-
-	@property
-	def rightlower(self):
-		return [self.coordinates[0] + self.width, self.coordinates[1] + self.height]
-
-	# def print_coordinates(self):
-	# 	print("House coordinates are {}{}{}{}".format(house.leftlower(), house.leftupper(), house.rightlower(), house.rightupper()))
-
 class single(house):
 	def __init__(self, coordinates):
 		super().__init__(x = coordinates[0], y=coordinates[1])
@@ -93,6 +74,14 @@ class single(house):
 		self.percentage = 1.03
 		# self.color = 
 		self.count = 1
+
+	def coordinates_house(self):
+		leftup = [self.x, self.y]
+		leftdown = [self.x, (self.y - self.height)]
+		rightup = [(self.x + self.width), self.y]
+		rightdown = [(self.x+self.width), (self.y - self.height)]
+		house_coordinates = [leftup, leftdown, rightup, rightdown]
+		print(house_coordinates)
 
 class bungalow(house):
 	def __init__(self, coordinates):
@@ -105,6 +94,14 @@ class bungalow(house):
 		# self.color = 
 		self.count = 2
 
+	def coordinates_house(self):
+		leftup = [self.x, self.y]
+		leftdown = [self.x, (self.y - self.height)]
+		rightup = [(self.x + self.width), self.y]
+		rightdown = [(self.x+self.width), (self.y - self.height)]
+		house_coordinates = [leftup, leftdown, rightup, rightdown]
+		print(house_coordinates)
+
 class maison(house):
 	def __init__(self, coordinates):
 		super().__init__(x = coordinates[0], y=coordinates[1])
@@ -116,12 +113,16 @@ class maison(house):
 		# self.color = 
 		self.count = 3
 
-	def printhuis(self):
-		print("The house is {} by {} and worth {}".format(self.height, self.width, self.price))
+	def coordinates_house(self):
+		leftup = [self.x, self.y]
+		leftdown = [self.x, (self.y - self.height)]
+		rightup = [(self.x + self.width), self.y]
+		rightdown = [(self.x+self.width), (self.y - self.height)]
+		house_coordinates = [leftup, leftdown, rightup, rightdown]
+		print(house_coordinates)
 
 land = grid(180, 160)
 land.makegrid()
-
   
 # Random coordinates generation
 def Randomizer(grid):
@@ -134,50 +135,17 @@ def Randomizer(grid):
 	return [random_x, random_y]
 #  als coordinaten leeg zijn; kijken of @property allemaal leeg zijn: dan huis planten
 
-coordinates = Randomizer(land)
-house1 = single(coordinates)
-# house1.print_coordinates()
-print("Coordinates are {}".format(coordinates))
-print("House coordinates are {}".format(house1.leftlower()))
-
-
-
-
-
-
+coordinates_t = Randomizer(land)
+coordinates_h = Randomizer(land)
+house1 = single(coordinates_t)
+house2 = maison(coordinates_h)
+print("Coordinates are {}".format(coordinates_t))
+print("Coordinates are {}".format(coordinates_h))
+house1.coordinates_house()
+house2.coordinates_house()
 # def build_house(grid, woning):
 # 	#  iterate over the width of the grid
 # 	# if there is an empty block, check if there are enough empty blocks to make house
 # 	# if true check if this is the case for height of the house
 # 	# if true, plot the house, change value of blocks to 1, 2, 3
 
-
-# 	for i in range(grid.width):
-# 		if [i] =
-
-# 		for j in range(grid.height):
-# 			if [i][j] == Null:
-# 				x = [i, i, (i + woning.breedte), (i + woning.breedte)]
-# 				y = [j, (j + woning.hoogte), (j+ woning.hoogte), j]
-# 				[i][j] = woning.count
-# 				ax.fill(x, y, woning.color)
-# 	plt.show()
-
-
-		# property?
-		# linken aan classes van de soorten huizen
-		# algoritme dat deze coordinaten bepaalt
-		# x = [10, 10, 5, 5] 
-		# y = [5, 10, 10, 5]
-		# # kleur aan huis aanpassen
-# 		# ax.fill(x, y, "r") #per huis de legenda erachter
-# vila = woning(10,10,10,2,1.03,'green',123)
-# print(vila.linkerbovenhoek) 
-
-# eensgezins = woning(2, 2, 285000, 2, 1.03, "r", "1")
-# eensgezins.printhuis()
-
-# land = grid(180, 160)
-# land.makegrid()
-
-# build_house(land, eensgezins)
