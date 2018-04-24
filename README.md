@@ -1,4 +1,5 @@
 Het Project
+
 In dit project wordt de nieuwe woonwijk Amstelhaege ingericht. De wijk beslaat een totaal oppervlak van 28 800 m2, waarvan 20% water is. De woonwijk moet worden bebouwd met drie typen huizen. Onder het kopje vereisten worden de precieze eisen waaraan de woonwijk moet voldoen weergegeven. De wijk wordt op drie verschillende manier bebouwd; met 20, 40 of 60 huizen. Het doel van de opdracht is om de wijk een zo hoog mogelijke waarde te geven.
 
 Vereisten
@@ -13,12 +14,15 @@ Vereisten
 9. De wijk moet voor 20% uit oppervlaktewater bestaan, opgedeeld in niet meer dan vier lichamen die rechthoekig of ovaal van vorm zijn. Om de wijk aantrekkelijk te houden, moeten de lichamen een hoogte-breedteverhoudingen tussen de 1 en de 4 liggen.
 
 Code
+
 De code is volledig geschreven in Python3.6.3. In requirements.txt staan alle benodigde packages om de code succesvol te draaien.
 
 Structuur GIT
-In de map ... zitten ... In de map ... zitten ...
+
+In de map code zitten 3 mappen, in algoritme zitten onze algoritmes. In classes staat de huisindeling in classes. En in grid zit de codes om grids te maken.
 
 Test
+
 Om de code te draaien met de standaardconfiguratie, gebruik:
 python naambestand.py
 
