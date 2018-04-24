@@ -30,7 +30,7 @@ ax.set_yticks(minor_ticks, minor=True)
 # And a corresponding grid
 ax.grid(which='both')
 
-ax.set_xlim(left=0, right=18, auto=false)
+ax.set_xlim(left=0, right=18, auto=False)
 
 
 # Or if you want different settings for the grids:
