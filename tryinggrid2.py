@@ -56,6 +56,6 @@ plt.title('Amstelhaege')
 x = [10, 10, 5, 5]
 y = [5, 10, 10, 5]
 ax.fill(x, y, "b")
-#cplt.legend(loc=2)
+cplt.legend(loc=2)
 plt.show()
 
