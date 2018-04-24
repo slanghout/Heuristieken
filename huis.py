@@ -64,12 +64,20 @@ class Huis(object):
 		self.position = [x,y]		
 
 	@property
-	def linkerbovenhoek(self):
+	def leftupper(self):
 		return self.position
 
 	@property
-	def rechterbovenhoek(self):
+	def rightupper(self):
 		return [self.position[0] + self.width, self.position[1]]
+
+	@property
+	def leftlower(self):
+		return [self.position[0], self.position[1]+self.height]
+
+	@property
+	def rightlower(self):
+		return [self.position[0] + self.width, self.position[1] + self.height]
 
 class eensgezins(Huis):
 	def __init__(self):
