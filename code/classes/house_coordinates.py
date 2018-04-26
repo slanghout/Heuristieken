@@ -76,12 +76,16 @@ class house(object):
 		leftdown = [self.x, (self.y - self.height)]
 		rightup = [(self.x + self.width), self.y]
 		rightdown = [(self.x+self.width), (self.y - self.height)]
-		if leftup[0] < self.space or rightup[0] > (180 - self.space):
-			print("House too wide")
-		if leftdown[1] > (160 - self.space):
-			print("House too tall")
+		house_coordinates = [leftup, leftdown, rightup, rightdown]
+		if leftup[0] < self.space:
+			print("does not fit left up: {}".format(house_coordinates))
+		if leftup[1] > (160 - self.space):
+			print("does not fit on the top: {}".format(house_coordinates))
+		if leftup[0] > (180 - (self.space + self.width)):
+			print("does not fit right up: {}".format(house_coordinates))
+		if  leftup[1] < (self.width + self.space):
+		 	print("does not fit on the bottom: {}".format(house_coordinates))
 		else:
-			house_coordinates = [leftup, leftdown, rightup, rightdown]
 			print(house_coordinates)
 			return house_coordinates
 
@@ -99,10 +103,6 @@ class maison(house):
 	def __init__(self, coordinates):
 		super().__init__(x = coordinates[0], y=coordinates[1], height = 11,
 		 width = 10.5, price = 610000, space = 6, percentage = 1.06, count = 3)
-
-
-land = grid(180, 160)
-land.makegrid()
   
 # Random coordinates generation
 def Randomizer(grid):
@@ -115,14 +115,21 @@ def Randomizer(grid):
 	return [random_x, random_y]
 #  als coordinaten leeg zijn; kijken of @property allemaal leeg zijn: dan huis planten
 
-coordinates_t = Randomizer(land)
-coordinates_h = Randomizer(land)
-house1 = single(coordinates_t)
-house2 = maison(coordinates_h)
-print("Coordinates are {}".format(coordinates_t))
-print("Coordinates are {}".format(coordinates_h))
-house1.coordinates_house()
-house2.coordinates_house()
+land = grid(180, 160)
+land.makegrid()
+
+coordinate_list = []
+for cords in range(10):
+	cord = Randomizer(land)
+	house = maison(cord)
+	this_cord = house.coordinates_house()
+	if this_cord != None:
+		coordinate_list.append(this_cord)
+print(coordinate_list)
+	
+	# new_house = single(Randomizer(land))
+
+
 # def build_house(grid, woning):
 # 	#  iterate over the width of the grid
 # 	# if there is an empty block, check if there are enough empty blocks to make house
