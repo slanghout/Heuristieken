@@ -19,7 +19,7 @@ class grid(object):
 		minor_ticks = np.arange(0, 200, 0.5)
 		# imshow
 		
-		# makes lines for grid 
+		# # makes lines for grid 
 		# ax.set_xticks(major_ticks)
 		# ax.set_xticks(minor_ticks, minor=True)
 		# ax.set_yticks(major_ticks)
@@ -72,21 +72,21 @@ class house(object):
 		self.count = count
 
 	def coordinates_house(self):
-		leftup = [self.x, self.y]
-		leftdown = [self.x, (self.y - self.height)]
-		rightup = [(self.x + self.width), self.y]
-		rightdown = [(self.x+self.width), (self.y - self.height)]
-		house_coordinates = [leftup, leftdown, rightup, rightdown]
-		if leftup[0] < self.space:
-			print("does not fit left up: {}".format(house_coordinates))
-		if leftup[1] > (160 - self.space):
-			print("does not fit on the top: {}".format(house_coordinates))
-		if leftup[0] > (180 - (self.space + self.width)):
-			print("does not fit right up: {}".format(house_coordinates))
-		if  leftup[1] < (self.width + self.space):
+		left_x = self.x
+		down_y = self.y - self.height
+		right_x = self.x + self.width
+		up_y = self.y
+		house_coordinates = [left_x, up_y, right_x, down_y]
+		if left_x < self.space:
+			print("does not fit left: {}".format(house_coordinates))
+		if right_x > (160 - self.space):
+			print("does not fit right: {}".format(house_coordinates))
+		if up_y < self.space:
+			print("does not fit on top: {}".format(house_coordinates))
+		if down_y > (160 - self.space):
 		 	print("does not fit on the bottom: {}".format(house_coordinates))
 		else:
-			print(house_coordinates)
+			# print(house_coordinates)
 			return house_coordinates
 
 class single(house):
@@ -116,15 +116,25 @@ def Randomizer(grid):
 #  als coordinaten leeg zijn; kijken of @property allemaal leeg zijn: dan huis planten
 
 land = grid(180, 160)
-land.makegrid()
+land.makegrid() 
 
 coordinate_list = []
-for cords in range(10):
+for houses in range(10):
 	cord = Randomizer(land)
 	house = maison(cord)
 	this_cord = house.coordinates_house()
 	if this_cord != None:
-		coordinate_list.append(this_cord)
+		if len(coordinate_list) > 0:
+			coordinate_list.append(this_cord)
+			for cords in coordinate_list:
+				if this_cord[0]<cords[0] and this_cord[0]>cords[2] and this_cord[1]>cords[1] and this_cord[1]<cords[3]:
+					print("overlap")
+				else:
+					coordinate_list.append(this_cord)
+		else:
+			coordinate_list.append(this_cord)
+			
+
 print(coordinate_list)
 	
 	# new_house = single(Randomizer(land))
