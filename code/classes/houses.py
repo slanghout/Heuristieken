@@ -23,10 +23,9 @@ class house(object):
 		down_y = self.y - self.height
 		right_x = self.x + self.width
 		up_y = self.y
-		count = self.count
 
 		# set house coordinates
-		house_coordinates = [left_x, up_y, right_x, down_y, count]
+		house_coordinates = [left_x, up_y, right_x, down_y, self.count]
 		
 		# check if house coordinates do not cross sides of the grid
 		if left_x < self.space:
@@ -39,6 +38,13 @@ class house(object):
 			return None
 		else:
 			return house_coordinates
+	
+	def giveworth(self):
+		# bereken waarde met de vrijstand
+		# geef de min ruimte tot volgende huis
+		# bereken de prijs door 
+		# worth_house = self.price * (self.percentage * min_space)
+		return self.price
 
 # define specifics for single house
 class single(house):

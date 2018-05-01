@@ -1,10 +1,3 @@
-# import os, sys
-# directory = os.path.dirname(os.path.realpath(__file__))
-# sys.path.append(os.path.join(directory, "code"))
-# sys.path.append(os.path.join(directory, "code", "classes"))
-# sys.path.append(os.path.join(directory, "code", "algoritmes"))
-# sys.path.append(os.path.join(directory, "code", "grid"))
-
 from overlap_check import *
 from houses import *
 from grid import *
@@ -45,30 +38,30 @@ def BuildRandomHouses(amount):
 
 	coordinate_list = []
 	housecount = 0
+	total_value = 0
 
 	while housecount < build_single:
 		cord = Randomizer(grid(180, 160))
 		build = single
 		if SetHouseInList(build, cord, coordinate_list) == True:
 			housecount += 1
-			print(housecount)
+			total_value += single(cord).giveworth()
 
 	while housecount < (build_single + build_bungalow):
 		cord = Randomizer(grid(180, 160))
 		build = bungalow
 		if SetHouseInList(build, cord, coordinate_list) == True:
 			housecount += 1
-			print(housecount)
+			total_value += bungalow(cord).giveworth()
 
 	while housecount < amount:
 		cord = Randomizer(grid(180, 160))
 		build = maison
 		if SetHouseInList(build, cord, coordinate_list) == True:
 			housecount += 1
-			print(housecount)
+			total_value += maison(cord).giveworth()
 
-
-	grid(180, 160).makegrid(coordinate_list) 
+	grid(180, 160).makegrid(coordinate_list, total_value) 
 
 
 
