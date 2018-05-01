@@ -24,13 +24,13 @@ class house(object):
 
 		house_coordinates = [left_x, up_y, right_x, down_y, count]
 		if left_x < self.space:
-			print("does not fit left: {}".format(house_coordinates))
+			return None
 		elif right_x > (160 - self.space):
-			print("does not fit right: {}".format(house_coordinates))
+			return None
 		elif up_y > (160 - self.space):
-			print("does not fit on top: {}".format(house_coordinates))
+			return None
 		elif down_y < self.space:
-		 	print("does not fit on the bottom: {}".format(house_coordinates))
+			return None
 		else:
 			return house_coordinates
 

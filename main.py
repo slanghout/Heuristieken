@@ -15,8 +15,7 @@ from random_algoritme import *
 
 def main():
 	# set height and width of the land
-	coordinate_list = []
-	BuildRandomHouses(20, coordinate_list)
+	BuildRandomHouses(50)
 
 
 	# placing the houses and water randomly

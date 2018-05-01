@@ -1,6 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+from houses import *
+
 class grid(object):
 	def __init__(self, width, height):
 		self.width = width
@@ -35,10 +37,11 @@ class grid(object):
 		plt.title('Amstelhaege')
 		
 		# make background grid green
-		x = [180, 180, 0, 0]
-		y = [0, 160, 160, 0]
+		x = [self.width, self.width, 0, 0]
+		y = [0, self.height, self.height, 0]
 		ax.fill(x, y, "g")
 		
+		total_value = 0
 		# iterate over coordinate list and select coordinates
 		for element in coordinatelist:
 			x = [element[2], element[2], element[0], element[0]]
