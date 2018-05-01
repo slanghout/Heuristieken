@@ -54,6 +54,10 @@ class grid(object):
 				ax.fill(x, y, "b")
 	
 		# plt.legend(loc=0)
+		#for data, color, group in zip(data, colors, groups):
+ 		##  ax.scatter(x, y, c=color, label=group)
+
+		#plt.scatter(x,y, label=group, c=color, s=30)
 		plt.show()
 
 class house(object):
@@ -119,19 +123,53 @@ def Randomizer(grid):
 	random_y = random.randint(minY, maxY)
 	return [random_x, random_y]
 
+def Overlap(new_coordinate, coordinatelist):
+# check if the coordinates are overlapping
+	
+	if new_coordinate == None:
+		return False
+	else:
+	
+		left_x_new = new_coordinate[0]
+		right_x_new = new_coordinate[2]
+		up_y_new = new_coordinate[1]
+		down_y_new = new_coordinate[3]
+		
+		# check coordinates in list
+		for cords in coordinate_list:
+			left_x_list = cords[0]
+			right_x_list = cords[2]
+			up_y_list = cords[1]
+			down_y_list = cords[3]
+
+			# check if there is overlap
+			if ((left_x_new > left_x_list or left_x_new == left_x_list) and (left_x_new < right_x_list or left_x_new == right_x_list) and (up_y_new < up_y_list or up_y_new == up_y_list) and (up_y_list > down_y_list or up_y_list == down_y_list)):
+				return False
+			if ((right_x_new > left_x_list or right_x_new == left_x_list) and (right_x_new < right_x_list or right_x_new == right_x_list) and (up_y_new < up_y_list or up_y_new == up_y_list) and (up_y_list > down_y_list or up_y_list == down_y_list)):
+				return False
+			if ((left_x_new > left_x_list or left_x_new == left_x_list) and (left_x_new < right_x_list or left_x_new == right_x_list) and (down_y_new < up_y_list or down_y_new == up_y_list) and (down_y_new > down_y_list or down_y_new == down_y_list)):
+				return False
+			if ((right_x_new > left_x_list or right_x_new == left_x_list) and (right_x_new < right_x_list or right_x_new == right_x_list) and (down_y_new < up_y_list or down_y_new == up_y_list) and (down_y_new > down_y_list or down_y_new == down_y_list)):
+				return False
+				
+		return True
+
 # set height and width of the land
 land = grid(180, 160)
 
 # create empty coordinate list
-def Overlap(amount)
 coordinate_list = []
 
 # create 10 random coordinates
-for houses in range(amount):
+for houses in range(100):
 	cord = Randomizer(land)
-	build_single = amount*0.6
-	build_bungalow = amount*0.25
-	build_maison = amount*0.15
+	
+	# build_single = amount*0.6
+	# build_bungalow = amount*0.25
+	# build_maison = amount*0.15
+
+	# for building in range(build_single)
+	# 	build = single
 
 	# create either single, bungalow or maison
 	housenr = random.randint(1, 3)
@@ -141,49 +179,16 @@ for houses in range(amount):
 		build = bungalow
 	elif housenr == 3:
 		build = maison
-	house = build(cord)
 	
-	# check if the coordinates are overlapping
-	this_cord = house.coordinates_house()
-	if this_cord != None:
-		
-		# if it is first coordinate append
+	housecords = build(cord).coordinates_house()
+	if housecords != None:
 		if len(coordinate_list) == 0:
-			coordinate_list.append(this_cord)
+				coordinate_list.append(housecords)
 		
-		# else check coordinates of new coordinate
-		else:
-			left_x_new = this_cord[0]
-			right_x_new = this_cord[2]
-			up_y_new = this_cord[1]
-			down_y_new = this_cord[3]
-			
-			# check coordinates in list
-			for cords in coordinate_list:
-				print(cords)
-				left_x_list = cords[0]
-				right_x_list = cords[2]
-				up_y_list = cords[1]
-				down_y_list = cords[3]
-
-				# check if there is overlap
-				if (left_x_new >left_x_list or left_x_new == left_x_list) and (left_x_new < right_x_list or left_x_new == right_x_list) and (up_y_new < up_y_list or up_y_new == up_y_list) and (up_y_list > down_y_list or up_y_list == down_y_list):
-					return False
-				if (right_x_new > left_x_list or right_x_new == left_x_list) and (right_x_new < left_x_list or right_x_new == left_x_list) and (up_y_new < up_y_list or up_y_new == up_y_list) and (up_y_list > down_y_list or up_y_list == down_y_list):
-					return False
-				if (left_x_new >left_x_list or left_x_new == left_x_list) and (left_x_new < right_x_list or left_x_new == right_x_list) and (down_y_new < up_y_list or down_y_new == up_y_list) and (down_y_new > up_y_list or down_y_new == up_y_list):
-					return False
-				if (right_x_new > left_x_list or right_x_new == left_x_list) and (right_x_new < left_x_list or right_x_new == left_x_list) and (down_y_new < up_y_list or down_y_new == up_y_list) and (down_y_new > up_y_list or down_y_new == up_y_list):
-					return False
-				else:
-					return True
-				
-			# if there is no overlap append
-			while true:
-				coordinate_list.append(this_cord)
-			
-
-# print(coordinate_list)
+		elif Overlap(housecords, coordinate_list) == True:
+			coordinate_list.append(housecords)
+			# print(coordinate_list)
+		
 
 # make a grid of the coordinates in coordinate list
 land.makegrid(coordinate_list) 
