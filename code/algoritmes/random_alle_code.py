@@ -160,8 +160,9 @@ land = grid(180, 160)
 # create empty coordinate list
 coordinate_list = []
 
-# create 10 random coordinates
-for houses in range(100):
+def BuildRandomHouses(amount)
+
+for houses in range(amount):
 	cord = Randomizer(land)
 	
 	# build_single = amount*0.6
