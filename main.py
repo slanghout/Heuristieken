@@ -11,7 +11,7 @@ from houses import *
 from grid import *
 from overlap_check import *
 from random_algoritme import *
-from water import *
+# from water import *
 
 def main():
 	# set height and width of the land
