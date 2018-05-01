@@ -36,7 +36,7 @@ class grid(object):
 		# make background grid green
 		x = [self.width, self.width, 0, 0]
 		y = [0, self.height, self.height, 0]
-		ax.fill(x, y, "g")
+		ax.fill(x, y, "lightgreen")
 		
 		total_value = 0
 		
@@ -47,12 +47,13 @@ class grid(object):
 				
 			# color coordinates coresponding color
 			if element[4] == 1:
-				ax.fill(x, y, "r")
+				ax.fill(x, y, "darkred")
 			elif element[4] == 2:
-				ax.fill(x, y, "y")
+				ax.fill(x, y, "gold")
 			elif element[4] == 3:
-				ax.fill(x, y, "b")
+				ax.fill(x, y, "orangered")
 		
+		#ax.fill(x, y, "deepskyblue")
 		# set labels for the axes 
 		plt.xlabel('width')
 		plt.ylabel('height')

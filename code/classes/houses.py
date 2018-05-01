@@ -31,7 +31,7 @@ class house(object):
 		# check if house coordinates do not cross sides of the grid
 		if left_x < self.space:
 			return None
-		elif right_x > (160 - self.space):
+		elif right_x > (180 - self.space):
 			return None
 		elif up_y > (160 - self.space):
 			return None
