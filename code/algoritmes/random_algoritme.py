@@ -34,28 +34,39 @@ def SetHouseInList(build, cord, coordinate_list):
 		
 		elif Overlap(housecords, coordinate_list) == True:
 			coordinate_list.append(housecords)
+			return True
+		elif Overlap(housecords, coordinate_list) != True:
+			return False
 
-	return coordinate_list
-
-def BuildRandomHouses(amount, coordinate_list):
+def BuildRandomHouses(amount):
 	build_single = int(amount*0.6)
 	build_bungalow = int(amount*0.25)
 	build_maison = int(amount*0.15)
 
-	for buildsingle in range(build_single):
+	coordinate_list = []
+	housecount = 0
+
+	while housecount < build_single:
 		cord = Randomizer(grid(180, 160))
 		build = single
-		coordinate_list = SetHouseInList(build, cord, coordinate_list)
-	
-	for buildmaison in range(build_maison):
-		cord = Randomizer(grid(180, 160))
-		build = maison
-		coordinate_list = SetHouseInList(build, cord, coordinate_list)
-	
-	for buildbungalow in range(build_bungalow):
+		if SetHouseInList(build, cord, coordinate_list) == True:
+			housecount += 1
+			print(housecount)
+
+	while housecount < (build_single + build_bungalow):
 		cord = Randomizer(grid(180, 160))
 		build = bungalow
-		coordinate_list = SetHouseInList(build, cord, coordinate_list)
+		if SetHouseInList(build, cord, coordinate_list) == True:
+			housecount += 1
+			print(housecount)
+
+	while housecount < amount:
+		cord = Randomizer(grid(180, 160))
+		build = maison
+		if SetHouseInList(build, cord, coordinate_list) == True:
+			housecount += 1
+			print(housecount)
+
 
 	grid(180, 160).makegrid(coordinate_list) 
 
