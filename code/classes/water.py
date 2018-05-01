@@ -18,17 +18,17 @@ if amount_water == 1:
 	while not water_coordinates_1:
 		
 		# choose random height and width
-		height_1 = random.randint(0, total_height)
-		width_1 = random.randint(0, total_width)
+		height_1 = (random.randint(0, total_height * 2)) / 2
+		width_1 = (random.randint(0, total_width * 2)) / 2
 		water_size_1 = height_1 * width_1
-		
+	
 		if water_size_1 == total_water_size:
 			
 			# check ratio height and width
 			if height_1 / width_1 > 1 and height_1 / width_1 < 4 or width_1 / height_1 > 1 and width_1 / height_1 < 4:
 				# choose random coordinates
-				left_x = random.randint(0, total_width)
-				up_y = random.randint(0, total_height)
+				left_x = (random.randint(0, total_width * 2)) / 2
+				up_y = (random.randint(0, total_height * 2)) / 2
 				right_x = left_x + width_1
 				down_y = up_y - height_1
 				
@@ -43,13 +43,13 @@ if amount_water == 2:
 	while not water_coordinates_1 and not water_coordinates_2:
 		
 		# choose random height and width
-		height_1 = random.randint(1, total_height)
-		width_1 = random.randint(1, total_width)
+		height_1 = (random.randint(1, total_height * 2)) / 2
+		width_1 = (random.randint(1, total_width * 2)) / 2
 		water_size_1 = height_1 * width_1
 		
 		if water_size_1 < total_water_size:
-			height_2 = random.randint(1, total_height)
-			width_2 = random.randint(1, total_width)
+			height_2 = (random.randint(1, total_height * 2)) / 2
+			width_2 = (random.randint(1, total_width * 2)) / 2
 			water_size_2 = height_2 * width_2
 			
 			if water_size_2 == total_water_size - water_size_1:
@@ -58,13 +58,13 @@ if amount_water == 2:
 				if (height_1 / width_1 > 1 and height_1 / width_1 < 4 or width_1 / height_1 > 1 and width_1 / height_1 < 4) and (height_2 / width_2 > 1 and height_2 / width_2 < 4 or width_2 / height_2 > 1 and width_2 / height_2 < 4):
 					
 					# choose random coordinates
-					left_x1 = random.randint(0, total_width)
-					up_y1 = random.randint(0, total_height)
+					left_x1 = (random.randint(0, total_width * 2)) / 2
+					up_y1 = (random.randint(0, total_height * 2)) / 2
 					right_x1 = left_x1 + width_1
 					down_y1 = up_y1 - height_1
 
-					left_x2 = random.randint(0, total_width)
-					up_y2 = random.randint(0, total_height)
+					left_x2 = (random.randint(0, total_width * 2)) / 2
+					up_y2 = (random.randint(0, total_height * 2)) / 2
 					right_x2 = left_x2 + width_2
 					down_y2 = up_y2 - height_2
 
@@ -82,18 +82,18 @@ if amount_water == 3:
 	while not water_coordinates_1 and not water_coordinates_2 and not water_coordinates_3:
 		
 		# choose random height and width
-		height_1 = random.randint(1, total_height)
-		width_1 = random.randint(1, total_width)
+		height_1 = (random.randint(1, total_height * 2)) / 2
+		width_1 = (random.randint(1, total_width * 2)) / 2
 		water_size_1 = height_1 * width_1
 		
 		if water_size_1 < total_water_size - 2:
-			height_2 = random.randint(1, total_height)
-			width_2 = random.randint(1, total_width)
+			height_2 = (random.randint(1, total_height * 2)) / 2
+			width_2 = (random.randint(1, total_width * 2)) / 2
 			water_size_2 = height_2 * width_2
 			
 			if water_size_2 < total_water_size - water_size_1 - 1:
-				height_3 = random.randint(1, total_height)
-				width_3 = random.randint(1, total_width)
+				height_3 = (random.randint(1, total_height * 2)) / 2
+				width_3 = (random.randint(1, total_width * 2)) / 2
 				water_size_3 = height_3 * width_3
 				
 				if water_size_3 == total_water_size - water_size_1 - water_size_2:
@@ -102,18 +102,18 @@ if amount_water == 3:
 					if (height_1 / width_1 > 1 and height_1 / width_1 < 4 or width_1 / height_1 > 1 and width_1 / height_1 < 4) and (height_2 / width_2 > 1 and height_2 / width_2 < 4 or width_2 / height_2 > 1 and width_2 / height_2 < 4) and (height_3 / width_3 > 1 and height_3 / width_3 < 4 or width_3 / height_3 > 1 and width_3 / height_3 < 4):
 						
 						# choose random coordinates
-						left_x1 = random.randint(0, total_width)
-						up_y1 = random.randint(0, total_height)
+						left_x1 = (random.randint(0, total_width * 2)) / 2
+						up_y1 = (random.randint(0, total_height * 2)) / 2
 						right_x1 = left_x1 + width_1
 						down_y1 = up_y1 - height_1
 
-						left_x2 = random.randint(0, total_width)
-						up_y2 = random.randint(0, total_height)
+						left_x2 = (random.randint(0, total_width * 2)) / 2
+						up_y2 = (random.randint(0, total_height * 2)) / 2
 						right_x2 = left_x2 + width_2
 						down_y2 = up_y2 - height_2
 
-						left_x3 = random.randint(0, total_width)
-						up_y3 = random.randint(0, total_height)
+						left_x3 = (random.randint(0, total_width * 2)) / 2
+						up_y3 = (random.randint(0, total_height * 2)) / 2
 						right_x3 = left_x3 + width_3
 						down_y3 = up_y3 - height_3
 
@@ -134,26 +134,26 @@ if amount_water == 4:
 	while not water_coordinates_1 and not water_coordinates_2 and not water_coordinates_3 and not water_coordinates_4:
 		
 		# choose random height and width
-		height_1 = random.randint(1, total_height)
-		width_1 = random.randint(1, total_width)
+		height_1 = (random.randint(1, total_height * 2)) / 2
+		width_1 = (random.randint(1, total_width * 2)) / 2
 		water_size_1 = height_1 * width_1
 		print(water_size_1)
 		
 		if water_size_1 < total_water_size - 3:
-			height_2 = random.randint(1, total_height)
-			width_2 = random.randint(1, total_width)
+			height_2 = (random.randint(1, total_height * 2)) / 2
+			width_2 = (random.randint(1, total_width * 2)) / 2
 			water_size_2 = height_2 * width_2
 			print(water_size_2)
 			
 			if water_size_2 < total_water_size - water_size_1 - 2:
-				height_3 = random.randint(1, total_height)
-				width_3 = random.randint(1, total_width)
+				height_3 = (random.randint(1, total_height * 2)) / 2
+				width_3 = (random.randint(1, total_width * 2)) / 2
 				water_size_3 = height_3 * width_3
 				print(water_size_3)
 				
 				if water_size_3 < total_water_size - water_size_1 - water_size_2 - 1:
-					height_4 = random.randint(1, total_height)
-					width_4 = random.randint(1, total_width)
+					height_4 = (random.randint(1, total_height * 2)) / 2
+					width_4 = (random.randint(1, total_width * 2)) / 2
 					water_size_4 = height_4 * width_4
 					print(water_size_4)
 					
@@ -164,23 +164,23 @@ if amount_water == 4:
 							print("ratio is okay, go on")
 
 							# choose random coordinates
-							left_x1 = random.randint(0, total_width)
-							up_y1 = random.randint(0, total_height)
+							left_x1 = (random.randint(0, total_width * 2)) / 2
+							up_y1 = (random.randint(0, total_height * 2)) / 2
 							right_x1 = left_x1 + width_1
 							down_y1 = up_y1 - height_1
 
-							left_x2 = random.randint(0, total_width)
-							up_y2 = random.randint(0, total_height)
+							left_x2 = (random.randint(0, total_width * 2)) / 2
+							up_y2 = (random.randint(0, total_height * 2)) / 2
 							right_x2 = left_x2 + width_2
 							down_y2 = up_y2 - height_2
 
-							left_x3 = random.randint(0, total_width)
-							up_y3 = random.randint(0, total_height)
+							left_x3 = (random.randint(0, total_width * 2)) / 2
+							up_y3 = (random.randint(0, total_height * 2)) / 2
 							right_x3 = left_x3 + width_3
 							down_y3 = up_y3 - height_3
 
-							left_x4 = random.randint(0, total_width)
-							up_y4 = random.randint(0, total_height)
+							left_x4 = (random.randint(0, total_width * 2)) / 2
+							up_y4 = (random.randint(0, total_height * 2)) / 2
 							right_x4 = left_x4 + width_4
 							down_y4 = up_y4 - height_4
 
