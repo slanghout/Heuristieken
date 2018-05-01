@@ -19,12 +19,12 @@ De code is volledig geschreven in Python3.6.3. In requirements.txt staan alle be
 
 Structuur GIT
 
-In de map code zitten 3 mappen, in algoritme zitten onze algoritmes. In classes staat de huisindeling in classes. En in grid zit de codes om grids te maken.
+In de map code zitten 3 mappen, in algoritme zitten onze algoritmes. In classes staat de huisindeling in classes en de grid.
 
 Test
 
 Om de code te draaien met de standaardconfiguratie, gebruik:
-python naambestand.py
+main.py, deze roept een random algoritme aan wanneer een hoeveelheid huizen word opgevraagd en plot een grid met huizen.
 
 Auteurs
 
