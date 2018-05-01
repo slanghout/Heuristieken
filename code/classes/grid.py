@@ -9,6 +9,7 @@ class grid(object):
 		self.height = height
 
 	def makegrid(self, coordinatelist):
+		
 		# make the figure
 		fig = plt.figure()
 
@@ -31,10 +32,6 @@ class grid(object):
 		ax.set_xlim(left=0, right=self.width, auto=False)
 		ax.set_ylim(bottom=0, top=self.height, auto=False)
 		
-		# set labels for the axes 
-		plt.xlabel('width')
-		plt.ylabel('height')
-		plt.title('Amstelhaege')
 		
 		# make background grid green
 		x = [self.width, self.width, 0, 0]
@@ -42,6 +39,7 @@ class grid(object):
 		ax.fill(x, y, "g")
 		
 		total_value = 0
+		
 		# iterate over coordinate list and select coordinates
 		for element in coordinatelist:
 			x = [element[2], element[2], element[0], element[0]]
@@ -54,7 +52,12 @@ class grid(object):
 				ax.fill(x, y, "y")
 			elif element[4] == 3:
 				ax.fill(x, y, "b")
-	
+		
+		# set labels for the axes 
+		plt.xlabel('width')
+		plt.ylabel('height')
+		plt.title('Amstelhaege, worth: ${}' .format(total_value))
+		
 		# plt.legend(loc=0)
 		#for data, color, group in zip(data, colors, groups):
  		##  ax.scatter(x, y, c=color, label=group)

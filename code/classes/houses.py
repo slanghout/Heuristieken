@@ -3,6 +3,7 @@ from grid import *
 from overlap_check import *
 from random import *
 
+# define the specifics needed to know per house
 class house(object):
 	def __init__(self, x, y, height, width, price, space, percentage, count):
 		self.x = x
@@ -15,6 +16,8 @@ class house(object):
 		self.percentage = percentage
 		self.count = count
 
+	# function to create x and y coordinates per house
+	# depending on the height and width of house
 	def coordinates_house(self):
 		left_x = self.x
 		down_y = self.y - self.height
@@ -22,7 +25,10 @@ class house(object):
 		up_y = self.y
 		count = self.count
 
+		# set house coordinates
 		house_coordinates = [left_x, up_y, right_x, down_y, count]
+		
+		# check if house coordinates do not cross sides of the grid
 		if left_x < self.space:
 			return None
 		elif right_x > (160 - self.space):
