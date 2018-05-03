@@ -26,7 +26,7 @@ class grid(object):
 	# 		print(cordinatelist[i])
 
 	def makegrid(self, coordinatelist, total_value):
-		
+
 		# make the figure
 		fig = plt.figure()
 
@@ -37,8 +37,8 @@ class grid(object):
 		major_ticks = np.arange(0, 400, 40)
 		minor_ticks = np.arange(0, 400, 1)
 		# imshow
-		
-		# # makes lines for grid 
+
+		# # makes lines for grid
 		# ax.set_xticks(major_ticks)
 		# ax.set_xticks(minor_ticks, minor=True)
 		# ax.set_yticks(major_ticks)
@@ -54,12 +54,19 @@ class grid(object):
 		y = [0, self.height, self.height, 0]
 		ax.fill(x, y, color ="#abd9e9")
 	
-		
+		# make background grid green
+		x = [self.width, self.width, 0, 0]
+		y = [0, self.height, self.height, 0]
+		ax.fill(x, y, "lightgreen")
+
+
+		total_value = 0
+
 		# iterate over coordinate list and select coordinates
 		for element in coordinatelist:
 			x = [element[2], element[2], element[0], element[0]]
 			y = [element[1], element[3], element[3], element[1]]
-				
+
 			# color coordinates coresponding color
 			if element[4] == 1:
 				ax.fill(x, y, color = "#ffffbf")
@@ -74,13 +81,19 @@ class grid(object):
 		# for element in elements:
 		# 	x = [element[2], element[2], element[0], element[0]]
 		# 	y = [element[1], element[3], element[3], element[1]]
+
 		# 	ax.fill(x, y, color = "#2c7bb6")
 			
 		# set labels for the axes 
+
+		# 	ax.fill(x, y, "deepskyblue")
+
+		# set labels for the axes
+
 		plt.xlabel('width')
 		plt.ylabel('height')
 		plt.title('Amstelhaege, worth: ${:,.2f}' .format(total_value))
-		
+
 		# plt.legend(loc=0)
 		#for data, color, group in zip(data, colors, groups):
  		##  ax.scatter(x, y, c=color, label=group)

@@ -12,19 +12,19 @@ def Randomizer(grid):
 	maxY = grid.height
 	minX = 0
 	minY = 0
-	
+
 	# generate random x and y for left up corner
 	random_x = random.randint(minX, maxX)
 	random_y = random.randint(minY, maxY)
 	return [random_x, random_y]
 
-def SetHouseInList(build, cord, coordinate_list):	
+def SetHouseInList(build, cord, coordinate_list):
 	housecords = build(cord).coordinates_house()
-	
+
 	if housecords != None:
 		if len(coordinate_list) == 0:
 				coordinate_list.append(housecords)
-		
+
 		elif Overlap(housecords, coordinate_list) == True:
 			coordinate_list.append(housecords)
 			return True
@@ -62,6 +62,4 @@ def BuildRandomHouses(amount):
 			total_value += maison(cord).giveworth()
 
 	grid(360, 320).makegrid(coordinate_list, total_value) 
-
-
 
