@@ -11,15 +11,12 @@ from houses import *
 from grid import *
 from overlap_check import *
 from random_algoritme import *
-# from water import *
+from water import *
 
 def main():
 	# set height and width of the land
-<<<<<<< HEAD
-	BuildRandomHouses(50)
-=======
-	BuildRandomHouses(60)
->>>>>>> 00ab623c679c3bff4daba75a7a2e6d3e34601df2
+
+	BuildRandomHouses(20)
 
 
 	# placing the houses and water randomly

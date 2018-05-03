@@ -4,26 +4,65 @@ import matplotlib.pyplot as plt
 from overlap_check import *
 from houses import *
 from grid import *
+from water import *
 
 class grid(object):
-	def __init__(self, width, height):
-		self.width = width
-		self.height = height
+	def __init__(self):
+		self.width = 360
+		self.height = 320
 		
-	# def makecordinatelist(self):
+	def makecordinatelist(self):
 		cordinatelist = []
 		row = []
 		for i in range(self.width):
 			row.append('0')
-		for i in range(self.height):
+		for j in range(self.height):
 			cordinatelist.append(row)
 
-		print((cordinatelist[0][9]))
-		# return cordinatelist
+		# print((cordinatelist))
+		return cordinatelist
 
-	# def updatecordinatelist(self, cordinatelist, cordinate):	
-	# 	for i in range(len(cordinatelist)):
-	# 		print(cordinatelist[i])
+	def updatecordinatelist(self, cordinatelist, housecords, building):	
+		if building == "houses":
+			print(housecords)
+			for i in range(housecords[0], (housecords[2]+1)):
+				for j in range(housecords[3], (housecords[1]+1)):
+					# print(cordinatelist[height][width])
+					if cordinatelist[j][i] == "0":
+						print("doei")
+						cordinatelist[j][i] = "h"
+						# print(cordinatelist[j][i])
+					elif cordinatelist[j][i] != "0":
+						print("no")
+		# elif building == "water":
+		# 	width = cordinate[2] - cordinate[0]
+		# 	height = cordinate[3] = cordinate[1]
+		# 	for i in range(cordinate[0], (cordinate[2] + 1)):
+		# 		for j in range(cordinate[1], (cordinate[3]+1)):
+		# 			if cordinatelist[j][i] == "0":
+
+		# 				cordinatelist[j][i] = "w"
+		# elif building == "space":
+		# 	width = cordinate[2] - cordinate[0]
+		# 	height = cordinate[3] = cordinate[1]
+		# 	for i in range(cordinate[0], (cordinate[2] + 1)):
+		# 		for j in range(cordinate[1], (cordinate[3]+1)):
+		# 			if cordinatelist[i][j] == "0":
+		# 				cordinatelist[i][j] = "s"
+
+		# print(cordinatelist)
+		# print(cordinatelist)
+		return cordinatelist
+
+	def overlapping(self, cordinatelist, housecords):
+		for i in range(housecords[0], (housecords[2])):
+			for j in range(housecords[3], (housecords[1])):
+				if cordinatelist[j][i] == "0":
+					print('yay')
+				else:
+					print("nope")
+					return False
+		return True
 
 	def makegrid(self, coordinatelist, total_value):
 
@@ -54,13 +93,6 @@ class grid(object):
 		y = [0, self.height, self.height, 0]
 		ax.fill(x, y, color ="#abd9e9")
 	
-		# make background grid green
-		x = [self.width, self.width, 0, 0]
-		y = [0, self.height, self.height, 0]
-		ax.fill(x, y, "lightgreen")
-
-
-		total_value = 0
 
 		# iterate over coordinate list and select coordinates
 		for element in coordinatelist:
@@ -77,12 +109,15 @@ class grid(object):
 				# total_value += maison(element).giveworth()
 				ax.fill(x, y, color = "#d7191c")
 
-		# elements = MakeWater(3)
-		# for element in elements:
-		# 	x = [element[2], element[2], element[0], element[0]]
-		# 	y = [element[1], element[3], element[3], element[1]]
-
-		# 	ax.fill(x, y, color = "#2c7bb6")
+		water_bodies = [1, 2, 3, 4]
+		amount_water = random.choice(water_bodies)
+		print(amount_water)
+		
+		elements = MakeWater(amount_water)
+		for element in elements:
+			x = [element[2], element[2], element[0], element[0]]
+			y = [element[1], element[3], element[3], element[1]]
+			ax.fill(x, y, color = "#2c7bb6")
 			
 		# set labels for the axes 
 

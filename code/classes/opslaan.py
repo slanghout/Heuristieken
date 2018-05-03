@@ -18,33 +18,24 @@ def Randomizer(amount):
 	random_y = random.randint(minY, maxY)
 	return [random_x, random_y]
 
-def SetHouseInList(build, cord, coordinate_list, cordinatelist):
+def SetHouseInList(build, cord, coordinate_list):
 	housecords = build(cord).coordinates_house()
 
 	if housecords != None:
 		if len(coordinate_list) == 0:
+				coordinate_list.append(housecords)
+
+		elif Overlap(housecords, coordinate_list) == True:
 			coordinate_list.append(housecords)
-			cordinatelist = grid().updatecordinatelist(cordinatelist, housecords, "houses")
 			return True
-		elif grid().overlapping(cordinatelist, housecords) == True:
-			coordinate_list.append(housecords)
-			cordinatelist = grid().updatecordinatelist(cordinatelist, housecords, "houses")
-			return True
-		elif grid().overlapping(cordinatelist, housecords) != True:
+		elif Overlap(housecords, coordinate_list) != True:
 			return False
-		# elif Overlap(housecords, coordinate_list) == True:
-		# 	coordinate_list.append(housecords)
-		# 	cordinatelist = grid().updatecordinatelist(cordinatelist, housecords, "houses")
-		# 	return True
-		# elif Overlap(housecords, coordinate_list) != True:
-		# 	return False
 
 def BuildRandomHouses(amount):
 	build_single = int(amount*0.6)
 	build_bungalow = int(amount*0.25)
 	build_maison = int(amount*0.15)
 
-	cordinatelist = grid().makecordinatelist()
 	coordinate_list = []
 	housecount = 0
 	total_value = 0
@@ -52,21 +43,21 @@ def BuildRandomHouses(amount):
 	while housecount < build_single:
 		cord = Randomizer(1)
 		build = single
-		if SetHouseInList(build, cord, coordinate_list, cordinatelist) == True:
+		if SetHouseInList(build, cord, coordinate_list) == True:
 			housecount += 1
 			total_value += single(cord).giveworth()
 
 	while housecount < (build_single + build_bungalow):
 		cord = Randomizer(1)
 		build = bungalow
-		if SetHouseInList(build, cord, coordinate_list, cordinatelist) == True:
+		if SetHouseInList(build, cord, coordinate_list) == True:
 			housecount += 1
 			total_value += bungalow(cord).giveworth()
 
 	while housecount < amount:
 		cord = Randomizer(1)
 		build = maison
-		if SetHouseInList(build, cord, coordinate_list, cordinatelist) == True:
+		if SetHouseInList(build, cord, coordinate_list) == True:
 			housecount += 1
 			total_value += maison(cord).giveworth()
 

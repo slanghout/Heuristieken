@@ -8,11 +8,8 @@ water_percentage = 0.2
 total_water_size = total_width * total_height * water_percentage
 print(total_water_size)
 
-water_bodies = [1, 2, 3, 4]
-amount_water = random.choice(water_bodies)
-print(amount_water)
 
-def MakeWater(amount_water):
+def MakeWater(amount_water):	
 	if amount_water == 1:
 		water_coordinates_1 = []
 		while not water_coordinates_1:
@@ -36,7 +33,7 @@ def MakeWater(amount_water):
 					if right_x >= 0 and down_y >= 0:
 						water_coordinates_1 = [left_x, up_y, right_x, down_y]
 						print(water_coordinates_1)	
-	return water_coordinates_1 
+		return [water_coordinates_1] 
 
 
 	if amount_water == 2:
@@ -73,7 +70,7 @@ def MakeWater(amount_water):
 						water_coordinates_2 = [left_x2, up_y2, right_x2, down_y2]
 						print(water_coordinates_1)
 						print(water_coordinates_2)
-	return [water_coordinates_1	, water_coordinates_2]
+		return [water_coordinates_1, water_coordinates_2]
 
 	if amount_water == 3:
 		water_coordinates_1 = []
@@ -122,7 +119,7 @@ def MakeWater(amount_water):
 							print(water_coordinates_1)
 							print(water_coordinates_2)
 							print(water_coordinates_3)
-	return [water_coordinates_1, water_coordinates_2, water_coordinates_3]	
+		return [water_coordinates_1, water_coordinates_2, water_coordinates_3]	
 
 	if amount_water == 4:
 		water_coordinates_1 = []
@@ -184,4 +181,4 @@ def MakeWater(amount_water):
 								print(water_coordinates_2)
 								print(water_coordinates_3)
 								print(water_coordinates_4)
-	return [water_coordinates_1, water_coordinates_2, water_coordinates_3, water_coordinates_4]
+		return [water_coordinates_1, water_coordinates_2, water_coordinates_3, water_coordinates_4]
