@@ -28,12 +28,13 @@ class grid(object):
 			for i in range(housecords[0], (housecords[2]+1)):
 				for j in range(housecords[3], (housecords[1]+1)):
 					# print(cordinatelist[height][width])
-					if cordinatelist[j][i] == "0":
+					if cordinatelist[j][i] != "0":
+						print("no")
+						# print(cordinatelist[j][i])
+					else:
 						print("doei")
 						cordinatelist[j][i] = "h"
-						# print(cordinatelist[j][i])
-					elif cordinatelist[j][i] != "0":
-						print("no")
+						
 		# elif building == "water":
 		# 	width = cordinate[2] - cordinate[0]
 		# 	height = cordinate[3] = cordinate[1]
@@ -60,7 +61,7 @@ class grid(object):
 				if cordinatelist[j][i] == "0":
 					print('yay')
 				else:
-					print("nope")
+					print(cordinatelist[j][i])
 					return False
 		return True
 
