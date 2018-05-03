@@ -41,27 +41,27 @@ def BuildRandomHouses(amount):
 	total_value = 0
 
 	while housecount < build_single:
-		cord = Randomizer(grid(180, 160))
+		cord = Randomizer(grid(360, 320))
 		build = single
 		if SetHouseInList(build, cord, coordinate_list) == True:
 			housecount += 1
 			total_value += single(cord).giveworth()
 
 	while housecount < (build_single + build_bungalow):
-		cord = Randomizer(grid(180, 160))
+		cord = Randomizer(grid(360, 320))
 		build = bungalow
 		if SetHouseInList(build, cord, coordinate_list) == True:
 			housecount += 1
 			total_value += bungalow(cord).giveworth()
 
 	while housecount < amount:
-		cord = Randomizer(grid(180, 160))
+		cord = Randomizer(grid(360, 320))
 		build = maison
 		if SetHouseInList(build, cord, coordinate_list) == True:
 			housecount += 1
 			total_value += maison(cord).giveworth()
 
-	grid(180, 160).makegrid(coordinate_list, total_value) 
+	grid(360, 320).makegrid(coordinate_list, total_value) 
 
 
 

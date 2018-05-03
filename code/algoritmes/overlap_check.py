@@ -25,7 +25,10 @@ def Overlap(new_coordinate, coordinate_list):
 
 			# check if there is overlap
 			# check if 4 corners new house not in house in list
-			if ((left_x_new > left_x_list or left_x_new == left_x_list) and (left_x_new < right_x_list or left_x_new == right_x_list) and (up_y_new < up_y_list or up_y_new == up_y_list) and (up_y_new > down_y_list or up_y_new == down_y_list)):
+			if ((right_x_list < left_x_new > left_x_list or left_x_new == left_x_list)
+				and (left_x_new < right_x_list or left_x_new == right_x_list) 
+				and (up_y_new < up_y_list or up_y_new == up_y_list)
+				and (up_y_new > down_y_list or up_y_new == down_y_list)):
 				return False
 			if ((right_x_new > left_x_list or right_x_new == left_x_list) and (right_x_new < right_x_list or right_x_new == right_x_list) and (up_y_new < up_y_list or up_y_new == up_y_list) and (up_y_new > down_y_list or up_y_new == down_y_list)):
 				return False
