@@ -19,12 +19,14 @@ class grid(object):
 
 	def updatecordinatelist(self, cordinatelist, housecords, thing):	
 		if thing == "house":
-			for i in range(housecords[0], (housecords[2] + 1)):
-				for j in range(housecords[3], (housecords[1]+1)):
+			print("huisje{}".format(housecords))
+			for i in range(housecords[0], (housecords[2])):
+				for j in range(housecords[3], (housecords[1])):
 					if cordinatelist[j][i] == "0":
 						cordinatelist[j][i] = "h"
+						print("sucess h")
 					else:
-						print("cannot")
+						print("cannot build house")
 
 		elif thing == "water":
 			for i in range(housecords[0], (housecords[2] + 1)):
@@ -35,26 +37,40 @@ class grid(object):
 						print("cannot")
 		# voor vrijstand: 4kant met huis erin meegeven, waar 0 staat en geen h een s zetten
 		elif thing == "space":
-			for i in range(housecords[0], (housecords[2] + 1)):
-				for j in range(housecords[3], (housecords[1]+1)):
+			print("ruim{}".format(housecords))
+			for i in range(housecords[0], (housecords[2])):
+				for j in range(housecords[3], (housecords[1])):
+					print("kan dit?")
 					if cordinatelist[j][i] == "0":
+						print("ja")
 						cordinatelist[j][i] = "s"
+						print("succes s")
 					else:
-						print("cannot")
+						print("cannot, must be h")
 
 		return cordinatelist
 
-	def overlapping(self, cordinatelist, housecords):
-		# checken voor het huis met vrijstand,
-		# eerst huis checken, dan huis met vrijstand
-		# vrijstand mag ook w of s zijn
+	# check if around house enough space for free space
+	def spacecheck(self, cordinatelist, housecords):
+		for i in range(housecords[0], (housecords[2])):
+			for j in range(housecords[3], (housecords[1])):
+				# print(j,i)
+				if cordinatelist[j][i] == "0" or cordinatelist[j][i] == "s"
+					or cordinatelist[j][i] == "w":
+					x = 5
+				else:
+					return False
+		return True
 
-		for i in range(housecords[0], (housecords[2] +1)):
-			for j in range(housecords[3], (housecords[1]+1)):
+
+	# check if there is enough space to buid a house
+	def housecheck(self, cordinatelist, housecords):
+		for i in range(housecords[0], (housecords[2])):
+			for j in range(housecords[3], (housecords[1])):
+				# print(j,i)
 				if cordinatelist[j][i] == "0":
 					x = 5
 				else:
-					# print(cordinatelist[j][i])
 					return False
 		return True
 
@@ -88,6 +104,26 @@ class grid(object):
 
 	
 		# iterate over coordinate list and select coordinates
+		# for i in range(360):
+		# 	for j in range(320):
+		# 		if cordinatelist[j][i] == 'h':
+		# 			x = [(i+1), (i+1), i, i]
+		# 			y = [j, (j+1), (j+1), j]
+		# 			ax.fill(x, y, color = "#ffffbf")
+		# 		elif cordinatelist[j][i] == 's':
+		# 			x = [(i+1), (i+1), i, i]
+		# 			y = [j, (j+1), (j+1), j]
+		# 			ax.fill(x, y, color = "#2c7bb6")
+		# 		elif cordinatelist[j][i] == 'w':
+		# 			x = [(i+1), (i+1), i, i]
+		# 			y = [j, (j+1), (j+1), j]
+		# 			ax.fill(x, y, color ="#abd9e9")
+		# 		else:
+		# 			x = [(i+1), (i+1), i, i]
+		# 			y = [j, (j+1), (j+1), j]
+		# 			ax.fill(x, y, color ="#fdae61")	
+
+
 		for element in coordinatelist:
 			x = [element[2], element[2], element[0], element[0]]
 			y = [element[1], element[3], element[3], element[1]]
