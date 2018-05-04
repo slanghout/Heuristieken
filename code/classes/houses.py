@@ -47,6 +47,16 @@ class house(object):
 			return None
 		else:
 			return house_coordinates
+
+	# def spacehouse(self, house_coordinates):
+	# 	left_x = house_coordinates[0]
+	# 	down_y = house_coordinates[1]
+	# 	right_x = house_coordinates[2]
+	# 	up_y = house_coordinates[3]
+
+	# 	left_x_space = left_x - self.space
+		
+
 	
 	def giveworth(self):
 		# bereken waarde met de vrijstand

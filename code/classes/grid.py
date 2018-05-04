@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 
 from overlap_check import *
 from houses import *
-from grid import *
 from water import *
+# from opslaan2 import *
 
 class grid(object):
 	def __init__(self):
@@ -12,56 +12,48 @@ class grid(object):
 		self.height = 320
 		
 	def makecordinatelist(self):
-		cordinatelist = []
-		row = []
-		for i in range(self.width):
-			row.append('0')
-		for j in range(self.height):
-			cordinatelist.append(row)
+		basic_grid = [["0"]*self.width for x in range(self.height)]
 
-		# print((cordinatelist))
-		return cordinatelist
+		return basic_grid
 
-	def updatecordinatelist(self, cordinatelist, housecords, building):	
-		if building == "houses":
-			print(housecords)
-			for i in range(housecords[0], (housecords[2]+1)):
+	def updatecordinatelist(self, cordinatelist, housecords, thing):	
+		if thing == "house":
+			for i in range(housecords[0], (housecords[2] + 1)):
 				for j in range(housecords[3], (housecords[1]+1)):
-					# print(cordinatelist[height][width])
-					if cordinatelist[j][i] != "0":
-						print("no")
-						# print(cordinatelist[j][i])
-					else:
-						print("doei")
+					if cordinatelist[j][i] == "0":
 						cordinatelist[j][i] = "h"
-						
-		# elif building == "water":
-		# 	width = cordinate[2] - cordinate[0]
-		# 	height = cordinate[3] = cordinate[1]
-		# 	for i in range(cordinate[0], (cordinate[2] + 1)):
-		# 		for j in range(cordinate[1], (cordinate[3]+1)):
-		# 			if cordinatelist[j][i] == "0":
+					else:
+						print("cannot")
 
-		# 				cordinatelist[j][i] = "w"
-		# elif building == "space":
-		# 	width = cordinate[2] - cordinate[0]
-		# 	height = cordinate[3] = cordinate[1]
-		# 	for i in range(cordinate[0], (cordinate[2] + 1)):
-		# 		for j in range(cordinate[1], (cordinate[3]+1)):
-		# 			if cordinatelist[i][j] == "0":
-		# 				cordinatelist[i][j] = "s"
+		elif thing == "water":
+			for i in range(housecords[0], (housecords[2] + 1)):
+				for j in range(housecords[3], (housecords[1]+1)):
+					if cordinatelist[j][i] == "0":
+						cordinatelist[j][i] = "w"
+					else:
+						print("cannot")
+		# voor vrijstand: 4kant met huis erin meegeven, waar 0 staat en geen h een s zetten
+		elif thing == "space":
+			for i in range(housecords[0], (housecords[2] + 1)):
+				for j in range(housecords[3], (housecords[1]+1)):
+					if cordinatelist[j][i] == "0":
+						cordinatelist[j][i] = "s"
+					else:
+						print("cannot")
 
-		# print(cordinatelist)
-		# print(cordinatelist)
 		return cordinatelist
 
 	def overlapping(self, cordinatelist, housecords):
-		for i in range(housecords[0], (housecords[2])):
-			for j in range(housecords[3], (housecords[1])):
+		# checken voor het huis met vrijstand,
+		# eerst huis checken, dan huis met vrijstand
+		# vrijstand mag ook w of s zijn
+
+		for i in range(housecords[0], (housecords[2] +1)):
+			for j in range(housecords[3], (housecords[1]+1)):
 				if cordinatelist[j][i] == "0":
-					print('yay')
+					x = 5
 				else:
-					print(cordinatelist[j][i])
+					# print(cordinatelist[j][i])
 					return False
 		return True
 
@@ -93,8 +85,8 @@ class grid(object):
 		x = [self.width, self.width, 0, 0]
 		y = [0, self.height, self.height, 0]
 		ax.fill(x, y, color ="#abd9e9")
-	
 
+	
 		# iterate over coordinate list and select coordinates
 		for element in coordinatelist:
 			x = [element[2], element[2], element[0], element[0]]
@@ -110,15 +102,12 @@ class grid(object):
 				# total_value += maison(element).giveworth()
 				ax.fill(x, y, color = "#d7191c")
 
-		water_bodies = [1, 2, 3, 4]
-		amount_water = random.choice(water_bodies)
-		print(amount_water)
-		
-		elements = MakeWater(amount_water)
-		for element in elements:
-			x = [element[2], element[2], element[0], element[0]]
-			y = [element[1], element[3], element[3], element[1]]
-			ax.fill(x, y, color = "#2c7bb6")
+		# elements = MakeWater(2)
+		# for element in elements:
+		# 	x = [element[2], element[2], element[0], element[0]]
+		# 	y = [element[1], element[3], element[3], element[1]]
+		# 	ax.fill(x, y, color = "#2c7bb6")
+
 			
 		# set labels for the axes 
 
