@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
 
 from overlap_check import *
 from houses import *
@@ -62,15 +63,14 @@ class grid(object):
 		# make the figure
 		fig = plt.figure()
 
-		# make plot with green background
+		# make plot
 		ax = fig.add_subplot(1, 1, 1)
 
-		# make axes grid steps of 0.5 m
-		major_ticks = np.arange(0, 400, 40)
+		# make axes grid
+		major_ticks = np.arange(0, 320, 40)
 		minor_ticks = np.arange(0, 400, 1)
-		# imshow
-
-		# # makes lines for grid
+		
+		# makes lines for grid
 		# ax.set_xticks(major_ticks)
 		# ax.set_xticks(minor_ticks, minor=True)
 		# ax.set_yticks(major_ticks)
@@ -109,19 +109,18 @@ class grid(object):
 		# 	ax.fill(x, y, color = "#2c7bb6")
 
 			
-		# set labels for the axes 
-
-		# 	ax.fill(x, y, "deepskyblue")
-
-		# set labels for the axes
-
 		plt.xlabel('width')
 		plt.ylabel('height')
 		plt.title('Amstelhaege, worth: ${:,.2f}' .format(total_value))
 
-		# plt.legend(loc=0)
-		#for data, color, group in zip(data, colors, groups):
- 		##  ax.scatter(x, y, c=color, label=group)
+		# bij deze beide manieren gaat de grid een beetje uit proporsie
+		#plt.subplots_adjust(right = 0.75)
+		plt.tight_layout(rect=[0,0,0.75,1])
 
-		#plt.scatter(x,y, label=group, c=color, s=30)
+		legend_single = mpatches.Patch(color = "#ffffbf", label = "single")
+		legend_bungalow = mpatches.Patch(color = "#fdae61", label = "bungalow")
+		legend_maison = mpatches.Patch(color = "#d7191c", label = "maison")
+		legend_water = mpatches.Patch(color = "#2c7bb6", label = "water")		
+		plt.legend(handles=[legend_single, legend_bungalow, legend_maison, legend_water], bbox_to_anchor = (1.05, 1), loc = 2, borderaxespad = 0.)
+
 		plt.show()
