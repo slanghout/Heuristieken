@@ -19,32 +19,28 @@ class grid(object):
 
 	def updatecordinatelist(self, cordinatelist, housecords, thing):	
 		if thing == "house":
-			print("huisje{}".format(housecords))
 			for i in range(housecords[0], (housecords[2])):
 				for j in range(housecords[3], (housecords[1])):
 					if cordinatelist[j][i] == "0":
 						cordinatelist[j][i] = "h"
-						print("sucess h")
 					else:
 						print("cannot build house")
 
 		elif thing == "water":
-			for i in range(housecords[0], (housecords[2] + 1)):
-				for j in range(housecords[3], (housecords[1]+1)):
+			for i in range(housecords[0], (housecords[2])):
+				for j in range(housecords[3], (housecords[1])):
 					if cordinatelist[j][i] == "0":
 						cordinatelist[j][i] = "w"
 					else:
 						print("cannot")
 		# voor vrijstand: 4kant met huis erin meegeven, waar 0 staat en geen h een s zetten
 		elif thing == "space":
-			print("ruim{}".format(housecords))
 			for i in range(housecords[0], (housecords[2])):
 				for j in range(housecords[3], (housecords[1])):
-					print("kan dit?")
-					if cordinatelist[j][i] == "0":
-						print("ja")
+					if cordinatelist[j][i] == "0" or cordinatelist[j][i] == "s":
 						cordinatelist[j][i] = "s"
-						print("succes s")
+					elif cordinatelist[j][i] == "w":
+						print("water")
 					else:
 						print("cannot, must be h")
 
@@ -55,8 +51,8 @@ class grid(object):
 		for i in range(housecords[0], (housecords[2])):
 			for j in range(housecords[3], (housecords[1])):
 				# print(j,i)
-				if cordinatelist[j][i] == "0" or cordinatelist[j][i] == "s"
-					or cordinatelist[j][i] == "w":
+				if (cordinatelist[j][i] == "0" or cordinatelist[j][i] == "s"
+					or cordinatelist[j][i] == "w"):
 					x = 5
 				else:
 					return False
@@ -74,7 +70,7 @@ class grid(object):
 					return False
 		return True
 
-	def makegrid(self, coordinatelist, total_value):
+	def makegrid(self, coordinatelist, water, total_value):
 
 		# make the figure
 		fig = plt.figure()
@@ -138,11 +134,14 @@ class grid(object):
 				# total_value += maison(element).giveworth()
 				ax.fill(x, y, color = "#d7191c")
 
-		# elements = MakeWater(2)
-		# for element in elements:
-		# 	x = [element[2], element[2], element[0], element[0]]
-		# 	y = [element[1], element[3], element[3], element[1]]
-		# 	ax.fill(x, y, color = "#2c7bb6")
+		if len(water) > 1:
+			print(water)
+			print(len(water))
+			for body in range(len(water)):
+				element = (water[body])
+				x = [element[2], element[2], element[0], element[0]]
+				y = [element[1], element[3], element[3], element[1]]
+				ax.fill(x, y, color = "#2c7bb6")
 
 			
 		plt.xlabel('width')

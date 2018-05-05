@@ -16,7 +16,7 @@ from water import *
 def main():
 	# set height and width of the land
 
-	Random(60)
+	Random(40)
 
 
 	# placing the houses and water randomly
