@@ -31,6 +31,7 @@ class grid(object):
 				for j in range(housecords[3], (housecords[1])):
 					if cordinatelist[j][i] == "0":
 						cordinatelist[j][i] = "w"
+						print("water{}".format(housecords))
 					else:
 						print("cannot")
 		# voor vrijstand: 4kant met huis erin meegeven, waar 0 staat en geen h een s zetten
@@ -42,7 +43,7 @@ class grid(object):
 					elif cordinatelist[j][i] == "w":
 						print("water")
 					else:
-						print("cannot, must be h")
+						x=7
 
 		return cordinatelist
 
@@ -69,6 +70,14 @@ class grid(object):
 				else:
 					return False
 		return True
+
+	def fillgrid(self, cordinatelist):
+		for i in range(360):
+			for j in range(320):
+				if cordinatelist[j][i] == "0":
+					cordinatelist[j][i] = "s"
+		print(cordinatelist)
+
 
 	def makegrid(self, coordinatelist, water, total_value):
 
@@ -119,7 +128,16 @@ class grid(object):
 		# 			y = [j, (j+1), (j+1), j]
 		# 			ax.fill(x, y, color ="#fdae61")	
 
+		if len(water) > 1:
+			print(water)
+			print(len(water))
+			for body in range(len(water)):
+				element = (water[body])
+				x = [element[2], element[2], element[0], element[0]]
+				y = [element[1], element[3], element[3], element[1]]
+				ax.fill(x, y, color = "#2c7bb6")
 
+		
 		for element in coordinatelist:
 			x = [element[2], element[2], element[0], element[0]]
 			y = [element[1], element[3], element[3], element[1]]
@@ -134,15 +152,7 @@ class grid(object):
 				# total_value += maison(element).giveworth()
 				ax.fill(x, y, color = "#d7191c")
 
-		if len(water) > 1:
-			print(water)
-			print(len(water))
-			for body in range(len(water)):
-				element = (water[body])
-				x = [element[2], element[2], element[0], element[0]]
-				y = [element[1], element[3], element[3], element[1]]
-				ax.fill(x, y, color = "#2c7bb6")
-
+		
 			
 		plt.xlabel('width')
 		plt.ylabel('height')

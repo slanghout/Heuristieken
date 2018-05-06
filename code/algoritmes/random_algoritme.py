@@ -12,12 +12,11 @@ def Random(nr_of_houses):
 	
 	water_coordinates =  Create_water(cordinatelist)
 	if water_coordinates != None:
-		values= Build_Amstelhaege(nr_of_houses, cordinatelist)
+		values = Build_Amstelhaege(nr_of_houses, cordinatelist)
 		total_value = values[0]
 		coordinate_list = values[1]
 		if total_value != None:
 			grid().makegrid(coordinate_list, water_coordinates, total_value)
-
 	else:
 		exit()
 
@@ -41,18 +40,18 @@ def Create_water(cordinatelist):
 	if water_bodies > 1:
 		water_coordinates = MakeWater(water_bodies)
 		print(water_coordinates)
+		print(water_bodies)
 		for body in range(water_bodies):
 			print(water_coordinates[body])
 			if water_coordinates != None:
 				cordinatelist = grid().updatecordinatelist(cordinatelist, water_coordinates[body], "water")
-				return water_coordinates
 			
-	else:
+	elif water_bodies == 1:
 		water_coordinates = MakeWater(water_bodies)
-		water_coordinates = water_coordinates[0]
 		if water_coordinates != None:
-			cordinatelist = grid().updatecordinatelist(cordinatelist, water_coordinates, "water")
-			return water_coordinates
+			cordinatelist = grid().updatecordinatelist(cordinatelist, water_coordinates[0], "water")
+	
+	return water_coordinates
 
 
 def Set_house_in_list(build, cord, coordinate_list, cordinatelist):
@@ -103,6 +102,8 @@ def Build_Amstelhaege(amount, cordinatelist):
 		if Set_house_in_list(build, cord, coordinate_list, cordinatelist) == True:
 			housecount += 1
 			total_value += maison(cord).giveworth()
+
+	grid().fillgrid(cordinatelist)
 
 	# print(cordinatelist)
 	print("hoi")
