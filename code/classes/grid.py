@@ -12,12 +12,15 @@ class grid(object):
 		self.width = 360
 		self.height = 320
 		
+	# create grid of 360*320 filled with 0's
 	def makecordinatelist(self):
 		basic_grid = [["0"]*self.width for x in range(self.height)]
-
 		return basic_grid
 
+	# update the grid with house, water or space
 	def updatecordinatelist(self, cordinatelist, housecords, thing):	
+		
+		# if a house is placed, set h on coordinates of the house
 		if thing == "house":
 			for i in range(housecords[0], (housecords[2])):
 				for j in range(housecords[3], (housecords[1])):
@@ -26,6 +29,7 @@ class grid(object):
 					else:
 						print("cannot build house")
 
+		# if water is places set w on spot
 		elif thing == "water":
 			for i in range(housecords[0], (housecords[2])):
 				for j in range(housecords[3], (housecords[1])):
@@ -34,7 +38,9 @@ class grid(object):
 						print("water{}".format(housecords))
 					else:
 						print("cannot")
-		# voor vrijstand: 4kant met huis erin meegeven, waar 0 staat en geen h een s zetten
+		
+		# if space next to house, set s if it's empty
+		# if there is water in place this counts as space
 		elif thing == "space":
 			for i in range(housecords[0], (housecords[2])):
 				for j in range(housecords[3], (housecords[1])):
@@ -51,7 +57,6 @@ class grid(object):
 	def spacecheck(self, cordinatelist, housecords):
 		for i in range(housecords[0], (housecords[2])):
 			for j in range(housecords[3], (housecords[1])):
-				# print(j,i)
 				if (cordinatelist[j][i] == "0" or cordinatelist[j][i] == "s"
 					or cordinatelist[j][i] == "w"):
 					x = 5
@@ -64,7 +69,6 @@ class grid(object):
 	def housecheck(self, cordinatelist, housecords):
 		for i in range(housecords[0], (housecords[2])):
 			for j in range(housecords[3], (housecords[1])):
-				# print(j,i)
 				if cordinatelist[j][i] == "0":
 					x = 5
 				else:
