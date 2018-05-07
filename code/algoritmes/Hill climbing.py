@@ -1,3 +1,10 @@
+from houses import *
+from grid import *
+from water import *
+from random_algoritme import *
+
+import random as random
+
 Hill climbing
 Evaluate the initial state.
 Loop until a solution is found or there are no new operators left to be applied:
@@ -7,25 +14,42 @@ Loop until a solution is found or there are no new operators left to be applied:
 		new state better than current state? --> update current state
 
 
-first of all we need a State class 
-
 class State(object):
-	stores the current state
-	store the value of this state
+	currentState = grid
+	valueCurrentState = ...
 
-define operator methods which gets us a new state
-- moving a house
-- swapping a house
-- draaien van huis
-- changing water from 1 to 2/3/4 (or else)
-- moving water
+def randomChange():
+	#changeOptions = [1, 2, 3, 4]
+	#change = random.choice(changeOptions)
+	change = 1
+
+	if change == 1:
+		draaien van random huis
+		houseCords = lijst van alle huiscoordinaten
+		randomHouse = random.choice(houseCords)
+		width = height
+		height = width
+		newCords = []
+		# deleting randomHouse (oude coordinaten)
+		# adding newCords
+		grid = Area().update_grid(grid, newCords, "house")
+		NewState = grid
+		valueNewState =
+		return NewState, valueNewState
+		
+# 	if change == 2:
+#	random verplaatsen van random huis
+# 	if change == 3:
+#	swapping random houses
+# 	if change == 4:
+#	changing/moving water
+
 
 def HillClimbing():
 while (solution not found or states left to check)
-	getNewState
-	if (value.getnewstate => goal)
-		quit/return
-	elif (value.getnewstate => value.currentstate)
-		getnewstate = currentstate
+	if valueNewState >= goalValue:
+		return True
+	elif valueNewState >= valueCurrentState
+		CurrentState = NewState
 	else
 		do it again

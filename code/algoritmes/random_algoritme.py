@@ -58,6 +58,7 @@ def Create_water(grid):
 						grid = Area().update_grid(grid, water_coordinates[body], "water")
 					else:
 						exit(0)
+
 	elif water_bodies == 1:
 		water_coordinates = MakeWater(water_bodies)
 		if water_coordinates != None:

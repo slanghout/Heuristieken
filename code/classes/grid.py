@@ -48,7 +48,7 @@ class Area(object):
 		elif thing == "water":
 			for i in range(housecords[0], (housecords[2])):
 				for j in range(housecords[3], (housecords[1])):
-					if grid[j][i] == "0" or grid == "w":
+					if grid[j][i] == "0":
 						grid[j][i] = "w"
 					else:
 						exit(0)
