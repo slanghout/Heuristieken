@@ -36,12 +36,17 @@ def Randomizer(amount):
 def Create_water(grid):
 	water_options = [1, 2, 3, 4]
 
-	water_bodies = 1 #random.choice(water_options)
+	water_bodies = random.choice(water_options)
+
 	if water_bodies > 1:
 		water_coordinates = MakeWater(water_bodies)
 		for body in range(water_bodies):
 			if water_coordinates != None:
-				grid = Area().update_grid(grid, water_coordinates[body], "water")
+				if body == 0:
+					grid = Area().update_grid(grid, water_coordinates[body], "water")
+				elif body > 0:
+					if Area().watercheck(grid, water_coordinates[body]) == True:
+						grid = Area().update_grid(grid, water_coordinates[body], "water")
 
 	elif water_bodies == 1:
 		water_coordinates = MakeWater(water_bodies)

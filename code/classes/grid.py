@@ -68,6 +68,16 @@ class Area(object):
 					return False
 		return True
 
+	# check if there is enough space for water (same as for house dus eventueel combineren)
+	def watercheck(self, grid, watercoordinates):
+		for i in range(water_coordinates[0], water_coordinates[2]):
+			for j in range(water_coordinates[3], water_coordinates[1]):
+				if grid[j][i] == "0":
+					pass
+				else:
+					return False
+		return True
+
 	def fillgrid(self, grid):
 		for i in range(360):
 			for j in range(320):
