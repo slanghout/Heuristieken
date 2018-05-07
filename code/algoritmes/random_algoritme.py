@@ -44,25 +44,12 @@ def Create_water(grid):
 	water_options = [1, 2, 3, 4]
 
 	water_bodies = random.choice(water_options)
-<<<<<<< HEAD
-=======
-
->>>>>>> 785c05dc2ab989a501f8ebf335f729954b55c884
+	
 	if water_bodies > 1:
 		water_coordinates = MakeWater(water_bodies)
 		for body in range(water_bodies):
 			if water_coordinates != None:
-<<<<<<< HEAD
-				if body > 0:
-					if Area().watercheck(grid, water_coordinates[body]) == True:
-						grid = Area().update_grid(grid, water_coordinates[body], "water")
-					else:
-						exit(0)
-				if body == 0:
-					grid = Area().update_grid(grid, water_coordinates[body], "water")
 
-				
-=======
 				if body == 0:
 					grid = Area().update_grid(grid, water_coordinates[body], "water")
 				elif body > 0:
@@ -71,7 +58,6 @@ def Create_water(grid):
 				else:
 					exit(0)
 
->>>>>>> 785c05dc2ab989a501f8ebf335f729954b55c884
 	elif water_bodies == 1:
 		water_coordinates = MakeWater(water_bodies)
 		if water_coordinates != None:
@@ -85,17 +71,17 @@ def Set_house_in_list(build, cord, coordinate_list, grid):
 	# create coordinates for house
 	house_coordinates = build(cord).coordinates_house()
 	if house_coordinates != None:
-		
-		# if house coordinates are given create coordinates for house with space 
+
+		# if house coordinates are given create coordinates for house with space
 		space_coordinates = build(cord).spacehouse(house_coordinates)
 
 		# check room for house
 		if Area().housecheck(grid, house_coordinates) == True:
-			
+
 			# check room for house with space around
 			if Area().spacecheck(grid, space_coordinates) == True:
 				coordinate_list.append(house_coordinates)
-				
+
 				# set house in grid
 				if build == single:
 					grid = Area().update_grid(grid, house_coordinates, "single")

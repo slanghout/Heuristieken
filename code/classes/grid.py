@@ -17,7 +17,7 @@ class Area(object):
 		return basic_grid
 
 	# update the grid with house, water or space
-	def update_grid(self, grid, housecords, thing):	
+	def update_grid(self, grid, housecords, thing):
 
 		# if a house is placed, set h on coordinates of the house
 		if thing == "single":
@@ -27,7 +27,7 @@ class Area(object):
 						grid[j][i] = "h"
 					else:
 						exit(0)
-		
+
 		elif thing == "maison":
 			for i in range(housecords[0], (housecords[2])):
 				for j in range(housecords[3], (housecords[1])):
@@ -61,7 +61,7 @@ class Area(object):
 					if grid[j][i] == "0":
 						grid[j][i] = "s"
 					elif grid[j][i] == "w" or grid[j][i] == "s":
-						pass	
+						pass
 
 		return grid
 
@@ -86,16 +86,9 @@ class Area(object):
 					return False
 		return True
 
-<<<<<<< HEAD
 	def watercheck(self, grid, housecords):
 		for i in range(housecords[0], (housecords[2])):
 			for j in range(housecords[3], (housecords[1])):
-=======
-	# check if there is enough space for water (same as for house dus eventueel combineren)
-	def watercheck(self, grid, watercoordinates):
-		for i in range(water_coordinates[0], water_coordinates[2]):
-			for j in range(water_coordinates[3], water_coordinates[1]):
->>>>>>> 785c05dc2ab989a501f8ebf335f729954b55c884
 				if grid[j][i] == "0":
 					pass
 				else:
