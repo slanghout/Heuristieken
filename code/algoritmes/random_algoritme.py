@@ -9,6 +9,7 @@ def Random(nr_of_houses):
 	# make empty coordinate list
 
 	grid = Area().make_basic_grid()
+	total_value = 0
 
 	water_coordinates =  Create_water(grid)
 	if water_coordinates != None:
@@ -22,8 +23,9 @@ def Random(nr_of_houses):
 			elif cordinate[4] == 3:
 				build = maison
 			price = build(cord).giveworth(cordinate, grid)
+			total_value += price
 
-		Area().makegrid(coordinate_list, water_coordinates, price)
+		Area().makegrid(coordinate_list, water_coordinates, total_value)
 	else:
 		exit()
 
@@ -44,34 +46,18 @@ def Create_water(grid):
 	water_options = [1, 2, 3, 4]
 
 	water_bodies = random.choice(water_options)
-<<<<<<< HEAD
-=======
 
->>>>>>> 785c05dc2ab989a501f8ebf335f729954b55c884
 	if water_bodies > 1:
 		water_coordinates = MakeWater(water_bodies)
 		for body in range(water_bodies):
 			if water_coordinates != None:
-<<<<<<< HEAD
-				if body > 0:
-					if Area().watercheck(grid, water_coordinates[body]) == True:
-						grid = Area().update_grid(grid, water_coordinates[body], "water")
-					else:
-						exit(0)
-				if body == 0:
-					grid = Area().update_grid(grid, water_coordinates[body], "water")
-
-				
-=======
 				if body == 0:
 					grid = Area().update_grid(grid, water_coordinates[body], "water")
 				elif body > 0:
 					if Area().watercheck(grid, water_coordinates[body]) == True:
 						grid = Area().update_grid(grid, water_coordinates[body], "water")
-				else:
-					exit(0)
-
->>>>>>> 785c05dc2ab989a501f8ebf335f729954b55c884
+					else:
+						exit(0)
 	elif water_bodies == 1:
 		water_coordinates = MakeWater(water_bodies)
 		if water_coordinates != None:

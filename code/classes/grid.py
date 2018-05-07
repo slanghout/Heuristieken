@@ -86,16 +86,10 @@ class Area(object):
 					return False
 		return True
 
-<<<<<<< HEAD
-	def watercheck(self, grid, housecords):
-		for i in range(housecords[0], (housecords[2])):
-			for j in range(housecords[3], (housecords[1])):
-=======
 	# check if there is enough space for water (same as for house dus eventueel combineren)
-	def watercheck(self, grid, watercoordinates):
+	def watercheck(self, grid, water_coordinates):
 		for i in range(water_coordinates[0], water_coordinates[2]):
 			for j in range(water_coordinates[3], water_coordinates[1]):
->>>>>>> 785c05dc2ab989a501f8ebf335f729954b55c884
 				if grid[j][i] == "0":
 					pass
 				else:
@@ -109,7 +103,6 @@ class Area(object):
 					grid[j][i] = "s"
 
 	def calculate_space(self, house_coordinates, grid):
-		print(house_coordinates)
 		for index in range(1, 100):
 			for i in range((house_coordinates[0] - index), (house_coordinates[2] + index)):
 				if house_coordinates[0] - index >= 0 and house_coordinates[2] + index < 360:
@@ -122,7 +115,8 @@ class Area(object):
 							return (index - 1)
 					else:
 						return (index - 1)
-				else: return (index - 1)
+				else:
+					return (index - 1)
 
 	def makegrid(self, coordinatelist, water, total_value):
 
