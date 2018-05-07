@@ -1,7 +1,5 @@
 import random as random
 
-# CHECK IF WATER BODIES OVERLAP!!!
-
 total_width = 360
 total_height = 320
 water_percentage = 0.2
