@@ -16,6 +16,9 @@ class State(object):
 define operator methods which gets us a new state
 - moving a house
 - swapping a house
+- draaien van huis
+- changing water from 1 to 2/3/4 (or else)
+- moving water
 
 def HillClimbing():
 while (solution not found or states left to check)
