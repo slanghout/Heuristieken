@@ -32,7 +32,7 @@ class Area(object):
 		elif thing == "water":
 			for i in range(housecords[0], (housecords[2])):
 				for j in range(housecords[3], (housecords[1])):
-					if grid[j][i] == "0" or grid == "w":
+					if grid[j][i] == "0":
 						grid[j][i] = "w"
 					else:
 						exit(0)
@@ -69,9 +69,9 @@ class Area(object):
 		return True
 
 	# check if there is enough space for water (same as for house dus eventueel combineren)
-	def watercheck(self, grid, watercoordinates):
-		for i in range(water_coordinates[0], water_coordinates[2]):
-			for j in range(water_coordinates[3], water_coordinates[1]):
+	def watercheck(self, grid, watercords):
+		for i in range(watercords[0], watercords[2]):
+			for j in range(watercords[3], watercords[1]):
 				if grid[j][i] == "0":
 					pass
 				else:
