@@ -9,7 +9,7 @@ def Random(nr_of_houses):
 	# make empty coordinate list
 
 	grid = Area().make_basic_grid()
-	
+
 	water_coordinates =  Create_water(grid)
 	if water_coordinates != None:
 		values = Build_Amstelhaege(nr_of_houses, grid)
@@ -33,7 +33,7 @@ def Randomizer(amount):
 	random_y = random.randint(minY, maxY)
 	return [random_x, random_y]
 
-def Create_water(cordinatelist):
+def Create_water(grid):
 	water_options = [1, 2, 3, 4]
 
 	water_bodies = 1 #random.choice(water_options)
@@ -41,34 +41,34 @@ def Create_water(cordinatelist):
 		water_coordinates = MakeWater(water_bodies)
 		for body in range(water_bodies):
 			if water_coordinates != None:
-				cordinatelist = Area().updatecordinatelist(cordinatelist, water_coordinates[body], "water")
-			
+				grid = Area().update_grid(grid, water_coordinates[body], "water")
+
 	elif water_bodies == 1:
 		water_coordinates = MakeWater(water_bodies)
 		if water_coordinates != None:
-			cordinatelist = Area().updatecordinatelist(cordinatelist, water_coordinates[0], "water")
-	
+			grid = Area().update_grid(grid, water_coordinates[0], "water")
+
 	return water_coordinates
 
 
-def Set_house_in_list(build, cord, coordinate_list, cordinatelist):
+def Set_house_in_list(build, cord, coordinate_list, grid):
 
 	house_coordinates = build(cord).coordinates_house()
 	if house_coordinates != None:
 		space_coordinates = build(cord).spacehouse(house_coordinates)
-	
-		if Area().housecheck(cordinatelist, house_coordinates) == True:
-			if Area().spacecheck(cordinatelist, space_coordinates) == True:
+
+		if Area().housecheck(grid, house_coordinates) == True:
+			if Area().spacecheck(grid, space_coordinates) == True:
 				coordinate_list.append(house_coordinates)
-				cordinatelist = Area().updatecordinatelist(cordinatelist, house_coordinates, "house")
-				cordinatelist = Area().updatecordinatelist(cordinatelist, space_coordinates, "space")
+				grid = Area().update_grid(grid, house_coordinates, "house")
+				grid = Area().update_grid(grid, space_coordinates, "space")
 				return True
-			elif Area().spacecheck(cordinatelist, space_coordinates) != True:
+			elif Area().spacecheck(grid, space_coordinates) != True:
 				return False
-		elif Area().housecheck(cordinatelist, house_coordinates) != True:
+		elif Area().housecheck(grid, house_coordinates) != True:
 			return False
 
-def Build_Amstelhaege(amount, cordinatelist):
+def Build_Amstelhaege(amount, grid):
 	build_single = int(amount*0.6)
 	build_bungalow = int(amount*0.25)
 	build_maison = int(amount*0.15)
@@ -80,26 +80,24 @@ def Build_Amstelhaege(amount, cordinatelist):
 	while housecount < build_single:
 		cord = Randomizer(1)
 		build = single
-		if Set_house_in_list(build, cord, coordinate_list, cordinatelist) == True:
+		if Set_house_in_list(build, cord, coordinate_list, grid) == True:
 			housecount += 1
 			total_value += single(cord).giveworth()
 
 	while housecount < (build_single + build_bungalow):
 		cord = Randomizer(1)
 		build = bungalow
-		if Set_house_in_list(build, cord, coordinate_list, cordinatelist) == True:
+		if Set_house_in_list(build, cord, coordinate_list, grid) == True:
 			housecount += 1
 			total_value += bungalow(cord).giveworth()
 
 	while housecount < amount:
 		cord = Randomizer(1)
 		build = maison
-		if Set_house_in_list(build, cord, coordinate_list, cordinatelist) == True:
+		if Set_house_in_list(build, cord, coordinate_list, grid) == True:
 			housecount += 1
 			total_value += maison(cord).giveworth()
 
-	Area().fillgrid(cordinatelist)
+	Area().fillgrid(grid)
 
 	return [total_value, coordinate_list]
-
-

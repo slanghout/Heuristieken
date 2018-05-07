@@ -10,21 +10,21 @@ class Area(object):
 	def __init__(self):
 		self.width = 360
 		self.height = 320
-		
+
 	# create grid of 360*320 filled with 0's
 	def make_basic_grid(self):
 		basic_grid = [["0"]*self.width for x in range(self.height)]
 		return basic_grid
 
 	# update the grid with house, water or space
-	def updatecordinatelist(self, cordinatelist, housecords, thing):	
-		
+	def update_grid(self, grid, housecords, thing):	
+
 		# if a house is placed, set h on coordinates of the house
 		if thing == "house":
 			for i in range(housecords[0], (housecords[2])):
 				for j in range(housecords[3], (housecords[1])):
-					if cordinatelist[j][i] == "0":
-						cordinatelist[j][i] = "h"
+					if grid[j][i] == "0":
+						grid[j][i] = "h"
 					else:
 						exit(0)
 
@@ -32,8 +32,8 @@ class Area(object):
 		elif thing == "water":
 			for i in range(housecords[0], (housecords[2])):
 				for j in range(housecords[3], (housecords[1])):
-					if cordinatelist[j][i] == "0" or cordinatelist == "w":
-						cordinatelist[j][i] = "w"
+					if grid[j][i] == "0" or grid == "w":
+						grid[j][i] = "w"
 					else:
 						exit(0)
 
@@ -42,37 +42,37 @@ class Area(object):
 		elif thing == "space":
 			for i in range(housecords[0], (housecords[2])):
 				for j in range(housecords[3], (housecords[1])):
-					if cordinatelist[j][i] == "0" or cordinatelist[j][i] == "s":
-						cordinatelist[j][i] = "s"
+					if grid[j][i] == "0" or grid[j][i] == "s":
+						grid[j][i] = "s"
 
-		return cordinatelist
+		return grid
 
 	# check if around house enough space for free space
-	def spacecheck(self, cordinatelist, housecords):
+	def spacecheck(self, grid, housecords):
 		for i in range(housecords[0], (housecords[2])):
 			for j in range(housecords[3], (housecords[1])):
-				if (cordinatelist[j][i] == "0" or cordinatelist[j][i] == "s"
-					or cordinatelist[j][i] == "w"):
+				if (grid[j][i] == "0" or grid[j][i] == "s"
+					or grid[j][i] == "w"):
 					pass
 				else:
 					return False
 		return True
 
 	# check if there is enough space to buid a house
-	def housecheck(self, cordinatelist, housecords):
+	def housecheck(self, grid, housecords):
 		for i in range(housecords[0], (housecords[2])):
 			for j in range(housecords[3], (housecords[1])):
-				if cordinatelist[j][i] == "0":
+				if grid[j][i] == "0":
 					pass
 				else:
 					return False
 		return True
 
-	def fillgrid(self, cordinatelist):
+	def fillgrid(self, grid):
 		for i in range(360):
 			for j in range(320):
-				if cordinatelist[j][i] == "0":
-					cordinatelist[j][i] = "s"
+				if grid[j][i] == "0":
+					grid[j][i] = "s"
 
 	def makegrid(self, coordinatelist, water, total_value):
 
@@ -85,7 +85,7 @@ class Area(object):
 		# make axes grid
 		major_ticks = np.arange(0, 320, 40)
 		minor_ticks = np.arange(0, 400, 1)
-		
+
 		# makes lines for grid
 		# ax.set_xticks(major_ticks)
 		# ax.set_xticks(minor_ticks, minor=True)
@@ -96,32 +96,32 @@ class Area(object):
 		# set limits for the plot
 		ax.set_xlim(left=0, right=self.width, auto=False)
 		ax.set_ylim(bottom=0, top=self.height, auto=False)
-		
+
 		# make background grid green
 		x = [self.width, self.width, 0, 0]
 		y = [0, self.height, self.height, 0]
 		ax.fill(x, y, color ="#abd9e9")
 
-	
+
 		# iterate over coordinate list and select coordinates
 		# for i in range(360):
 		# 	for j in range(320):
-		# 		if cordinatelist[j][i] == 'h':
+		# 		if grid[j][i] == 'h':
 		# 			x = [(i+1), (i+1), i, i]
 		# 			y = [j, (j+1), (j+1), j]
 		# 			ax.fill(x, y, color = "#ffffbf")
-		# 		elif cordinatelist[j][i] == 's':
+		# 		elif grid[j][i] == 's':
 		# 			x = [(i+1), (i+1), i, i]
 		# 			y = [j, (j+1), (j+1), j]
 		# 			ax.fill(x, y, color = "#2c7bb6")
-		# 		elif cordinatelist[j][i] == 'w':
+		# 		elif grid[j][i] == 'w':
 		# 			x = [(i+1), (i+1), i, i]
 		# 			y = [j, (j+1), (j+1), j]
 		# 			ax.fill(x, y, color ="#abd9e9")
 		# 		else:
 		# 			x = [(i+1), (i+1), i, i]
 		# 			y = [j, (j+1), (j+1), j]
-		# 			ax.fill(x, y, color ="#fdae61")	
+		# 			ax.fill(x, y, color ="#fdae61")
 
 		if len(water) > 1:
 			for body in range(len(water)):
@@ -135,7 +135,7 @@ class Area(object):
 			x = [element[2], element[2], element[0], element[0]]
 			y = [element[1], element[3], element[3], element[1]]
 			ax.fill(x, y, color = "#2c7bb6")
-		
+
 		for element in coordinatelist:
 			x = [element[2], element[2], element[0], element[0]]
 			y = [element[1], element[3], element[3], element[1]]
@@ -150,8 +150,8 @@ class Area(object):
 				# total_value += maison(element).giveworth()
 				ax.fill(x, y, color = "#d7191c")
 
-		
-			
+
+
 		plt.xlabel('width')
 		plt.ylabel('height')
 		plt.title('Amstelhaege, worth: ${:,.2f}' .format(total_value))
@@ -163,7 +163,7 @@ class Area(object):
 		legend_single = mpatches.Patch(color = "#ffffbf", label = "single")
 		legend_bungalow = mpatches.Patch(color = "#fdae61", label = "bungalow")
 		legend_maison = mpatches.Patch(color = "#d7191c", label = "maison")
-		legend_water = mpatches.Patch(color = "#2c7bb6", label = "water")		
+		legend_water = mpatches.Patch(color = "#2c7bb6", label = "water")
 		plt.legend(handles=[legend_single, legend_bungalow, legend_maison, legend_water], bbox_to_anchor = (1.05, 1), loc = 2, borderaxespad = 0.)
 
 		plt.show()
