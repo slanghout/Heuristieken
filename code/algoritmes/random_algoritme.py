@@ -23,11 +23,15 @@ def Random(nr_of_houses):
 			elif cordinate[4] == 3:
 				build = maison
 			price = build(cord).giveworth(cordinate, grid)
-			total_value += price
+			if price != None:
+				total_value += price
+			else:
+				exit(0)
 
 		Area().makegrid(coordinate_list, water_coordinates, total_value)
 	else:
-		exit()
+		exit(0)
+
 
 # Random coordinate generation after grid boundaries are given
 def Randomizer(amount):
