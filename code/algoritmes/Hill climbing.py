@@ -18,6 +18,9 @@ class State(object):
 	currentState = grid
 	valueCurrentState = ...
 
+def deleteCords(grid, coordinates):
+
+
 def randomChange():
 	#changeOptions = [1, 2, 3, 4]
 	#change = random.choice(changeOptions)
@@ -25,7 +28,7 @@ def randomChange():
 
 	if change == 1:
 		draaien van random huis
-		houseCords = lijst van alle huiscoordinaten
+		houseCords = coordinate_list
 		randomHouse = random.choice(houseCords)
 		width = height
 		height = width
