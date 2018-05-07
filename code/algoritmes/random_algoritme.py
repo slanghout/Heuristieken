@@ -23,11 +23,15 @@ def Random(nr_of_houses):
 			elif cordinate[4] == 3:
 				build = maison
 			price = build(cord).giveworth(cordinate, grid)
-			total_value += price
+			if price != None:
+				total_value += price
+			else:
+				exit(0)
 
 		Area().makegrid(coordinate_list, water_coordinates, total_value)
 	else:
-		exit()
+		exit(0)
+
 
 # Random coordinate generation after grid boundaries are given
 def Randomizer(amount):
@@ -72,17 +76,17 @@ def Set_house_in_list(build, cord, coordinate_list, grid):
 	# create coordinates for house
 	house_coordinates = build(cord).coordinates_house()
 	if house_coordinates != None:
-		
-		# if house coordinates are given create coordinates for house with space 
+
+		# if house coordinates are given create coordinates for house with space
 		space_coordinates = build(cord).spacehouse(house_coordinates)
 
 		# check room for house
 		if Area().housecheck(grid, house_coordinates) == True:
-			
+
 			# check room for house with space around
 			if Area().spacecheck(grid, space_coordinates) == True:
 				coordinate_list.append(house_coordinates)
-				
+
 				# set house in grid
 				if build == single:
 					grid = Area().update_grid(grid, house_coordinates, "single")
