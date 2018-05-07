@@ -63,27 +63,29 @@ class house(object):
 
 		return space_coordinates
 	
-	def giveworth(self):
-		# bereken waarde met de vrijstand
-		# geef de min ruimte tot volgende huis
-		# bereken de prijs door 
-		# worth_house = self.price * (self.percentage * min_space)
-		return self.price
+	def giveworth(self, house_coordinates, grid):
+		space = Area().calculate_space(house_coordinates, grid)
+		print(space)
+		if space != None:
+			extra_space = int(space - self.space)
+			price = self.price * (1 + (self.percentage * extra_space))
+
+			return price
 
 # define specifics for single house
 class single(house):
 	def __init__(self, coordinates):
 		super().__init__(x = coordinates[0], y=coordinates[1], height = 16,
-		 width = 16, price = 285000, space = 4, percentage = 1.03, count = 1)
+		 width = 16, price = 285000, space = 4, percentage = 0.03, count = 1)
 
 # define specifics for bungalow house
 class bungalow(house):
 	def __init__(self, coordinates):
 		super().__init__(x = coordinates[0], y=coordinates[1], height = 20,
-		 width = 15, price = 399000, space = 6, percentage = 1.04, count = 2)
+		 width = 15, price = 399000, space = 6, percentage = 0.04, count = 2)
 
 # define specifics for maison house
 class maison(house):
 	def __init__(self, coordinates):
 		super().__init__(x = coordinates[0], y=coordinates[1], height = 22,
-		 width = 21, price = 610000, space = 12, percentage = 1.06, count = 3)
+		 width = 21, price = 610000, space = 12, percentage = 0.06, count = 3)

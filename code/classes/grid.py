@@ -20,7 +20,23 @@ class Area(object):
 	def update_grid(self, grid, housecords, thing):	
 
 		# if a house is placed, set h on coordinates of the house
-		if thing == "house":
+		if thing == "single":
+			for i in range(housecords[0], (housecords[2])):
+				for j in range(housecords[3], (housecords[1])):
+					if grid[j][i] == "0":
+						grid[j][i] = "h"
+					else:
+						exit(0)
+		
+		elif thing == "maison":
+			for i in range(housecords[0], (housecords[2])):
+				for j in range(housecords[3], (housecords[1])):
+					if grid[j][i] == "0":
+						grid[j][i] = "h"
+					else:
+						exit(0)
+
+		elif thing == "bungalow":
 			for i in range(housecords[0], (housecords[2])):
 				for j in range(housecords[3], (housecords[1])):
 					if grid[j][i] == "0":
@@ -42,8 +58,10 @@ class Area(object):
 		elif thing == "space":
 			for i in range(housecords[0], (housecords[2])):
 				for j in range(housecords[3], (housecords[1])):
-					if grid[j][i] == "0" or grid[j][i] == "s":
+					if grid[j][i] == "0":
 						grid[j][i] = "s"
+					elif grid[j][i] == "w" or grid[j][i] == "s":
+						pass	
 
 		return grid
 
@@ -68,11 +86,36 @@ class Area(object):
 					return False
 		return True
 
+	def watercheck(self, grid, housecords):
+		for i in range(housecords[0], (housecords[2])):
+			for j in range(housecords[3], (housecords[1])):
+				if grid[j][i] == "0":
+					pass
+				else:
+					return False
+		return True
+
 	def fillgrid(self, grid):
 		for i in range(360):
 			for j in range(320):
 				if grid[j][i] == "0":
 					grid[j][i] = "s"
+
+	def calculate_space(self, house_coordinates, grid):
+		print(house_coordinates)
+		for index in range(1, 100):
+			for i in range((house_coordinates[0] - index), (house_coordinates[2] + index)):
+				if house_coordinates[0] - index >= 0 and house_coordinates[2] + index < 360:
+					if house_coordinates[1] + index < 320 and house_coordinates[3] - index >= 0:
+						if grid[house_coordinates[1] + index][i] != "h":
+							pass
+						if grid[house_coordinates[3] - index][i] != "h":
+							pass
+						else:
+							return (index - 1)
+					else:
+						return (index - 1)
+				else: return (index - 1)
 
 	def makegrid(self, coordinatelist, water, total_value):
 
