@@ -1,12 +1,27 @@
-from overlap_check import *
+# from overlap_check import *
 from houses import *
 from grid import *
+from water import *
 
 import random as random
 
+def Random(nr_of_houses):
+	# make empty coordinate list
+
+	cordinatelist = grid().makecordinatelist()
+	
+	water_coordinates =  Create_water(cordinatelist)
+	if water_coordinates != None:
+		values = Build_Amstelhaege(nr_of_houses, cordinatelist)
+		total_value = values[0]
+		coordinate_list = values[1]
+		if total_value != None:
+			grid().makegrid(coordinate_list, water_coordinates, total_value)
+	else:
+		exit()
+
 # Random coordinate generation after grid boundaries are given
 def Randomizer(amount):
-
 	# max and min value of the coordinates are grid outliers
 	maxX = 320
 	maxY = 360
@@ -18,33 +33,51 @@ def Randomizer(amount):
 	random_y = random.randint(minY, maxY)
 	return [random_x, random_y]
 
-def SetHouseInList(build, cord, coordinate_list, cordinatelist):
-	housecords = build(cord).coordinates_house()
+def Create_water(cordinatelist):
+	water_options = [1, 2, 3, 4]
 
-	if housecords != None:
-		if len(coordinate_list) == 0:
-			coordinate_list.append(housecords)
-			cordinatelist = grid().updatecordinatelist(cordinatelist, housecords, "houses")
-			return True
-		elif grid().overlapping(cordinatelist, housecords) == True:
-			coordinate_list.append(housecords)
-			cordinatelist = grid().updatecordinatelist(cordinatelist, housecords, "houses")
-			return True
-		elif grid().overlapping(cordinatelist, housecords) != True:
+	water_bodies = random.choice(water_options)
+	if water_bodies > 1:
+		water_coordinates = MakeWater(water_bodies)
+		print(water_coordinates)
+		print(water_bodies)
+		for body in range(water_bodies):
+			print(water_coordinates[body])
+			if water_coordinates != None:
+				cordinatelist = grid().updatecordinatelist(cordinatelist, water_coordinates[body], "water")
+			
+	elif water_bodies == 1:
+		water_coordinates = MakeWater(water_bodies)
+		if water_coordinates != None:
+			cordinatelist = grid().updatecordinatelist(cordinatelist, water_coordinates[0], "water")
+	
+	return water_coordinates
+
+
+def Set_house_in_list(build, cord, coordinate_list, cordinatelist):
+
+	house_coordinates = build(cord).coordinates_house()
+	if house_coordinates != None:
+		space_coordinates = build(cord).spacehouse(house_coordinates)
+	
+		if grid().housecheck(cordinatelist, house_coordinates) == True:
+			if grid().spacecheck(cordinatelist, space_coordinates) == True:
+				coordinate_list.append(house_coordinates)
+				cordinatelist = grid().updatecordinatelist(cordinatelist, house_coordinates, "house")
+				cordinatelist = grid().updatecordinatelist(cordinatelist, space_coordinates, "space")
+				return True
+			elif grid().spacecheck(cordinatelist, space_coordinates) != True:
+				return False
+		elif grid().housecheck(cordinatelist, house_coordinates) != True:
 			return False
-		# elif Overlap(housecords, coordinate_list) == True:
-		# 	coordinate_list.append(housecords)
-		# 	cordinatelist = grid().updatecordinatelist(cordinatelist, housecords, "houses")
-		# 	return True
-		# elif Overlap(housecords, coordinate_list) != True:
-		# 	return False
 
-def BuildRandomHouses(amount):
+def Build_Amstelhaege(amount, cordinatelist):
 	build_single = int(amount*0.6)
 	build_bungalow = int(amount*0.25)
 	build_maison = int(amount*0.15)
 
-	cordinatelist = grid().makecordinatelist()
+	# cordinatelist = grid().makecordinatelist()
+
 	coordinate_list = []
 	housecount = 0
 	total_value = 0
@@ -52,23 +85,29 @@ def BuildRandomHouses(amount):
 	while housecount < build_single:
 		cord = Randomizer(1)
 		build = single
-		if SetHouseInList(build, cord, coordinate_list, cordinatelist) == True:
+		if Set_house_in_list(build, cord, coordinate_list, cordinatelist) == True:
 			housecount += 1
 			total_value += single(cord).giveworth()
 
 	while housecount < (build_single + build_bungalow):
 		cord = Randomizer(1)
 		build = bungalow
-		if SetHouseInList(build, cord, coordinate_list, cordinatelist) == True:
+		if Set_house_in_list(build, cord, coordinate_list, cordinatelist) == True:
 			housecount += 1
 			total_value += bungalow(cord).giveworth()
 
 	while housecount < amount:
 		cord = Randomizer(1)
 		build = maison
-		if SetHouseInList(build, cord, coordinate_list, cordinatelist) == True:
+		if Set_house_in_list(build, cord, coordinate_list, cordinatelist) == True:
 			housecount += 1
 			total_value += maison(cord).giveworth()
 
-	grid().makegrid(coordinate_list, total_value) 
+	grid().fillgrid(cordinatelist)
+
+	# print(cordinatelist)
+	print("hoi")
+
+	return [total_value, coordinate_list]
+
 

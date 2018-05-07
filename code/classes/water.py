@@ -27,8 +27,8 @@ def MakeWater(amount_water):
 					# choose random coordinates
 					left_x1 = random.randint(0, total_width)
 					up_y1 = random.randint(0, total_height)
-					right_x1 = left_x1 + width_1
-					down_y1 = up_y1 - height_1
+					right_x1 = int(left_x1 + width_1)
+					down_y1 = int(up_y1 - height_1)
 					
 					# check coordinates
 					if right_x1 <= total_width and down_y1 >= 0:
@@ -58,13 +58,13 @@ def MakeWater(amount_water):
 					# choose random coordinates
 					left_x1 = random.randint(0, total_width)
 					up_y1 = random.randint(0, total_height)
-					right_x1 = left_x1 + width_1
-					down_y1 = up_y1 - height_1
+					right_x1 = int(left_x1 + width_1)
+					down_y1 = int(up_y1 - height_1)
 
 					left_x2 = random.randint(0, total_width)
 					up_y2 = random.randint(0, total_height)
-					right_x2 = left_x2 + width_2
-					down_y2 = up_y2 - height_2
+					right_x2 = int(left_x2 + width_2)
+					down_y2 = int(up_y2 - height_2)
 
 					# check coordinates
 					if right_x1 <= total_width and right_x2 <= total_width and down_y1 >= 0 and down_y2 >= 0:
@@ -102,18 +102,18 @@ def MakeWater(amount_water):
 						# choose random coordinates		
 						left_x1 = random.randint(0, total_width)
 						up_y1 = random.randint(0, total_height)
-						right_x1 = left_x1 + width_1
-						down_y1 = up_y1 - height_1
+						right_x1 = int(left_x1 + width_1)
+						down_y1 = int(up_y1 - height_1)
 
 						left_x2 = random.randint(0, total_width)
 						up_y2 = random.randint(0, total_height)
-						right_x2 = left_x2 + width_2
-						down_y2 = up_y2 - height_2
+						right_x2 = int(left_x2 + width_2)
+						down_y2 = int(up_y2 - height_2)
 
 						left_x3 = random.randint(0, total_width)
 						up_y3 = random.randint(0, total_height)
-						right_x3 = left_x3 + width_3
-						down_y3 = up_y3 - height_3
+						right_x3 = int(left_x3 + width_3)
+						down_y3 = int(up_y3 - height_3)
 
 						# check coordinates
 						if right_x1 <= total_width and right_x2 <= total_width and right_x3 <= total_width and down_y1 >= 0 and down_y2 >= 0 and down_y3 >= 0:
@@ -158,23 +158,23 @@ def MakeWater(amount_water):
 							# choose random coordinates
 							left_x1 = random.randint(0, total_width)
 							up_y1 = random.randint(0, total_height)
-							right_x1 = left_x1 + width_1
-							down_y1 = up_y1 - height_1
+							right_x1 = int(left_x1 + width_1)
+							down_y1 = int(up_y1 - height_1)
 
 							left_x2 = random.randint(0, total_width)
 							up_y2 = random.randint(0, total_height)
-							right_x2 = left_x2 + width_2
-							down_y2 = up_y2 - height_2
+							right_x2 = int(left_x2 + width_2)
+							down_y2 = int(up_y2 - height_2)
 
 							left_x3 = random.randint(0, total_width)
 							up_y3 = random.randint(0, total_height)
-							right_x3 = left_x3 + width_3
-							down_y3 = up_y3 - height_3
+							right_x3 = int(left_x3 + width_3)
+							down_y3 = int(up_y3 - height_3)
 
 							left_x4 = random.randint(0, total_width)
 							up_y4 = random.randint(0, total_height)
-							right_x4 = left_x4 + width_4
-							down_y4 = up_y4 - height_4
+							right_x4 = int(left_x4 + width_4)
+							down_y4 = int(up_y4 - height_4)
 
 							# check coordinates
 							if right_x1 <= total_width and right_x2 <= total_width and right_x3 <= total_width and right_x4 <= total_width and down_y1 >= 0 and down_y2 >= 0 and down_y3 >= 0 and down_y4 >= 0:
