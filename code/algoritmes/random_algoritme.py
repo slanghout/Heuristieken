@@ -11,7 +11,11 @@ def Random(nr_of_houses):
 	grid = Area().make_basic_grid()
 	total_value = 0
 
-	water_coordinates =  Create_water(grid)
+	water_coordinates = Create_water(grid)
+	
+	if water_coordinates == None:
+		Random(nr_of_houses)
+	
 	if water_coordinates != None:
 		coordinate_list = Build_Amstelhaege(nr_of_houses, grid)
 		for cordinate in coordinate_list:
@@ -61,7 +65,7 @@ def Create_water(grid):
 					if Area().watercheck(grid, water_coordinates[body]) == True:
 						grid = Area().update_grid(grid, water_coordinates[body], "water")
 					else:
-						exit(0)
+						return None
 
 	elif water_bodies == 1:
 		water_coordinates = MakeWater(water_bodies)
