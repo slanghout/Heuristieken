@@ -14,18 +14,33 @@ from random_algoritme import *
 from water import *
 
 def main():
-	# set height and width of the land
+	# nr_of_houses = input("Would you like 20, 40 or 60 houses?")
+	# if nr_of_houses != 20 or nr_of_houses != 40 or nr_of_houses != 60:
+	# 	Random(int(nr_of_houses))
+	# else:
+	# 	print("invalid number of houses")
 
-	Random(60)
+	best_gridvalues = []
+	for repeat in range(20):
+		print(repeat)
+		gridvalue = Random(60)
+		print(gridvalue[2])
+		if len(best_gridvalues) != 0:
+			if best_gridvalues[2] > gridvalue[2]:
+				pass
+			else:
+				best_gridvalues = gridvalue
+		else:
+			best_gridvalues = gridvalue
 
+	# gridvalues = Random(40)
 
+	coordinate_list = best_gridvalues[0]
+	water_coordinates = best_gridvalues[1]
+	total_value = best_gridvalues[2]
 
-	# placing the houses and water randomly
-			# 20 houses
-			# 40 houses
-			# 60 houses
-			# value
-			
+	Area().makegrid(coordinate_list, water_coordinates, total_value)
+
 	# visualizing data
 
 	# Hill Climbing Algorithm
