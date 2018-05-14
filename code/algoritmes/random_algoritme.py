@@ -110,28 +110,27 @@ def Build_Amstelhaege(amount, grid):
 
 	coordinate_list = []
 	housecount = 0
-	# total_value = 0
 
-	while housecount < build_single:
-		cord = Randomizer(1)
-		build = single
-		if Set_house_in_list(build, cord, coordinate_list, grid) == True:
-			housecount += 1
-			# total_value += single(cord).giveworth()
-
-	while housecount < (build_single + build_bungalow):
-		cord = Randomizer(1)
-		build = bungalow
-		if Set_house_in_list(build, cord, coordinate_list, grid) == True:
-			housecount += 1
-			# total_value += bungalow(cord).giveworth()
-
-	while housecount < amount:
+	while housecount < build_maison:
 		cord = Randomizer(1)
 		build = maison
 		if Set_house_in_list(build, cord, coordinate_list, grid) == True:
 			housecount += 1
-			# total_value += maison(cord).giveworth()
+			print(housecount)
+
+	while housecount < (build_maison + build_bungalow):
+		cord = Randomizer(1)
+		build = bungalow
+		if Set_house_in_list(build, cord, coordinate_list, grid) == True:
+			housecount += 1
+			print(housecount)
+
+	while housecount < amount:
+		cord = Randomizer(1)
+		build = single
+		if Set_house_in_list(build, cord, coordinate_list, grid) == True:
+			housecount += 1
+			print(housecount)
 
 	Area().fillgrid(grid)
 
