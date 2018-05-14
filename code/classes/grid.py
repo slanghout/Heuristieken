@@ -177,13 +177,11 @@ class Area(object):
 				# total_value += maison(element).giveworth()
 				ax.fill(x, y, color = "#d7191c")
 
-
-
 		plt.xlabel('width')
 		plt.ylabel('height')
 		plt.title('Amstelhaege, worth: ${:,.2f}' .format(total_value))
 
-		# bij deze beide manieren gaat de grid een beetje uit proporsie
+		# bij deze beide manieren gaat de grid een beetje uit proportie
 		#plt.subplots_adjust(right = 0.75)
 		plt.tight_layout(rect=[0,0,0.75,1])
 

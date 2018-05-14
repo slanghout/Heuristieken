@@ -5,18 +5,19 @@ from random_algoritme import *
 
 import random as random
 
-Hill climbing
-Evaluate the initial state.
-Loop until a solution is found or there are no new operators left to be applied:
--	select and apply an operation to the current state and get a new state
--	evaluate the new state:
-		compare it to the goal --> quit
-		new state better than current state? --> update current state
-
+# Hill climbing
+# Evaluate the initial state.
+# Loop until a solution is found or there are no new operators left to be applied:
+# -	select and apply an operation to the current state and get a new state
+# -	evaluate the new state:
+# 		compare it to the goal --> quit
+# 		new state better than current state? --> update current state
 
 class State(object):
 	currentState = grid
-	valueCurrentState = ...
+	valueCurrentState = total_value
+
+def updateCoordinatelist(coordinate_list):
 
 def deleteCords(grid, coordinates):
 
@@ -39,7 +40,7 @@ def randomChange():
 		NewState = grid
 		valueNewState =
 		return NewState, valueNewState
-		
+
 # 	if change == 2:
 #	random verplaatsen van random huis
 # 	if change == 3:

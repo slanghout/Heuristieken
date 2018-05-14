@@ -9,7 +9,6 @@ sys.path.append(os.path.join(directory, "code", "grid"))
 
 from houses import *
 from grid import *
-from overlap_check import *
 from random_algoritme import *
 from water import *
 
