@@ -6,6 +6,7 @@ __pycache__/
 # Dit heb zelf toegevoegd
 .DS_Store
 dewi.py
+sylvie.py
 
 # C extensions
 *.so

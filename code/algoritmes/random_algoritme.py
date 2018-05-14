@@ -8,10 +8,9 @@ import random as random
 def Random(nr_of_houses):
 	# make empty coordinate list
 
-	total_value = 0
-
 	water_coordinates = None
 	while water_coordinates == None:
+		total_value = 0
 		grid = Area().make_basic_grid()
 		water_coordinates = Create_water(grid)
 	
