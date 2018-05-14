@@ -19,11 +19,11 @@ def main():
 		print("invalid number of houses")
 
 	best_gridvalues = []
-	for repeat in range(100):
+	for repeat in range(3):
 		print(repeat)
 		gridvalue = Random(int(nr_of_houses))
-		print(gridvalue[2])
 		if len(best_gridvalues) != 0:
+			print("best {} vs now {}".format(best_gridvalues[2], gridvalue[2]))
 			if best_gridvalues[2] > gridvalue[2]:
 				pass
 			else:
@@ -36,10 +36,6 @@ def main():
 	total_value = best_gridvalues[2]
 
 	Area().makegrid(coordinate_list, water_coordinates, total_value)
-
-	Random(60)
-
-
 
 	# placing the houses and water randomly
 			# 20 houses

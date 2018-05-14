@@ -62,9 +62,11 @@ class Area(object):
 		elif thing == "space":
 			for i in range(housecords[0], (housecords[2])):
 				for j in range(housecords[3], (housecords[1])):
-					if grid[j][i] == "0":
+					if grid[j][i] == "s":
+						grid[j][i] = "ss"
+					elif grid[j][i] == "0":
 						grid[j][i] = "s"
-					elif grid[j][i] == "w" or grid[j][i] == "s":
+					elif grid[j][i] == "w":
 						pass
 
 		return grid
