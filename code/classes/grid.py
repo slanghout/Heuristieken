@@ -118,7 +118,7 @@ class Area(object):
 				else:
 					return (index - 1)
 
-	def makegrid(self, coordinatelist, water, total_value):
+	def makegrid(self, coordinate_list, water, total_value):
 
 		# make the figure
 		fig = plt.figure()
@@ -146,27 +146,6 @@ class Area(object):
 		y = [0, self.height, self.height, 0]
 		ax.fill(x, y, color ="#abd9e9")
 
-
-		# iterate over coordinate list and select coordinates
-		# for i in range(360):
-		# 	for j in range(320):
-		# 		if grid[j][i] == 'h':
-		# 			x = [(i+1), (i+1), i, i]
-		# 			y = [j, (j+1), (j+1), j]
-		# 			ax.fill(x, y, color = "#ffffbf")
-		# 		elif grid[j][i] == 's':
-		# 			x = [(i+1), (i+1), i, i]
-		# 			y = [j, (j+1), (j+1), j]
-		# 			ax.fill(x, y, color = "#2c7bb6")
-		# 		elif grid[j][i] == 'w':
-		# 			x = [(i+1), (i+1), i, i]
-		# 			y = [j, (j+1), (j+1), j]
-		# 			ax.fill(x, y, color ="#abd9e9")
-		# 		else:
-		# 			x = [(i+1), (i+1), i, i]
-		# 			y = [j, (j+1), (j+1), j]
-		# 			ax.fill(x, y, color ="#fdae61")
-
 		if len(water) > 1:
 			for body in range(len(water)):
 				element = (water[body])
@@ -180,7 +159,7 @@ class Area(object):
 			y = [element[1], element[3], element[3], element[1]]
 			ax.fill(x, y, color = "#2c7bb6")
 
-		for element in coordinatelist:
+		for element in coordinate_list:
 			x = [element[2], element[2], element[0], element[0]]
 			y = [element[1], element[3], element[3], element[1]]
 
@@ -194,13 +173,11 @@ class Area(object):
 				# total_value += maison(element).giveworth()
 				ax.fill(x, y, color = "#d7191c")
 
-
-
 		plt.xlabel('width')
 		plt.ylabel('height')
 		plt.title('Amstelhaege, worth: ${:,.2f}' .format(total_value))
 
-		# bij deze beide manieren gaat de grid een beetje uit proporsie
+		# bij deze beide manieren gaat de grid een beetje uit proportie
 		#plt.subplots_adjust(right = 0.75)
 		plt.tight_layout(rect=[0,0,0.75,1])
 
