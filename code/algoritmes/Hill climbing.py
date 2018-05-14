@@ -17,23 +17,17 @@ import random as random
 
 # Random oplossing nemen als beginsituatie -> current state
 
-	current = Random(20)
-
-	currentState = grid
-	valueCurrentState = total_value
-
-def updateCoordinatelist(coordinate_list):
-
-def deleteCords(grid, coordinates):
-
+# Hill Climbing Algorithm
+currentState = Random(20)
+valueCurrentState = currentState[2]
 
 def randomChange():
 	#changeOptions = [1, 2, 3, 4]
 	#change = random.choice(changeOptions)
 	change = 1
 
+	# random huis draaien
 	if change == 1:
-		draaien van random huis
 		houseCords = coordinate_list
 		randomHouse = random.choice(houseCords)
 		width = height
@@ -46,12 +40,19 @@ def randomChange():
 		valueNewState =
 		return NewState, valueNewState
 
-# 	if change == 2:
-#	random verplaatsen van random huis
-# 	if change == 3:
-#	swapping random houses
-# 	if change == 4:
-#	changing/moving water
+    # random huis verplaatsen
+	if change == 2:
+
+    # random huizen wisselen
+	if change == 3:
+
+    # random water verplaatsen
+	if change == 4:
+
+
+def updateCoordinatelist(coordinate_list):
+
+def deleteCords(grid, coordinates):
 
 
 def HillClimbing():
