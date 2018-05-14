@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 
-from overlap_check import *
+# from overlap_check import *
 from houses import *
 from water import *
 

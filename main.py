@@ -9,7 +9,7 @@ sys.path.append(os.path.join(directory, "code", "grid"))
 
 from houses import *
 from grid import *
-from overlap_check import *
+# from overlap_check import *
 from random_algoritme import *
 from water import *
 
@@ -25,7 +25,7 @@ def main():
 			# 40 houses
 			# 60 houses
 			# value
-			
+
 	# visualizing data
 
 	# Hill Climbing Algorithm

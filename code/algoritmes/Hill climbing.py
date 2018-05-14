@@ -13,7 +13,12 @@ import random as random
 # 		compare it to the goal --> quit
 # 		new state better than current state? --> update current state
 
-class State(object):
+# class State(object):
+
+# Random oplossing nemen als beginsituatie -> current state
+
+	current = Random(20)
+
 	currentState = grid
 	valueCurrentState = total_value
 
