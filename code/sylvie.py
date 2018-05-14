@@ -13,28 +13,33 @@ import random as random
 # 		compare it to the goal --> quit
 # 		new state better than current state? --> update current state
 
-# class State(object):
+def Hill_Climber(nr_of_houses):
+	starting_state = Random(nr_of_houses)
 
-# Random oplossing nemen als beginsituatie -> current state
+	coordinate_list = starting_state[0]
+	water_coordinates = starting_state[1]
+	total_value = starting_state[2]
 
-	current = Random(20)
-
-	currentState = grid
-	valueCurrentState = total_value
+	nr_of_changes = 5
+	for i in range(nr_of_changes):
+		randomChange(coordinate_list, nr_of_houses)
 
 def updateCoordinatelist(coordinate_list):
 
 def deleteCords(grid, coordinates):
 
 
-def randomChange():
+def randomChange(coordinate_list, nr_of_houses):
 	#changeOptions = [1, 2, 3, 4]
 	#change = random.choice(changeOptions)
+	house_one = randint(0, nr_of_houses)
+	house_two = randint(0, nr_of_houses)
 	change = 1
 
 	if change == 1:
-		draaien van random huis
-		houseCords = coordinate_list
+		house_cords_one = coordinate_list[house_one]
+		house_cords_two = coordinate_list[house_two]
+		
 		randomHouse = random.choice(houseCords)
 		width = height
 		height = width

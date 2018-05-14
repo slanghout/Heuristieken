@@ -104,7 +104,7 @@ class Area(object):
 		for i in range(360):
 			for j in range(320):
 				if grid[j][i] == "0":
-					grid[j][i] = "s"
+					grid[j][i] = "x"
 
 	def calculate_space(self, house_coordinates, grid):
 		for index in range(1, 100):

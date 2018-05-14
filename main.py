@@ -13,16 +13,14 @@ from random_algoritme import *
 from water import *
 
 def main():
-	# nr_of_houses = input("Would you like 20, 40 or 60 houses?")
-	# if nr_of_houses != 20 or nr_of_houses != 40 or nr_of_houses != 60:
-	# 	Random(int(nr_of_houses))
-	# else:
-	# 	print("invalid number of houses")
+	nr_of_houses = input("Would you like 20, 40 or 60 houses?")
+	if nr_of_houses == 20 or nr_of_houses == 40 or nr_of_houses == 60:
+		print("invalid number of houses")
 
 	best_gridvalues = []
-	for repeat in range(20):
+	for repeat in range(100):
 		print(repeat)
-		gridvalue = Random(60)
+		gridvalue = Random(int(nr_of_houses))
 		print(gridvalue[2])
 		if len(best_gridvalues) != 0:
 			if best_gridvalues[2] > gridvalue[2]:
@@ -31,8 +29,6 @@ def main():
 				best_gridvalues = gridvalue
 		else:
 			best_gridvalues = gridvalue
-
-	# gridvalues = Random(40)
 
 	coordinate_list = best_gridvalues[0]
 	water_coordinates = best_gridvalues[1]
