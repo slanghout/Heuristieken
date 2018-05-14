@@ -6,7 +6,6 @@ water_percentage = 0.2
 total_water_size = total_width * total_height * water_percentage
 print(total_water_size)
 
-
 def MakeWater(amount_water):
 	if amount_water == 1:
 		water_coordinates_1 = []
@@ -72,7 +71,7 @@ def MakeWater(amount_water):
 						print(water_coordinates_2)
 
 
-						
+
 		return [water_coordinates_1, water_coordinates_2]
 
 
