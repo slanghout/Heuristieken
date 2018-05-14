@@ -1,6 +1,6 @@
 from houses import *
 from grid import *
-from overlap_check import *
+# from overlap_check import *
 from random import *
 
 import random as random
@@ -35,7 +35,7 @@ class house(object):
 
 		# set house coordinates
 		house_coordinates = [left_x, up_y, right_x, down_y, self.count]
-		
+
 		# check if house coordinates do not cross sides of the grid
 		if left_x < self.space:
 			return None
@@ -58,11 +58,11 @@ class house(object):
 		up_y_space = up_y + self.space
 		right_x_space = right_x + self.space
 		down_y_space = down_y - self.space
-		
+
 		space_coordinates = [left_x_space, up_y_space, right_x_space, down_y_space]
 
 		return space_coordinates
-	
+
 	def giveworth(self, house_coordinates, grid):
 		space = Area().calculate_space(house_coordinates, grid)
 		if space != None:

@@ -9,6 +9,7 @@ sys.path.append(os.path.join(directory, "code", "grid"))
 
 from houses import *
 from grid import *
+# from overlap_check import *
 from random_algoritme import *
 from water import *
 
@@ -35,6 +36,16 @@ def main():
 	total_value = best_gridvalues[2]
 
 	Area().makegrid(coordinate_list, water_coordinates, total_value)
+
+	Random(60)
+
+
+
+	# placing the houses and water randomly
+			# 20 houses
+			# 40 houses
+			# 60 houses
+			# value
 
 	# visualizing data
 
