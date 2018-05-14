@@ -3,6 +3,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Dit heb zelf toegevoegd
+.DS_Store
+dewi.py
+
 # C extensions
 *.so
 
