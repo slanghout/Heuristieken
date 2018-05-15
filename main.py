@@ -18,6 +18,8 @@ from Hill_climber import HillClimber
 from random_algoritme import Random
 from water import MakeWater
 
+import time
+
 def main():
 	nr_of_houses = int(input("Would you like 20, 40 or 60 houses?"))
 	if nr_of_houses != 20 and nr_of_houses != 40 and nr_of_houses != 60:
@@ -35,13 +37,15 @@ def main():
 		fieldnames = ['algoritme', 'score', 'housecount']
 		writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
+		start = time.time()
+		best_gridvalues = []
+
 		if alg == "A":
-			best_gridvalues = []
 			for repeat in range(repeats):
 				gridvalue = Random(int(nr_of_houses))
 				writer.writeheader()
 				writer.writerow({'algoritme': 'Random', 'score': gridvalue[2], 'housecount': nr_of_houses})
-				print(repeat)
+				print(time.time())
 				if len(best_gridvalues) != 0:
 					print("best {} vs now {}".format(best_gridvalues[2], gridvalue[2]))
 					if best_gridvalues[2] > gridvalue[2]:
@@ -54,17 +58,30 @@ def main():
 			coordinate_list = best_gridvalues[0]
 			water_coordinates = best_gridvalues[1]
 			total_value = best_gridvalues[2]
+			end = time.time()
+			print(end - start)
 			Area().makegrid(coordinate_list, water_coordinates, total_value)
 
 		if alg == "B":
-			final = HillClimber(nr_of_houses, repeats)
+			for repeat in range(repeats):
+				final = HillClimber(nr_of_houses)
+				writer.writeheader()
+				writer.writerow({'algoritme': 'HillClimber', 'score': final[2], 'housecount': nr_of_houses})
+				if len(best_gridvalues) != 0:
+					print("best {} vs now {}".format(best_gridvalues[2], final[2]))
+					if best_gridvalues[2] > final[2]:
+						pass
+					else:
+						best_gridvalues = final
+				else:
+					best_gridvalues = final
+
 			coordinate_list = final[0]
 			water_coordinates = final[1]
 			total_value = final[2]
-			writer.writeheader()
-			writer.writerow({'algoritme': 'HillClimber', 'score': final[2], 'housecount': nr_of_houses})
+			end = time.time()
+			print(end - start)
 			Area().makegrid(coordinate_list, water_coordinates, total_value)
-
 
 if __name__ == "__main__":
 	main()
