@@ -21,7 +21,7 @@ def Hill_Climber(nr_of_houses, repeats):
 		worth = 0
 
 		# choose between different hill climbing methods
-		change = randint(1, 3)
+		change = 3 #randint(1, 3)
 		
 		# change 1 then swap two houses
 		if change == 1:
@@ -232,8 +232,8 @@ def rotate_house(coordinate_list, nr_of_houses, grid):
 	cord_rotate_house = coordinate_list[rotate_house]
 
 	# determine height and width of the houses
-	width = house_cords_one[2] - house_cords_one[0]
-	height = house_cords_one[1] - house_cords_one[3]
+	width = cord_rotate_house[2] - house_cords_one[0]
+	height = cord_rotate_house[1] - house_cords_one[3]
 
 	# set coordinates for rotated house
 	x_l = cord_rotate_house[0]
