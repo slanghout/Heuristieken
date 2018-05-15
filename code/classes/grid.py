@@ -128,16 +128,16 @@ class Area(object):
 					return (index - 1)
 
 	def create_space(self, house_coordinates, grid):
-		# print(grid)
 		for i in range(house_coordinates[0], (house_coordinates[2])):
 			for j in range(house_coordinates[3], (house_coordinates[1])):
 				if grid[j][i] == "h" or grid[j][i] == "s":
 					grid[j][i] = "0"
 				elif grid[j][i] == "ss":
 					grid[j][i] = "s"
+				elif grid[j][i] == "w":
+					pass
 				else:
 					return False
-		# input(grid)
 		return True
 
 	def makegrid(self, coordinate_list, water, total_value):
