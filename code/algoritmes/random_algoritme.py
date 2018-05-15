@@ -1,7 +1,10 @@
 # from overlap_check import *
-from houses import *
-from grid import *
-from water import *
+from houses import house
+from houses import single
+from houses import bungalow
+from houses import maison
+from grid import Area
+from water import MakeWater
 
 import random as random
 

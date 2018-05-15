@@ -2,10 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 
-# from overlap_check import *
-from houses import *
-from water import *
-
 class Area(object):
 	def __init__(self):
 		self.width = 360

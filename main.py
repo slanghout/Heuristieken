@@ -8,11 +8,15 @@ sys.path.append(os.path.join(directory, "code", "classes"))
 sys.path.append(os.path.join(directory, "code", "algoritmes"))
 sys.path.append(os.path.join(directory, "code", "grid"))
 
-from houses import*
-from grid import *
-from Hill_climber import *
-from random_algoritme import *
-from water import *
+from houses import house
+from houses import single
+from houses import bungalow
+from houses import maison
+
+from grid import Area
+from Hill_climber import HillClimber
+from random_algoritme import Random
+from water import MakeWater
 
 def main():
 	nr_of_houses = int(input("Would you like 20, 40 or 60 houses?"))
@@ -53,7 +57,7 @@ def main():
 			Area().makegrid(coordinate_list, water_coordinates, total_value)
 
 		if alg == "B":
-			final = Hill_Climber(nr_of_houses, repeats)
+			final = HillClimber(nr_of_houses, repeats)
 			coordinate_list = final[0]
 			water_coordinates = final[1]
 			total_value = final[2]
