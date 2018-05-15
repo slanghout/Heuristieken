@@ -10,7 +10,7 @@ sys.path.append(os.path.join(directory, "code", "grid"))
 
 from houses import*
 from grid import *
-from sylvie import *
+# from sylvie import *
 from random_algoritme import *
 from water import *
 
@@ -22,7 +22,7 @@ def main():
 	with open('scores.csv', 'w', newline='') as csvfile:
 		fieldnames = ['algoritme', 'score', 'housecount']
 		writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-	
+
 		best_gridvalues = []
 		for repeat in range(100):
 			gridvalue = Random(int(nr_of_houses))
