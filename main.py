@@ -10,7 +10,7 @@ sys.path.append(os.path.join(directory, "code", "grid"))
 
 from houses import*
 from grid import *
-from sylvie import *
+from Hill_climber import *
 from random_algoritme import *
 from water import *
 
@@ -42,8 +42,11 @@ def main():
 	# 	water_coordinates = best_gridvalues[1]
 	# 	total_value = best_gridvalues[2]
 
-		Hill_Climber(40)
-		# Area().makegrid(coordinate_list, water_coordinates, total_value)
+		final = Hill_Climber(60)
+		coordinate_list = final[0]
+		water_coordinates = final[1]
+		total_value = final[2]
+		Area().makegrid(coordinate_list, water_coordinates, total_value)
 
 		# visualizing data
 

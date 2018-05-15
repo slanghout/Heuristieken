@@ -114,9 +114,6 @@ class Area(object):
 				if house_coordinates[0] - index >= 0 and house_coordinates[2] + index < 360:
 					if house_coordinates[1] + index < 320 and house_coordinates[3] - index >= 0:
 						if grid[house_coordinates[1] + index][i] != "h":
-							# print(house_coordinates)
-							# print(index)
-							# print(i)
 							pass
 						if grid[house_coordinates[3] - index][i] != "h":
 							pass

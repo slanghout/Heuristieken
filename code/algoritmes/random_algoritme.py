@@ -28,10 +28,7 @@ def Random(nr_of_houses):
 			if price != None:
 				total_value += price
 		
-		# Area().makegrid(coordinate_list, water_coordinates, total_value)	
 		return([coordinate_list, water_coordinates, total_value, grid])
-	else:
-		print("niet goed")
 
 
 # Random coordinate generation after grid boundaries are given
@@ -129,21 +126,18 @@ def Build_Amstelhaege(amount, grid):
 		build = maison
 		if Set_house_in_list(build, cord, coordinate_list, grid) == True:
 			housecount += 1
-			# print(housecount)
 
 	while housecount < (build_maison + build_bungalow):
 		cord = Randomizer(1)
 		build = bungalow
 		if Set_house_in_list(build, cord, coordinate_list, grid) == True:
 			housecount += 1
-			# print(housecount)
 
 	while housecount < amount:
 		cord = Randomizer(1)
 		build = single
 		if Set_house_in_list(build, cord, coordinate_list, grid) == True:
 			housecount += 1
-			# print(housecount)
 
 	Area().fillgrid(grid)
 
