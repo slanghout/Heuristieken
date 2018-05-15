@@ -15,6 +15,7 @@ def Random(nr_of_houses):
 		water_coordinates = Create_water(grid)
 	
 	if water_coordinates != None:
+		print("Water")
 		coordinate_list = Build_Amstelhaege(nr_of_houses, grid)
 		for cordinate in coordinate_list:
 			cord = (cordinate[0], cordinate[1])
@@ -86,12 +87,7 @@ def Set_house_in_list(build, cord, coordinate_list, grid):
 				coordinate_list.append(house_coordinates)
 
 				# set house in grid
-				if build == single:
-					grid = Area().update_grid(grid, house_coordinates, "single")
-				elif build == bungalow:
-					grid = Area().update_grid(grid, house_coordinates, "bungalow")
-				elif build == maison:
-					grid = Area().update_grid(grid, house_coordinates, "maison")
+				grid = Area().update_grid(grid, house_coordinates, "house")
 				grid = Area().update_grid(grid, space_coordinates, "space")
 				return True
 
@@ -121,21 +117,21 @@ def Build_Amstelhaege(amount, grid):
 	# 	if Set_house_in_list(build, cord, coordinate_list, grid) == True:
 	# 		housecount += 1
 
-	while housecount < build_maison:
+	while housecount < build_single:
+		cord = Randomizer(1)
+		build = single
+		if Set_house_in_list(build, cord, coordinate_list, grid) == True:
+			housecount += 1
+
+	while housecount < (build_maison + build_single):
 		cord = Randomizer(1)
 		build = maison
 		if Set_house_in_list(build, cord, coordinate_list, grid) == True:
 			housecount += 1
 
-	while housecount < (build_maison + build_bungalow):
-		cord = Randomizer(1)
-		build = bungalow
-		if Set_house_in_list(build, cord, coordinate_list, grid) == True:
-			housecount += 1
-
 	while housecount < amount:
 		cord = Randomizer(1)
-		build = single
+		build = bungalow
 		if Set_house_in_list(build, cord, coordinate_list, grid) == True:
 			housecount += 1
 

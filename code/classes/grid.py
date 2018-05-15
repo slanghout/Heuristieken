@@ -20,31 +20,13 @@ class Area(object):
 	def update_grid(self, grid, housecords, thing):
 
 		# if a house is placed, set h on coordinates of the house
-		if thing == "single":
+		if thing == "house":
 			for i in range(housecords[0], (housecords[2])):
 				for j in range(housecords[3], (housecords[1])):
 					if grid[j][i] == "0":
 						grid[j][i] = "h"
 					else:
 						print("nee")
-						exit(0)
-
-		elif thing == "maison":
-			for i in range(housecords[0], (housecords[2])):
-				for j in range(housecords[3], (housecords[1])):
-					if grid[j][i] == "0":
-						grid[j][i] = "h"
-					else:
-						print("needus")
-						exit(0)
-
-		elif thing == "bungalow":
-			for i in range(housecords[0], (housecords[2])):
-				for j in range(housecords[3], (housecords[1])):
-					if grid[j][i] == "0":
-						grid[j][i] = "h"
-					else:
-						print("nope")
 						exit(0)
 
 		# if water is places set w on spot
