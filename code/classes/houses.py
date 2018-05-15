@@ -1,7 +1,4 @@
-from houses import *
-from grid import *
-# from overlap_check import *
-from random import *
+from grid import Area
 
 import random as random
 
