@@ -1,3 +1,4 @@
+<<<<<<< HEAD:results/60 huizen bms.csv
 sep=,
 algoritme,score,housecount
 Random,30599490.0,60
@@ -199,3 +200,9 @@ algoritme,score,housecount
 Random,27969360.0,60
 algoritme,score,housecount
 Random,28220340.0,60
+=======
+algoritme,score,housecount
+Random,12230010.0,20
+algoritme,score,housecount
+Random,13221750.0,20
+>>>>>>> 8149c34c1657cea88ce1f3410778ea777de71351:scores.csv

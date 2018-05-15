@@ -20,31 +20,13 @@ class Area(object):
 	def update_grid(self, grid, housecords, thing):
 
 		# if a house is placed, set h on coordinates of the house
-		if thing == "single":
+		if thing == "house":
 			for i in range(housecords[0], (housecords[2])):
 				for j in range(housecords[3], (housecords[1])):
 					if grid[j][i] == "0":
 						grid[j][i] = "h"
 					else:
 						print("nee")
-						exit(0)
-
-		elif thing == "maison":
-			for i in range(housecords[0], (housecords[2])):
-				for j in range(housecords[3], (housecords[1])):
-					if grid[j][i] == "0":
-						grid[j][i] = "h"
-					else:
-						print("needus")
-						exit(0)
-
-		elif thing == "bungalow":
-			for i in range(housecords[0], (housecords[2])):
-				for j in range(housecords[3], (housecords[1])):
-					if grid[j][i] == "0":
-						grid[j][i] = "h"
-					else:
-						print("nope")
 						exit(0)
 
 		# if water is places set w on spot
@@ -114,9 +96,6 @@ class Area(object):
 				if house_coordinates[0] - index >= 0 and house_coordinates[2] + index < 360:
 					if house_coordinates[1] + index < 320 and house_coordinates[3] - index >= 0:
 						if grid[house_coordinates[1] + index][i] != "h":
-							# print(house_coordinates)
-							# print(index)
-							# print(i)
 							pass
 						if grid[house_coordinates[3] - index][i] != "h":
 							pass
@@ -128,16 +107,16 @@ class Area(object):
 					return (index - 1)
 
 	def create_space(self, house_coordinates, grid):
-		# print(grid)
 		for i in range(house_coordinates[0], (house_coordinates[2])):
 			for j in range(house_coordinates[3], (house_coordinates[1])):
 				if grid[j][i] == "h" or grid[j][i] == "s":
 					grid[j][i] = "0"
 				elif grid[j][i] == "ss":
 					grid[j][i] = "s"
+				elif grid[j][i] == "w":
+					pass
 				else:
 					return False
-		# input(grid)
 		return True
 
 	def makegrid(self, coordinate_list, water, total_value):
