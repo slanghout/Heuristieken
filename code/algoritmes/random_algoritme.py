@@ -117,15 +117,15 @@ def Build_Amstelhaege(amount, grid):
 	# 	if Set_house_in_list(build, cord, coordinate_list, grid) == True:
 	# 		housecount += 1
 
-	while housecount < build_maison:
+	while housecount < build_bungalow:
 		cord = Randomizer(1)
-		build = maison
+		build = bungalow
 		if Set_house_in_list(build, cord, coordinate_list, grid) == True:
 			housecount += 1
 
 	while housecount < (build_maison + build_bungalow):
 		cord = Randomizer(1)
-		build = bungalow
+		build = maison
 		if Set_house_in_list(build, cord, coordinate_list, grid) == True:
 			housecount += 1
 
