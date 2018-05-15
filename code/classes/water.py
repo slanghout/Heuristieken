@@ -4,7 +4,6 @@ total_width = 360
 total_height = 320
 water_percentage = 0.2
 total_water_size = total_width * total_height * water_percentage
-print(total_water_size)
 
 def MakeWater(amount_water):
 	if amount_water == 1:
@@ -30,7 +29,6 @@ def MakeWater(amount_water):
 					# check coordinates
 					if right_x1 <= total_width and down_y1 >= 0:
 						water_coordinates_1 = [left_x1, up_y1, right_x1, down_y1]
-						print(water_coordinates_1)
 		return [water_coordinates_1]
 
 
@@ -67,10 +65,6 @@ def MakeWater(amount_water):
 					if right_x1 <= total_width and right_x2 <= total_width and down_y1 >= 0 and down_y2 >= 0:
 						water_coordinates_1 = [left_x1, up_y1, right_x1, down_y1]
 						water_coordinates_2 = [left_x2, up_y2, right_x2, down_y2]
-						print(water_coordinates_1)
-						print(water_coordinates_2)
-
-
 
 		return [water_coordinates_1, water_coordinates_2]
 
@@ -120,9 +114,7 @@ def MakeWater(amount_water):
 							water_coordinates_1 = [left_x1, up_y1, right_x1, down_y1]
 							water_coordinates_2 = [left_x2, up_y2, right_x2, down_y2]
 							water_coordinates_3 = [left_x3, up_y3, right_x3, down_y3]
-							print(water_coordinates_1)
-							print(water_coordinates_2)
-							print(water_coordinates_3)
+					
 		return [water_coordinates_1, water_coordinates_2, water_coordinates_3]
 
 	if amount_water == 4:
@@ -182,8 +174,5 @@ def MakeWater(amount_water):
 								water_coordinates_2 = [left_x2, up_y2, right_x2, down_y2]
 								water_coordinates_3 = [left_x3, up_y3, right_x3, down_y3]
 								water_coordinates_4 = [left_x4, up_y4, right_x4, down_y4]
-								print(water_coordinates_1)
-								print(water_coordinates_2)
-								print(water_coordinates_3)
-								print(water_coordinates_4)
+					
 		return [water_coordinates_1, water_coordinates_2, water_coordinates_3, water_coordinates_4]

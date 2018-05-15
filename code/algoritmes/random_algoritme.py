@@ -18,7 +18,6 @@ def Random(nr_of_houses):
 		water_coordinates = Create_water(grid)
 	
 	if water_coordinates != None:
-		print("Water")
 		coordinate_list = Build_Amstelhaege(nr_of_houses, grid)
 		for cordinate in coordinate_list:
 			cord = (cordinate[0], cordinate[1])

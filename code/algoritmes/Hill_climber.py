@@ -17,7 +17,6 @@ def HillClimber(nr_of_houses):
 	water_coordinates = starting_state[1]
 	total_value = starting_state[2]
 	grid = starting_state[3]
-	print(total_value)
 	
 	# set number of changes needed to make
 	for changes in range(200):

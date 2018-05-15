@@ -45,9 +45,7 @@ def main():
 				gridvalue = Random(int(nr_of_houses))
 				writer.writeheader()
 				writer.writerow({'algoritme': 'Random', 'score': gridvalue[2], 'housecount': nr_of_houses})
-				print(time.time())
 				if len(best_gridvalues) != 0:
-					print("best {} vs now {}".format(best_gridvalues[2], gridvalue[2]))
 					if best_gridvalues[2] > gridvalue[2]:
 						pass
 					else:
@@ -68,7 +66,6 @@ def main():
 				writer.writeheader()
 				writer.writerow({'algoritme': 'HillClimber', 'score': final[2], 'housecount': nr_of_houses})
 				if len(best_gridvalues) != 0:
-					print("best {} vs now {}".format(best_gridvalues[2], final[2]))
 					if best_gridvalues[2] > final[2]:
 						pass
 					else:
