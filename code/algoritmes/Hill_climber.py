@@ -9,36 +9,45 @@ from random_algoritme import Random
 from random import randint
 
 # Hill Climber algoritm
+<<<<<<< HEAD
 def HillClimber(nr_of_houses, repeats):
 	
+=======
+def HillClimber(nr_of_houses):
+
+>>>>>>> b41dbeb32c7ac4bf7f76b0749363c4b5a5937ebe
 	# starts with running random algoritm to generate starting state
 	starting_state = Random(nr_of_houses)
 	current_coordinate_list = starting_state[0]
 	water_coordinates = starting_state[1]
 	total_value = starting_state[2]
 	grid = starting_state[3]
-	
+
 	# set number of changes needed to make
+<<<<<<< HEAD
 	for changes in range(repeats):
+=======
+	for changes in range(1000):
+>>>>>>> b41dbeb32c7ac4bf7f76b0749363c4b5a5937ebe
 		worth = 0
 
 		# choose between different hill climbing methods
 		change = randint(1, 3)
-		
+
 		# change 1 then swap two houses
 		if change == 1:
 			swapresults = house_swap(current_coordinate_list, nr_of_houses, grid)
-		
+
 		# change 2 then move a house by 1 m
 		elif change == 2:
 			swapresults = move_house(current_coordinate_list, nr_of_houses, grid)
 
 		elif change == 3:
 			swapresults = rotate_house(current_coordinate_list, nr_of_houses, grid)
-		
+
 		new_coordinate_list = swapresults[0]
 		new_grid = swapresults[1]
-		
+
 		# determine of new grid is worth more than old grid
 		for cordinate in new_coordinate_list:
 			cord = (cordinate[0], cordinate[1])
@@ -51,7 +60,7 @@ def HillClimber(nr_of_houses, repeats):
 			price = build(cord).giveworth(cordinate, new_grid)
 			if price != None:
 				worth += price
-		
+
 		# if new grid is worth more, accept this grid
 		if worth > total_value:
 			current_coordinate_list = new_coordinate_list
@@ -63,13 +72,13 @@ def HillClimber(nr_of_houses, repeats):
 
 # function that swaps two houses in the grid
 def house_swap(coordinate_list, nr_of_houses, grid):
-	
+
 	# randomly pick two houses from the coordinate list
 	house_one = randint(0, (nr_of_houses -1))
 	house_two = randint(0, (nr_of_houses - 1))
 	house_cords_one = coordinate_list[house_one]
 	house_cords_two = coordinate_list[house_two]
-	
+
 	# determine height and width of the houses
 	width_one = house_cords_one[2] - house_cords_one[0]
 	height_one = house_cords_one[1] - house_cords_one[3]
@@ -84,7 +93,7 @@ def house_swap(coordinate_list, nr_of_houses, grid):
 	x_r_one = house_cords_two[0] + width_one
 	y_d_one = house_cords_two[1] - height_one
 	new_cord_one = [x_l_one, y_u_one, x_r_one, y_d_one, house_cords_one[4]]
-	
+
 	x_l_two = house_cords_one[0]
 	y_u_two = house_cords_one[1]
 	x_r_two = house_cords_one[0] + width_two
@@ -112,8 +121,8 @@ def house_swap(coordinate_list, nr_of_houses, grid):
 
 	# clear the space the houses were using
 	if Area().create_space(space_cords_one, grid) == True:
-		if Area().create_space(space_cords_two, grid) == True:		
-			
+		if Area().create_space(space_cords_two, grid) == True:
+
 			# determine space needed for new houses
 			if new_cord_one[4] == 1:
 				build = single
@@ -132,15 +141,15 @@ def house_swap(coordinate_list, nr_of_houses, grid):
 				build = maison
 			cord = (x_l_two, y_d_two)
 			space_cords_two = build(cord).spacehouse(new_cord_two)
-			
+
 			# check if there is enough space to place house
 			if Area().housecheck(grid, new_cord_one) == True:
 				if Area().housecheck(grid, new_cord_two) == True:
-					
+
 					# check if there is space to place house with extra space
 					if Area().spacecheck(grid, space_cords_one) == True:
 						if Area().spacecheck(grid, space_cords_two) == True:
-							
+
 							# if everything is true swap the houses
 							grid = Area().update_grid(grid, new_cord_one, "house")
 							coordinate_list[house_one] = new_cord_two
@@ -152,7 +161,7 @@ def house_swap(coordinate_list, nr_of_houses, grid):
 
 # function that moves a house by 1 coordinate
 def move_house(coordinate_list, nr_of_houses, grid):
-	
+
 	# randomly pick one house from the coordinate list
 	move_house = randint(0, (nr_of_houses -1))
 	cord_move_house = coordinate_list[move_house]
@@ -166,26 +175,26 @@ def move_house(coordinate_list, nr_of_houses, grid):
 		y_u = cord_move_house[1]
 		x_r = cord_move_house[2] - 2
 		y_d = cord_move_house[3]
-	
+
 	# if direction is 1 move right
 	elif direction == 1:
 		x_l = cord_move_house[0] + 2
 		y_u = cord_move_house[1]
 		x_r = cord_move_house[2] + 2
 		y_d = cord_move_house[3]
-	
+
 	# if direction is 2 move up
 	elif direction == 2:
-		x_l = cord_move_house[0] 
-		y_u = cord_move_house[1] + 2 
-		x_r = cord_move_house[2] 
+		x_l = cord_move_house[0]
+		y_u = cord_move_house[1] + 2
+		x_r = cord_move_house[2]
 		y_d = cord_move_house[3] + 2
-	
+
 	# if direction is 3 move down
 	elif direction == 3:
-		x_l = cord_move_house[0] 
+		x_l = cord_move_house[0]
 		y_u = cord_move_house[1] - 2
-		x_r = cord_move_house[2] 
+		x_r = cord_move_house[2]
 		y_d = cord_move_house[3] - 2
 
 	# set new coordinates
@@ -202,8 +211,8 @@ def move_house(coordinate_list, nr_of_houses, grid):
 	space_cords = build(cord).spacehouse(cord_move_house)
 
 	# clear the space the houses were using
-	if Area().create_space(space_cords, grid) == True:	
-			
+	if Area().create_space(space_cords, grid) == True:
+
 		# determine space needed for new houses
 		if new_cord[4] == 1:
 			build = single
@@ -213,13 +222,13 @@ def move_house(coordinate_list, nr_of_houses, grid):
 			build = maison
 		cord = (new_cord[0], new_cord[1])
 		new_space_cords = build(cord).spacehouse(new_cord)
-		
+
 		# check if there is enough space to place house
 		if Area().housecheck(grid, new_cord) == True:
-				
+
 			# check if there is space to place house with extra space
 			if Area().spacecheck(grid, new_space_cords) == True:
-					
+
 				# if everything is true swap the houses
 				grid = Area().update_grid(grid, new_cord, "house")
 				coordinate_list[move_house] = new_cord
@@ -229,7 +238,7 @@ def move_house(coordinate_list, nr_of_houses, grid):
 
 # function that rotates a house
 def rotate_house(coordinate_list, nr_of_houses, grid):
-	
+
 	# randomly pick one house from the coordinate list
 	rotate_house = randint(0, (nr_of_houses -1))
 	cord_rotate_house = coordinate_list[rotate_house]
@@ -243,7 +252,7 @@ def rotate_house(coordinate_list, nr_of_houses, grid):
 	y_u = cord_rotate_house[1]
 	x_r = cord_rotate_house[0] + height
 	y_d = cord_rotate_house[1] - width
-	
+
 	# set new coordinates
 	new_cord = [x_l, y_u, x_r, y_d, cord_rotate_house[4]]
 
@@ -258,8 +267,8 @@ def rotate_house(coordinate_list, nr_of_houses, grid):
 	space_cords = build(cord).spacehouse(cord_rotate_house)
 
 	# clear the space the houses were using
-	if Area().create_space(space_cords, grid) == True:	
-			
+	if Area().create_space(space_cords, grid) == True:
+
 		# determine space needed for new houses
 		if new_cord[4] == 1:
 			build = single
@@ -269,17 +278,16 @@ def rotate_house(coordinate_list, nr_of_houses, grid):
 			build = maison
 		cord = (new_cord[0], new_cord[1])
 		new_space_cords = build(cord).spacehouse(new_cord)
-		
+
 		# check if there is enough space to place house
 		if Area().housecheck(grid, new_cord) == True:
-				
+
 			# check if there is space to place house with extra space
 			if Area().spacecheck(grid, new_space_cords) == True:
-					
+
 				# if everything is true swap the houses
 				grid = Area().update_grid(grid, new_cord, "house")
 				coordinate_list[rotate_house] = new_cord
 
 	# if the houses were swapped return the grid information
 	return [coordinate_list, grid]
-
