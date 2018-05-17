@@ -61,17 +61,9 @@ def main():
 			Area().makegrid(coordinate_list, water_coordinates, total_value)
 
 		if alg == "B":
-			for repeat in range(repeats):
-				final = HillClimber(nr_of_houses)
-				writer.writeheader()
-				writer.writerow({'algoritme': 'HillClimber', 'score': final[2], 'housecount': nr_of_houses})
-				if len(best_gridvalues) != 0:
-					if best_gridvalues[2] > final[2]:
-						pass
-					else:
-						best_gridvalues = final
-				else:
-					best_gridvalues = final
+			final = HillClimber(nr_of_houses, repeats)
+			writer.writeheader()
+			writer.writerow({'algoritme': 'HillClimber', 'score': final[2], 'housecount': nr_of_houses})
 
 			coordinate_list = final[0]
 			water_coordinates = final[1]
