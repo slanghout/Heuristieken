@@ -9,7 +9,7 @@ from random_algoritme import Random
 from random import randint
 
 # Hill Climber algoritm
-def HillClimber(nr_of_houses, repeats):
+def HillClimber(nr_of_houses):
 
 	# starts with running random algoritm to generate starting state
 	starting_state = Random(nr_of_houses)
@@ -18,8 +18,11 @@ def HillClimber(nr_of_houses, repeats):
 	total_value = starting_state[2]
 	grid = starting_state[3]
 
+	swaps = 0
+	no_swap = 0
+	
 	# set number of changes needed to make
-	for changes in range(repeats):
+	while swaps < 100:
 		worth = 0
 
 		# choose between different hill climbing methods
@@ -57,6 +60,12 @@ def HillClimber(nr_of_houses, repeats):
 			current_coordinate_list = new_coordinate_list
 			total_value = worth
 			grid = new_grid
+			swaps += 1
+			no_swap = 0
+		else:
+			no_swap += 1
+			if no_swap > 100:
+				break
 
 	# return the new grid
 	return([current_coordinate_list, water_coordinates, total_value])

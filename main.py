@@ -21,17 +21,15 @@ from water import MakeWater
 import time
 
 def main():
-	nr_of_houses = int(input("Would you like 20, 40 or 60 houses?"))
+	nr_of_houses = int(input("Would you like 20, 40 or 60 houses? "))
 	if nr_of_houses != 20 and nr_of_houses != 40 and nr_of_houses != 60:
 		print("invalid number of houses")
 		exit(0)
 
-	alg = input("Select A for Random, B for Hill Climber")
+	alg = input("Select A for Random, B for Hill Climber ")
 	if alg != "A" and alg != "B":
 		print("this is not what I wanted")
 		exit(0)
-
-	repeats = int(input("How many times do you want to run the algoritm?"))
 
 	with open('scores.csv', 'w', newline='') as csvfile:
 		fieldnames = ['algoritme', 'score', 'housecount']
@@ -41,6 +39,7 @@ def main():
 		best_gridvalues = []
 
 		if alg == "A":
+			repeats = int(input("How many times do you want to run the algoritm?"))
 			for repeat in range(repeats):
 				gridvalue = Random(int(nr_of_houses))
 				writer.writeheader()
@@ -61,7 +60,7 @@ def main():
 			Area().makegrid(coordinate_list, water_coordinates, total_value)
 
 		if alg == "B":
-			final = HillClimber(nr_of_houses, repeats)
+			final = HillClimber(nr_of_houses)
 			writer.writeheader()
 			writer.writerow({'algoritme': 'HillClimber', 'score': final[2], 'housecount': nr_of_houses})
 
