@@ -16,6 +16,7 @@ from houses import maison
 from grid import Area
 from Hill_climber import HillClimber
 from random_algoritme import Random
+from simulated_annealing import SimulatedAnnealing
 from water import MakeWater
 
 import time
@@ -26,8 +27,8 @@ def main():
 		print("invalid number of houses")
 		exit(0)
 
-	alg = input("Select A for Random, B for Hill Climber ")
-	if alg != "A" and alg != "B":
+	alg = input("Select A for Random, B for Hill Climber, C for Simulated Annealing ")
+	if alg != "A" and alg != "B" and alg != "C":
 		print("this is not what I wanted")
 		exit(0)
 
@@ -70,6 +71,20 @@ def main():
 			end = time.time()
 			print(end - start)
 			Area().makegrid(coordinate_list, water_coordinates, total_value)
+
+		if alg == "C":
+			final = SimulatedAnnealing(nr_of_houses)
+			writer.writeheader()
+			writer.writerow({'algoritme': 'HillClimber', 'score': final[2], 'housecount': nr_of_houses})
+
+			coordinate_list = final[0]
+			water_coordinates = final[1]
+			total_value = final[2]
+			end = time.time()
+			print(end - start)
+			Area().makegrid(coordinate_list, water_coordinates, total_value)
+
+
 
 if __name__ == "__main__":
 	main()
