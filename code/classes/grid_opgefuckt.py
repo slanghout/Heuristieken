@@ -22,7 +22,7 @@ class Area(object):
 					if grid[j][i] == "0":
 						grid[j][i] = "h"
 					else:
-						print("nee")
+						print("nee{}{}{}".format(grid[j][i], j, i))
 						exit(0)
 
 		# if water is places set w on spot
@@ -42,12 +42,12 @@ class Area(object):
 				for j in range(housecords[3], (housecords[1])):
 					if grid[j][i] == "s":
 						grid[j][i] = "ss"
+					elif grid[j][i] == "0":
+						grid[j][i] = "s"
 					elif grid[j][i] == "ss":
 						grid[j][i] = "sss"
 					elif grid[j][i] == "sss":
 						grid[j][i] = "ssss"
-					elif grid[j][i] == "0":
-						grid[j][i] = "s"
 					elif grid[j][i] == "w":
 						pass
 
@@ -57,10 +57,11 @@ class Area(object):
 	def spacecheck(self, grid, housecords):
 		for i in range(housecords[0], (housecords[2])):
 			for j in range(housecords[3], (housecords[1])):
-				if grid[j][i] != "h":
-					pass
-				else:
+				if grid[j][i] == "h":
 					return False
+					print("no space")
+				else:
+					pass
 		return True
 
 	# check if there is enough space to buid a house
@@ -120,6 +121,14 @@ class Area(object):
 					else:
 						return (index - 1)
 
+	def housetype(self, coordinates):
+		if coordinates[4] == 1:
+			return single
+		if coordinates[4] == 2:
+			return bungalow
+		if coordinates[4] == 3:
+			return maison
+
 	def create_space(self, house_coordinates, grid):
 		for i in range(house_coordinates[0], (house_coordinates[2])):
 			for j in range(house_coordinates[3], (house_coordinates[1])):
@@ -131,12 +140,12 @@ class Area(object):
 					grid[j][i] = "ss"
 				elif grid[j][i] == "ssss":
 					grid[j][i] = "sss"
-				elif grid[j][i] == "w":
+				elif grid[j][i] == "w" or grid[j][i] == "0":
 					pass
 				else:
-					print("doei")
-					exit(0)
-		return grid
+					print(grid[j][i])
+					return False
+		return True
 
 	def makegrid(self, coordinate_list, water, total_value):
 

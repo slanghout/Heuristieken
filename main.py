@@ -32,15 +32,14 @@ def main():
 		print("this is not what I wanted")
 		exit(0)
 
-	with open('scores.csv', 'w', newline='') as csvfile:
-		fieldnames = ['algoritme', 'score', 'housecount']
-		writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+	best_gridvalues = []
 
-		start = time.time()
-		best_gridvalues = []
-
-		if alg == "A":
-			repeats = int(input("How many times do you want to run the algoritm?"))
+	if alg == "A":
+		with open('scores.csv', 'w', newline='') as csvfile:
+			fieldnames = ['algoritme', 'score', 'housecount']
+			writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+			repeats = int(input("How many times do you want to run the algoritm? "))
+			start = time.time()
 			for repeat in range(repeats):
 				gridvalue = Random(int(nr_of_houses))
 				writer.writeheader()
@@ -60,29 +59,27 @@ def main():
 			print(end - start)
 			Area().makegrid(coordinate_list, water_coordinates, total_value)
 
-		if alg == "B":
-			final = HillClimber(nr_of_houses)
-			writer.writeheader()
-			writer.writerow({'algoritme': 'HillClimber', 'score': final[2], 'housecount': nr_of_houses})
+	if alg == "B":
+		start = time.time()
+		final = HillClimber(nr_of_houses)
 
-			coordinate_list = final[0]
-			water_coordinates = final[1]
-			total_value = final[2]
-			end = time.time()
-			print(end - start)
-			Area().makegrid(coordinate_list, water_coordinates, total_value)
+		coordinate_list = final[0]
+		water_coordinates = final[1]
+		total_value = final[2]
+		end = time.time()
+		print(end - start)
+		Area().makegrid(coordinate_list, water_coordinates, total_value)
 
-		if alg == "C":
-			final = SimulatedAnnealing(nr_of_houses)
-			writer.writeheader()
-			writer.writerow({'algoritme': 'HillClimber', 'score': final[2], 'housecount': nr_of_houses})
+	if alg == "C":
+		start = time.time()
+		final = SimulatedAnnealing(nr_of_houses)
 
-			coordinate_list = final[0]
-			water_coordinates = final[1]
-			total_value = final[2]
-			end = time.time()
-			print(end - start)
-			Area().makegrid(coordinate_list, water_coordinates, total_value)
+		coordinate_list = final[0]
+		water_coordinates = final[1]
+		total_value = final[2]
+		end = time.time()
+		print(end - start)
+		Area().makegrid(coordinate_list, water_coordinates, total_value)
 
 
 

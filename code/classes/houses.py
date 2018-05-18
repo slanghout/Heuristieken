@@ -61,9 +61,16 @@ class house(object):
 		return space_coordinates
 
 	def giveworth(self, house_coordinates, grid):
-		space = Area().calculate_space(house_coordinates, grid)
-		if space != None:
-			extra_space = int(space - self.space)
+		space_vertical = Area().calculate_space_vertical(house_coordinates, grid)
+		space_horizontal = Area().calculate_space_horizontal(house_coordinates, grid)
+		
+		if space_horizontal != None and space_vertical != None:
+			if space_horizontal < space_vertical:
+				space = space_horizontal
+			else:
+				space = space_vertical
+
+			extra_space = (int(space - self.space))/2
 			price = self.price * (1 + (self.percentage * extra_space))
 
 			return price

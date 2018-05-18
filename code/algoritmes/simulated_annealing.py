@@ -12,6 +12,7 @@ from Hill_climber import rotate_house
 from random import randint
 from random import uniform
 import math
+import csv
 
 # Hill Climber algoritm
 def SimulatedAnnealing(nr_of_houses):
@@ -27,83 +28,96 @@ def SimulatedAnnealing(nr_of_houses):
 
 	swaps = 0
 	no_swap = 0
-	
-	# set number of changes needed to make
-	while temperature > 0.00001:
-		while swaps < 100:
+	with open('scores.csv', 'w', newline='') as csvfile:
+		fieldnames = ['algoritme', 'score', 'housecount']
+		writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
-			worth = 0
 
-			# choose between different hill climbing methods
-			change = randint(1, 3)
+		# set number of changes needed to make
+		while temperature > 0.1:
+			while swaps <= 100:
 
-			# change 1 then swap two houses
-			if change == 1:
-				swapresults = house_swap(current_coordinate_list, nr_of_houses, grid)
+				worth = 0
 
-			# change 2 then move a house by 1 m
-			elif change == 2:
-				swapresults = move_house(current_coordinate_list, nr_of_houses, grid)
+				# choose between different hill climbing methods
+				change = randint(1, 3)
 
-			elif change == 3:
-				swapresults = rotate_house(current_coordinate_list, nr_of_houses, grid)
+				# change 1 then swap two houses
+				if change == 1:
+					swapresults = house_swap(current_coordinate_list, nr_of_houses, grid)
 
-			new_coordinate_list = swapresults[0]
-			new_grid = swapresults[1]
+				# change 2 then move a house by 1 m
+				elif change == 2:
+					swapresults = move_house(current_coordinate_list, nr_of_houses, grid)
 
-			# determine of new grid is worth more than old grid
-			for cordinate in new_coordinate_list:
-				cord = (cordinate[0], cordinate[1])
-				if cordinate[4] == 1:
-					build = single
-				elif cordinate[4] == 2:
-					build = bungalow
-				elif cordinate[4] == 3:
-					build = maison
-				price = build(cord).giveworth(cordinate, new_grid)
-				if price != None:
-					worth += price
+				elif change == 3:
+					swapresults = rotate_house(current_coordinate_list, nr_of_houses, grid)
 
-			
-			# if new grid is worth more, accept this grid
-			if worth > total_value:
-				print("gogo")
-				current_coordinate_list = new_coordinate_list
-				total_value = worth
-				grid = new_grid
-				swaps += 1
-				no_swap = 0
-				print("yes{}".format(swaps))
-				continue
-				# temperature = temperature * 0.9
 
-			else:
-				ap = acceptance(total_value, worth, temperature)
-				if ap > uniform(0, 1):
-					print("go")
+				new_coordinate_list = swapresults[0]
+				new_grid = swapresults[1]
+				print(new_coordinate_list)
+				print(current_coordinate_list)
+
+				# determine of new grid is worth more than old grid
+				for cordinate in new_coordinate_list:
+					cord = (cordinate[0], cordinate[1])
+					if cordinate[4] == 1:
+						build = single
+					elif cordinate[4] == 2:
+						build = bungalow
+					elif cordinate[4] == 3:
+						build = maison
+					price = build(cord).giveworth(cordinate, new_grid)
+					if price != None:
+						worth += price
+
+				
+				# if new grid is worth more, accept this grid
+				if worth > total_value:
 					current_coordinate_list = new_coordinate_list
 					total_value = worth
 					grid = new_grid
 					swaps += 1
 					no_swap = 0
-					print("randoswap{}".format(temperature))
-					# temperature = temperature * 0.9
+					print("yes{}".format(swaps))
+					writer.writeheader()
+					writer.writerow({'algoritme': 'SimAnealinghoger', 'score': worth, 'housecount': nr_of_houses})
+					continue
+
+				elif worth < total_value:
+					print("nu{} vs ooit{}".format(worth, total_value))
+					ap = acceptance(total_value, worth, temperature)
+					randomnumber = uniform(0, 1)
+					print("ap{}".format(ap))
+					print(randomnumber)
+					if ap > randomnumber:
+						current_coordinate_list = new_coordinate_list
+						total_value = worth
+						grid = new_grid
+						swaps += 1
+						no_swap = 0
+						writer.writeheader()
+						writer.writerow({'algoritme': 'SimAnealing', 'score': worth, 'housecount': nr_of_houses})
+						print("randoswap{}".format(temperature))
+
 				else:
 					no_swap += 1
-					if no_swap > 100:
+					if no_swap > 20:
 						break
 					print("no{}".format(no_swap))
+			
+				temperature = temperature * 0.9
+					
+			
+			print("eruot")
+			# return the new grid
+			return([current_coordinate_list, water_coordinates, total_value])
 		
-			temperature = temperature * 0.9
-				
-		
-	# return the new grid
-	return([current_coordinate_list, water_coordinates, total_value])
+		print("kom je hier")
+		# return the new grid
+		return([current_coordinate_list, water_coordinates, total_value])
 
 def acceptance(old, new, temperature):
-	print("old{}new{}difference{}".format(old, new, old-new))
-	print((old-new)/temperature)
-	print(math.e**((old-new)/temperature))
-
 	return math.e**((old-new)/temperature)
 

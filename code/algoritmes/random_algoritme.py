@@ -107,7 +107,7 @@ def Build_Amstelhaege(amount, grid):
 	coordinate_list = []
 	housecount = 0
 	# while housecount < amount:
-	# 	housetype = randint(1, 3)
+	# 	housetype = random.randint(1, 3)
 
 	# 	if housetype == 1:
 	# 		build = single
@@ -125,7 +125,7 @@ def Build_Amstelhaege(amount, grid):
 		if Set_house_in_list(build, cord, coordinate_list, grid) == True:
 			housecount += 1
 
-	while housecount < (build_maison + build_bungalow):
+	while housecount < (build_bungalow + build_maison):
 		cord = Randomizer(1)
 		build = bungalow
 		if Set_house_in_list(build, cord, coordinate_list, grid) == True:
@@ -137,6 +137,6 @@ def Build_Amstelhaege(amount, grid):
 		if Set_house_in_list(build, cord, coordinate_list, grid) == True:
 			housecount += 1
 
-	Area().fillgrid(grid)
+	# Area().fillgrid(grid)
 
 	return coordinate_list
