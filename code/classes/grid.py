@@ -83,12 +83,6 @@ class Area(object):
 					return False
 		return True
 
-	# def fillgrid(self, grid):
-	# 	for i in range(360):
-	# 		for j in range(320):
-	# 			if grid[j][i] == "0":
-	# 				grid[j][i] = "x"
-
 	def calculate_space_vertical(self, house_coordinates, grid):
 		for index in range(1, 100):
 			for i in range((house_coordinates[0] - index), (house_coordinates[2] + index)):

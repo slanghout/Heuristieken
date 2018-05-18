@@ -75,6 +75,16 @@ class house(object):
 
 			return price
 
+	def housetype(self, housenumber):
+		if housenumber == 1:
+			build = single
+		elif housenumber == 2:
+			build = bungalow
+		elif housenumber == 3:
+			build = maison
+
+		return build
+
 # define specifics for single house
 class single(house):
 	def __init__(self, coordinates):

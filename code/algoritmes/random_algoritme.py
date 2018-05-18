@@ -50,7 +50,7 @@ def Randomizer(amount):
 def Create_water(grid):
 	water_options = [1, 2, 3, 4]
 
-	water_bodies = 4 #random.choice(water_options)
+	water_bodies = 1 #random.choice(water_options)
 
 	if water_bodies > 1:
 		water_coordinates = MakeWater(water_bodies)
