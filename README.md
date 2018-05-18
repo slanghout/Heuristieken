@@ -19,7 +19,7 @@ De code is volledig geschreven in Python 3.6.3. In requirements.txt staan alle b
 
 # Structuur GIT
 
-In de map code zitten 2 mappen, in de map algoritme zitten onze algoritmes. Deze algoritmes zijn het random algoritme, de hill climber en de simulated annealing. In de map classes staat de  huis class, de grid class en de water class. In de map results staan onze resultaten en experimenten.
+In de map code zitten 2 mappen, de map algoritme en de map classes. In de map algoritme zitten onze algoritmes, bestaande uit het random algoritme, de hill climber en de simulated annealing. In de map classes staat de  huis class, de grid class en de water class. In de map results staan onze resultaten en experimenten.
 
 # Test
 
