@@ -15,22 +15,20 @@ In dit project wordt de nieuwe woonwijk Amstelhaege ingericht. De wijk beslaat e
 
 # Code
 
-De code is volledig geschreven in Python3.6.3. In requirements.txt staan alle benodigde packages om de code succesvol te draaien.
+De code is volledig geschreven in Python 3.6.3. In requirements.txt staan alle benodigde packages om de code succesvol te draaien.
 
 # Structuur GIT
 
-In de map code zitten 2 mappen, in algoritme zitten onze algoritmes. In classes staat de huisindeling in classes en de grid. In de map results staan onze resultaten.
+In de map code zitten 2 mappen, in de map algoritme zitten onze algoritmes. Deze algoritmes zijn het random algoritme, de hill climber en de simulated annealing. In de map classes staat de  huis class, de grid class en de water class. In de map results staan onze resultaten en experimenten.
 
 # Test
 
-Om de code te draaien met de standaardconfiguratie, gebruik:
-main.py, deze vraagt naar hoeveel huizen en wel algoritme je wil aanroepen. Hij zal dan het beste plot printen.
+Om de code te draaien met de standaardconfiguratie gebruik
+main.py, deze vraagt hoeveel huizen je wilt plaatsen in de wijk, welk algoritme je hiervoor wilt gebruiken en hoe vaak je het gekozen algoritme wilt runnen. De wijk met de hoogste waarde zal worden laten zien met een plot.
 
 # Auteurs
 
-Sylvie Langhout
-Dewi Mooij
-Pernille Deijlen
+Sylvie Langhout, Dewi Mooij & Pernille Deijlen
 
 # Dankwoord
 
