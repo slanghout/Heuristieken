@@ -50,7 +50,7 @@ def Randomizer(amount):
 def Create_water(grid):
 	water_options = [1, 2, 3, 4]
 
-	water_bodies = 1 #random.choice(water_options)
+	water_bodies = 4 #random.choice(water_options)
 
 	if water_bodies > 1:
 		water_coordinates = MakeWater(water_bodies)
@@ -119,21 +119,21 @@ def Build_Amstelhaege(amount, grid):
 	# 	if Set_house_in_list(build, cord, coordinate_list, grid) == True:
 	# 		housecount += 1
 
-	while housecount < build_maison:
-		cord = Randomizer(1)
-		build = maison
-		if Set_house_in_list(build, cord, coordinate_list, grid) == True:
-			housecount += 1
-
-	while housecount < (build_maison + build_bungalow):
+	while housecount < build_bungalow:
 		cord = Randomizer(1)
 		build = bungalow
 		if Set_house_in_list(build, cord, coordinate_list, grid) == True:
 			housecount += 1
 
-	while housecount < amount:
+	while housecount < (build_bungalow + build_single):
 		cord = Randomizer(1)
 		build = single
+		if Set_house_in_list(build, cord, coordinate_list, grid) == True:
+			housecount += 1
+
+	while housecount < amount:
+		cord = Randomizer(1)
+		build = maison
 		if Set_house_in_list(build, cord, coordinate_list, grid) == True:
 			housecount += 1
 
