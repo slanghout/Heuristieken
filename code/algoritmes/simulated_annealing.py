@@ -1,3 +1,10 @@
+from mutaties import determine_worth
+from mutaties import house_swap
+from mutaties import rotate_house
+from mutaties import move_house
+from mutaties import housetype
+from mutaties import reset
+from mutaties import move
 from houses import house
 from houses import single
 from houses import bungalow
@@ -17,30 +24,28 @@ import csv
 # Hill Climber algoritm
 def SimulatedAnnealing(nr_of_houses):
 
-	# starts with running random algoritm to generate starting state
-	starting_state = Random(nr_of_houses)
-	current_coordinate_list = starting_state[0]
-	water_coordinates = starting_state[1]
-	total_value = starting_state[2]
-	grid = starting_state[3]
-
-	temperature = 1.0
-
-	swaps = 0
-	no_swap = 0
 	with open('scores.csv', 'w', newline='') as csvfile:
-		fieldnames = ['algoritme', 'score', 'housecount']
+		fieldnames = ['algoritme', 'score', 'housecount', 'climb','swaps', 'change']
 		writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+		# starts with running random algoritm to generate starting state
+		starting_state = Random(nr_of_houses)
+		current_coordinate_list = starting_state[0]
+		water_coordinates = starting_state[1]
+		total_value = starting_state[2]
+		grid = starting_state[3]
 
-
+		temperature = 1.0
+		swaps = 0
+		no_swap = 0
+		climb = 0
+		
 		# set number of changes needed to make
 		while temperature > 0.1:
 			while swaps <= 100:
-
 				worth = 0
 
 				# choose between different hill climbing methods
-				change = randint(1, 3)
+				change = randint(2, 3)
 
 				# change 1 then swap two houses
 				if change == 1:
@@ -53,71 +58,69 @@ def SimulatedAnnealing(nr_of_houses):
 				elif change == 3:
 					swapresults = rotate_house(current_coordinate_list, nr_of_houses, grid)
 
+				if swapresults != None:
+					new_coordinate_list = swapresults[0]
+					new_grid = swapresults[1]
+					old_house_cords = swapresults[2]
+					old_space_cords = swapresults[3]
+					coordinate_number = swapresults[4]
+					new_space_cords = swapresults[5]
 
-				new_coordinate_list = swapresults[0]
-				new_grid = swapresults[1]
-				print(new_coordinate_list)
-				print(current_coordinate_list)
+					worth = determine_worth(new_coordinate_list, new_grid)
 
-				# determine of new grid is worth more than old grid
-				for cordinate in new_coordinate_list:
-					cord = (cordinate[0], cordinate[1])
-					if cordinate[4] == 1:
-						build = single
-					elif cordinate[4] == 2:
-						build = bungalow
-					elif cordinate[4] == 3:
-						build = maison
-					price = build(cord).giveworth(cordinate, new_grid)
-					if price != None:
-						worth += price
-
-				
-				# if new grid is worth more, accept this grid
-				if worth > total_value:
-					current_coordinate_list = new_coordinate_list
-					total_value = worth
-					grid = new_grid
-					swaps += 1
-					no_swap = 0
-					print("yes{}".format(swaps))
-					writer.writeheader()
-					writer.writerow({'algoritme': 'SimAnealinghoger', 'score': worth, 'housecount': nr_of_houses})
-					continue
-
-				elif worth < total_value:
-					print("nu{} vs ooit{}".format(worth, total_value))
-					ap = acceptance(total_value, worth, temperature)
-					randomnumber = uniform(0, 1)
-					print("ap{}".format(ap))
-					print(randomnumber)
-					if ap > randomnumber:
+					# if new grid is worth more, accept this grid
+					if worth > total_value:
+						print("ja")
 						current_coordinate_list = new_coordinate_list
 						total_value = worth
 						grid = new_grid
 						swaps += 1
+						climb += 1
 						no_swap = 0
 						writer.writeheader()
-						writer.writerow({'algoritme': 'SimAnealing', 'score': worth, 'housecount': nr_of_houses})
-						print("randoswap{}".format(temperature))
+						writer.writerow({'algoritme': 'HillClimber', 'score': worth, 'housecount': nr_of_houses, 'climb': climb, 'swaps' : swaps, 'change': change})
 
-				else:
-					no_swap += 1
-					if no_swap > 20:
-						break
-					print("no{}".format(no_swap))
-			
+					elif worth < total_value:
+						print("nu{} vs ooit{}".format(worth, total_value))
+						randomnumber = uniform(0, 1)
+						ap = acceptance(total_value, worth, temperature)
+						print("ap {} vs acc{}".format(ap, randomnumber))
+						if ap > randomnumber:
+							print("jatoch")
+							current_coordinate_list = new_coordinate_list
+							total_value = worth
+							grid = new_grid
+							swaps += 1
+							climb += 1
+							no_swap = 0
+							writer.writeheader()
+							writer.writerow({'algoritme': 'HillClimber', 'score': worth, 'housecount': nr_of_houses, 'climb': climb, 'swaps' : swaps, 'change': change})
+
+						else:
+							grid = Area().create_space(new_space_cords, grid)
+							grid = reset(grid, old_house_cords, old_space_cords)
+							current_coordinate_list[coordinate_number] = old_house_cords
+							print("nee")
+							no_swap += 1
+							climb += 1
+							if no_swap > 100:
+								break
+					else:
+						grid = Area().create_space(new_space_cords, grid)
+						grid = reset(grid, old_house_cords, old_space_cords)
+						current_coordinate_list[coordinate_number] = old_house_cords
+						print("nee")
+						no_swap += 1
+						climb += 1
+						if no_swap > 100:
+							break
+
 				temperature = temperature * 0.9
-					
-			
-			print("eruot")
+
 			# return the new grid
 			return([current_coordinate_list, water_coordinates, total_value])
-		
-		print("kom je hier")
-		# return the new grid
-		return([current_coordinate_list, water_coordinates, total_value])
 
 def acceptance(old, new, temperature):
-	return math.e**((old-new)/temperature)
+	delta = (old/new)*100
+	return math.e**(delta/temperature)
 

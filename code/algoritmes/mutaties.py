@@ -52,13 +52,7 @@ def house_swap(coordinate_list, nr_of_houses, grid):
 	y_d_two = old_cords_one[1] - height_two
 	new_cord_two = [x_l_two, y_u_two, x_r_two, y_d_two, old_cords_two[4]]
 
-	# determine the space needed for old houses
-	if old_cords_one[4] == 1:
-		build = single
-	elif old_cords_one[4] == 2:
-		build = bungalow
-	elif old_cords_one[4] == 3:
-		build = maison
+	build = housetype(old_cords_one[4])
 	cord_one = (x_l_one, y_u_one)
 	space_old_cords_one = build(cord_one).spacehouse(old_cords_one)
 
@@ -66,38 +60,27 @@ def house_swap(coordinate_list, nr_of_houses, grid):
 	cord_two = (x_l_two, y_u_two)
 	space_old_cords_two = build(cord_two).spacehouse(old_cords_two)
 
-	# clear the space the houses were using
-	grid = Area().create_space(space_old_cords_one, grid)
-	grid = Area().create_space(space_old_cords_two, grid)
-
-	# determine space needed for new houses
-	if new_cord_one[4] == 1:
-		build = single
-	elif new_cord_one[4] == 2:
-		build = bungalow
-	elif new_cord_one[4] == 3:
-		build = maison
+	build = housetype(new_cord_one[4])
 	cord_one_new = (x_l_one, y_d_one)
 	new_space_cords_one = build(cord_one_new).spacehouse(new_cord_one)
 
 	if (new_space_cords_one[0] < 0 or new_space_cords_one[3] < 0 or
 		new_space_cords_one[1] > 320 or new_space_cords_one[2] > 360):
 		grid = reset(grid, old_cords_one, space_old_cords_one)
-		return [coordinate_list, grid]
+		return None
 
-	if new_cord_two[4] == 1:
-		build = single
-	elif new_cord_two[4] == 2:
-		build = bungalow
-	elif new_cord_two[4] == 3:
-		build = maison
+	build = housetype(new_cord_two[4])
 	cord_two_new = (x_l_two, y_d_two)
 	new_space_cords_two = build(cord_two_new).spacehouse(new_cord_two)
 
 	if (new_space_cords_two[0] < 0 or new_space_cords_two[3] < 0 or
 		new_space_cords_two[1] > 320 or new_space_cords_two[2] > 360):
 		grid = reset(grid, old_cords_two, space_old_cords_two)
-		return [coordinate_list, grid]
+		return None
+
+	# clear the space the houses were using
+	grid = Area().create_space(space_old_cords_one, grid)
+	grid = Area().create_space(space_old_cords_two, grid)
 
 	# check if there is enough space to place house
 	if (Area().housecheck(grid, new_cord_one) == True and
@@ -116,13 +99,12 @@ def house_swap(coordinate_list, nr_of_houses, grid):
 		else:
 			grid = reset(grid, old_cords_one, space_old_cords_one)
 			grid = reset(grid, old_cords_two, space_old_cords_two)
+			return None
 
 	else:
 		grid = reset(grid, old_cords_one, space_old_cords_one)
-		grid = reset(grid, old_cords_two, space_old_cords_two)			
-# else:
-# 	grid = reset(grid, old_cords_one, space_old_cords_one)
-# 	grid = reset(grid, old_cords_two, space_old_cords_two)
+		grid = reset(grid, old_cords_two, space_old_cords_two)
+		return None			
 
 	# if the houses were swapped return the grid information
 	return [coordinate_list, grid]
