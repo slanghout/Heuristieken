@@ -18,16 +18,23 @@ from water import MakeWater
 
 grid = Area().make_basic_grid()
 
-def kerkhof(grid, nr_of_houses, width, height):
+def kerkhof(grid, nr_of_houses):
 
 	if nr_of_houses == 20:
 		location_list = []
 
 		# singles
 		for i in range(12):
-			house_next = [4 + 30 * i, 316, 4 + 16 + 30 * i, 316 - 16, 1]
+			size = single([0,0]).give_size()
+			print(size)
+			house_next = [4 + 30 * i, 316, 4 + size[1] + 30 * i, 316 - size[0], 1]
 			location_list.append(house_next)
-			grid = Area().update_grid(grid, house_next, "house")
+			if Area().housecheck(grid, house_next) == True:
+				grid = Area().update_grid(grid, house_next, "house")
+				house().spacehouse(house_next)
+				Area().spacecheck(grid, house_next) == True:
+					grid = Area().update_grid(grid, spa, "space")
+		
 		print(grid)
 		print(location_list)
 		total_value = 100
@@ -36,7 +43,7 @@ def kerkhof(grid, nr_of_houses, width, height):
 
 		# for Area().makegrid(coordinate_list, water_coordinates, total_value)
 
-kerkhof(grid, 20, 16, 16)
+kerkhof(grid, 20)
 		# bungalows
 
 		# maisons

@@ -75,6 +75,9 @@ class house(object):
 
 			return price
 
+	def give_size(self):
+		return [self.height, self.width]
+
 # define specifics for single house
 class single(house):
 	def __init__(self, coordinates):
