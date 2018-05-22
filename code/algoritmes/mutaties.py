@@ -12,7 +12,8 @@ from random import randint
 
 def create_change(current_coordinate_list, nr_of_houses, grid):
 	# choose between different mutations to change grid
-	change = randint(1, 3)
+	change = 1 #randint(1, 3)
+	print(change)
 
 	# change 1 then swap two houses
 	if change == 1:
@@ -102,19 +103,28 @@ def house_swap(coordinate_list, nr_of_houses, grid):
 	grid = Area().create_space(space_old_cords_two, grid)
 
 	# check if there is enough space to place house
-	if (Area().housecheck(grid, new_cord_one) == True and
-		Area().housecheck(grid, new_cord_two) == True):
+	if Area().housecheck(grid, new_cord_one) == True:
+		if Area().housecheck(grid, new_cord_two) == True:
 
-		# check if there is space to place house with extra space
-		if (Area().spacecheck(grid, new_space_cords_one) == True and
-			Area().spacecheck(grid, new_space_cords_two) == True):
+			# check if there is space to place house with extra space
+			if Area().spacecheck(grid, new_space_cords_one) == True:
+				if Area().spacecheck(grid, new_space_cords_two) == True:
 
-			# if everything is true swap the houses
-			grid = reset(grid, new_cord_one, new_space_cords_one)
-			coordinate_list[house_one] = new_cord_two
-			grid = reset(grid, new_cord_two, new_space_cords_two)
-			coordinate_list[house_two] = new_cord_one
-		
+					# if everything is true swap the houses
+					grid = reset(grid, new_cord_one, new_space_cords_one)
+					coordinate_list[house_one] = new_cord_two
+					grid = reset(grid, new_cord_two, new_space_cords_two)
+					coordinate_list[house_two] = new_cord_one
+
+				else:
+					grid = reset(grid, old_cords_one, space_old_cords_one)
+					grid = reset(grid, old_cords_two, space_old_cords_two)
+					return None
+
+			else:
+				grid = reset(grid, old_cords_one, space_old_cords_one)
+				grid = reset(grid, old_cords_two, space_old_cords_two)
+				return None
 		else:
 			grid = reset(grid, old_cords_one, space_old_cords_one)
 			grid = reset(grid, old_cords_two, space_old_cords_two)
@@ -288,9 +298,13 @@ def housetype(housenumber):
 def cancel_change(current_coordinate_list, grid, old_house_cords, old_space_cords, coordinate_number, new_space_cords):
 	if len(old_house_cords) == 2:
 		grid = Area().create_space(new_space_cords[0], grid)
+		print("cancel1")
 		grid = Area().create_space(new_space_cords[1], grid)
+		print("cancel2")
 		grid = reset(grid, old_house_cords[0], old_space_cords[0])
+		print("cancel3")
 		grid = reset(grid, old_house_cords[1], old_space_cords[1])
+		print("cncel4")
 		current_coordinate_list[coordinate_number[0]] = old_house_cords[0]
 		current_coordinate_list[coordinate_number[1]] = old_house_cords[1]
 		

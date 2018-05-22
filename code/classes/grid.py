@@ -22,7 +22,7 @@ class Area(object):
 					if grid[j][i] == "0":
 						grid[j][i] = "h"
 					else:
-						print("nee")
+						print("nee hier {}{} print hij {}".format(i, j, grid[j][i]))
 						exit(0)
 
 		# if water is places set w on spot
@@ -128,7 +128,9 @@ class Area(object):
 				elif grid[j][i] == "w":
 					pass
 				else:
+					print("exit space{}".format(grid[j][i]))
 					exit(0)
+
 		return grid
 
 	def makegrid(self, coordinate_list, water, total_value):

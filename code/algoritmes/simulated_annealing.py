@@ -47,9 +47,11 @@ def SimulatedAnnealing(nr_of_houses):
 		while swaps <= 200:
 			worth = 0
 
+			print("start")
 			swapresults = create_change(current_coordinate_list, nr_of_houses, grid)
 
 			if swapresults != None:
+				print("gaan we")
 				new_coordinate_list = swapresults[0]
 				new_grid = swapresults[1]
 				old_house_cords = swapresults[2]
@@ -75,6 +77,7 @@ def SimulatedAnnealing(nr_of_houses):
 					randomnumber = uniform(0, 1)
 					ap = acceptance(total_value, worth, temperature)
 					if ap > randomnumber:
+						print("alsnog")
 						current_coordinate_list = new_coordinate_list
 						total_value = worth
 						grid = new_grid
