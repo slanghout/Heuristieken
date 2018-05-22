@@ -10,6 +10,24 @@ from random_algoritme import Random
 
 from random import randint
 
+def create_change(current_coordinate_list, nr_of_houses, grid):
+	# choose between different mutations to change grid
+	change = randint(1, 3)
+
+	# change 1 then swap two houses
+	if change == 1:
+		swapresults = house_swap(current_coordinate_list, nr_of_houses, grid)
+
+	# change 2 then move a house
+	elif change == 2:
+		swapresults = move_house(current_coordinate_list, nr_of_houses, grid)
+
+	# change 3 then rotate house
+	elif change == 3:
+		swapresults = rotate_house(current_coordinate_list, nr_of_houses, grid)
+
+	return swapresults
+
 # determine of new grid is worth more than old grid
 def determine_worth(coordinate_list, grid):
 	worth = 0
@@ -28,6 +46,9 @@ def house_swap(coordinate_list, nr_of_houses, grid):
 	# randomly pick two houses from the coordinate list
 	house_one = randint(0, (nr_of_houses -1))
 	house_two = randint(0, (nr_of_houses - 1))
+	if house_one == house_two:
+		return None
+
 	old_cords_one = coordinate_list[house_one]
 	old_cords_two = coordinate_list[house_two]
 
@@ -56,7 +77,7 @@ def house_swap(coordinate_list, nr_of_houses, grid):
 	cord_one = (x_l_one, y_u_one)
 	space_old_cords_one = build(cord_one).spacehouse(old_cords_one)
 
-	build = housetype(old_chords_two[4])
+	build = housetype(old_cords_two[4])
 	cord_two = (x_l_two, y_u_two)
 	space_old_cords_two = build(cord_two).spacehouse(old_cords_two)
 
@@ -66,7 +87,6 @@ def house_swap(coordinate_list, nr_of_houses, grid):
 
 	if (new_space_cords_one[0] < 0 or new_space_cords_one[3] < 0 or
 		new_space_cords_one[1] > 320 or new_space_cords_one[2] > 360):
-		grid = reset(grid, old_cords_one, space_old_cords_one)
 		return None
 
 	build = housetype(new_cord_two[4])
@@ -75,7 +95,6 @@ def house_swap(coordinate_list, nr_of_houses, grid):
 
 	if (new_space_cords_two[0] < 0 or new_space_cords_two[3] < 0 or
 		new_space_cords_two[1] > 320 or new_space_cords_two[2] > 360):
-		grid = reset(grid, old_cords_two, space_old_cords_two)
 		return None
 
 	# clear the space the houses were using
@@ -107,7 +126,7 @@ def house_swap(coordinate_list, nr_of_houses, grid):
 		return None			
 
 	# if the houses were swapped return the grid information
-	return [coordinate_list, grid]
+	return [coordinate_list, grid, [old_cords_one, old_cords_two], [space_old_cords_one, space_old_cords_two], [house_one, house_two], [new_space_cords_one, new_space_cords_two]]
 
 # function that moves a house by 1 coordinate
 def move_house(coordinate_list, nr_of_houses, grid):
@@ -265,3 +284,20 @@ def housetype(housenumber):
 			build = maison
 
 		return build
+
+def cancel_change(current_coordinate_list, grid, old_house_cords, old_space_cords, coordinate_number, new_space_cords):
+	if len(old_house_cords) == 2:
+		grid = Area().create_space(new_space_cords[0], grid)
+		grid = Area().create_space(new_space_cords[1], grid)
+		grid = reset(grid, old_house_cords[0], old_space_cords[0])
+		grid = reset(grid, old_house_cords[1], old_space_cords[1])
+		current_coordinate_list[coordinate_number[0]] = old_house_cords[0]
+		current_coordinate_list[coordinate_number[1]] = old_house_cords[1]
+		
+	else:
+		grid = Area().create_space(new_space_cords, grid)
+		grid = reset(grid, old_house_cords, old_space_cords)
+		current_coordinate_list[coordinate_number] = old_house_cords
+	
+	return [current_coordinate_list, grid]
+
