@@ -48,7 +48,7 @@ def Randomizer(amount):
 	return [random_x, random_y]
 
 def Create_water(grid):
-	water_options = [1, 2, 3, 4]
+	# water_options = [1, 2, 3, 4]
 
 	water_bodies = 1 #random.choice(water_options)
 
