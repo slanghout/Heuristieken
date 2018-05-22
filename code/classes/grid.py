@@ -128,7 +128,6 @@ class Area(object):
 				elif grid[j][i] == "w":
 					pass
 				else:
-					print("doei")
 					exit(0)
 		return grid
 
