@@ -21,27 +21,37 @@ grid = Area().make_basic_grid()
 def kerkhof(grid, nr_of_houses):
 
 	if nr_of_houses == 20:
+		location_space = []
 		location_list = []
+		total_value = 0
 
 		# singles
 		for i in range(12):
 			size = single([0,0]).give_size()
 			print(size)
 			house_next = [4 + 30 * i, 316, 4 + size[1] + 30 * i, 316 - size[0], 1]
-			location_list.append(house_next)
+			cords = [house_next[0], house_next[1]]
+			
 			if Area().housecheck(grid, house_next) == True:
-				grid = Area().update_grid(grid, house_next, "house")
-				house().spacehouse(house_next)
-				Area().spacecheck(grid, house_next) == True:
-					grid = Area().update_grid(grid, spa, "space")
-		
-		print(grid)
+				space = single(cords).spacehouse(house_next)
+				print(space)
+				if Area().spacecheck(grid, space) == True:
+					location_list.append(house_next)
+					grid = Area().update_grid(grid, house_next, "house")
+					location_space.append(space)
+					grid = Area().update_grid(grid, space, "space")
+					price = single(cords).giveworth(house_next, grid)
+					total_value += price
+					print(total_value)
+
+		# print(grid)
 		print(location_list)
-		total_value = 100
+		print(location_space)
+		print(total_value)		
+		
+		# water nog bepalen
 		water_coordinates = Create_water(grid)
 		Area().makegrid(location_list, water_coordinates, total_value)
-
-		# for Area().makegrid(coordinate_list, water_coordinates, total_value)
 
 kerkhof(grid, 20)
 		# bungalows
@@ -56,20 +66,4 @@ kerkhof(grid, 20)
 	# if nr_of_houses == 40:
 
 	# if nr_of_houses == 60:
-
-	# bovenste rij
-	# eerste huis 4, 360 - 4
-	# 3 x volgende huizen x + 44, 360 - 4
-
-	# onderste rij
-	# eerste huis 320 - 4, 4
-	# 3x volgende huizen x + 44, 4
-
-	# linker rij
-	# eerste huis 4, 360 - 4 (niet plaatsen)
-	# 2x volgende huizen 320 - 4, y - 39
-
-	# rechter rij
-	# eerste huis 320 - 4, 360 - 4 (niet plaatsen)
-	# 2x volgende huizen 320 - 4, y - 39
 
