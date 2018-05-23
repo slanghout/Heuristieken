@@ -22,7 +22,7 @@ class Area(object):
 					if grid[j][i] == "0":
 						grid[j][i] = "h"
 					else:
-						print("nee")
+						print("nee hier {}{} print hij {}".format(i, j, grid[j][i]))
 						exit(0)
 
 		# if water is places set w on spot
@@ -50,7 +50,6 @@ class Area(object):
 						grid[j][i] = "s"
 					elif grid[j][i] == "w":
 						pass
-
 		return grid
 
 	# check if around house enough space for free space
@@ -102,6 +101,7 @@ class Area(object):
 						return (index - 1)
 				else:
 					return (index - 1)
+	
 	def calculate_space_horizontal(self, house_coordinates, grid):
 		for index in range(1, 300):
 			for j in range((house_coordinates[3] - index), (house_coordinates[1] + index)):
@@ -136,7 +136,9 @@ class Area(object):
 				elif grid[j][i] == "w":
 					pass
 				else:
+					print("exit space{}".format(grid[j][i]))
 					exit(0)
+
 		return grid
 
 	def makegrid(self, coordinate_list, water, total_value):
