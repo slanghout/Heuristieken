@@ -68,18 +68,18 @@ def kerkhof(grid, nr_of_houses):
 				location_space.append(space)
 				grid = Area().update_grid(grid, space, "space")
 
-    for coordinate in location_list:
-    		cords = [coordinate[0], coordinate[1]]
-    		if coordinate[4] == 1:
-    			build = single
-    		elif coordinate[4] == 2:
-    			build = bungalow
-    		elif coordinate[4] == 3:
-    			build = maison
-    		price = build(cords).giveworth(coordinate, grid)
-    		print(price)
-    		if price != None:
-    			total_value += price
+	for coordinate in location_list:
+		cords = [coordinate[0], coordinate[1]]
+		if coordinate[4] == 1:
+			build = single
+		elif coordinate[4] == 2:
+			build = bungalow
+		elif coordinate[4] == 3:
+			build = maison
+		price = build(cords).giveworth(coordinate, grid)
+		print(price)
+		if price != None:
+			total_value += price
 
 	print(total_value)
 
