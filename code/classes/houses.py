@@ -73,9 +73,9 @@ class house(object):
 			extra_space = (int(space - self.space))/2
 			price = self.price * (1 + (self.percentage * extra_space))
 
-			print("space{}".format(space))
-			print("price{}".format(price))
-			print("extra{}".format(extra_space))
+			print("space = {}".format(space))
+			print("price = {}".format(price))
+			print("extra = {}".format(extra_space))
 			return price
 
 	def give_size(self):
