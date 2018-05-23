@@ -13,6 +13,8 @@ from houses import single
 from houses import bungalow
 from houses import maison
 
+from Kerkhof import kerkhof
+
 from grid import Area
 from Hill_climber import HillClimber
 from random_algoritme import Random
@@ -42,6 +44,7 @@ def main():
 
 		if alg == "A":
 			for repeat in range(repeats):
+				print(repeat)
 				gridvalue = Random(int(nr_of_houses))
 				writer.writeheader()
 				writer.writerow({'algoritme': 'Random', 'score': gridvalue[2], 'housecount': nr_of_houses})
@@ -60,18 +63,35 @@ def main():
 			print(end - start)
 			Area().makegrid(coordinate_list, water_coordinates, total_value)
 
-		if alg == "B":
-			for repeat in range(repeats):
-				final = HillClimber(nr_of_houses)
-				writer.writeheader()
-				writer.writerow({'algoritme': 'HillClimber', 'score': final[2], 'housecount': nr_of_houses})
-				if len(best_gridvalues) != 0:
-					if best_gridvalues[2] > final[2]:
-						pass
-					else:
-						best_gridvalues = final
-				else:
-					best_gridvalues = final
+	if alg == "B":
+		starting_state = (input("Is starting state Random(A) or Kerkhof(B)?"))
+		if starting_state == "A":
+			start = Random(nr_of_houses)
+		elif starting_state == "B":
+			start = kerkhof(nr_of_houses)
+			print(start[0])
+
+		starttime = time.time()
+		final = HillClimber(nr_of_houses, start)
+
+		coordinate_list = final[0]
+		water_coordinates = final[1]
+		total_value = final[2]
+		end = time.time()
+		print(end - starttime)
+		Area().makegrid(coordinate_list, water_coordinates, total_value)
+
+	if alg == "C":
+		start = time.time()
+		final = SimulatedAnnealing(nr_of_houses)
+
+		coordinate_list = final[0]
+		water_coordinates = final[1]
+		total_value = final[2]
+		end = time.time()
+		print(end - start)
+		Area().makegrid(coordinate_list, water_coordinates, total_value)
+
 
 			coordinate_list = final[0]
 			water_coordinates = final[1]
