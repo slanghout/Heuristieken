@@ -104,23 +104,23 @@ class Area(object):
 	
 	def calculate_space_horizontal(self, house_coordinates, grid):
 		for index in range(1, 100):
-				for j in range((house_coordinates[3] - index), (house_coordinates[1] + index)):
-					if house_coordinates[0] - index >= 0 and house_coordinates[2] + index <= 360:
-						if house_coordinates[1] + index <= 320 and house_coordinates[3] - index >= 0:
-							if house_coordinates[3] - index == 0 or house_coordinates[0] - index == 0:
-								return index
-							if house_coordinates[1] + index == 320 or house_coordinates[2] + index == 360:
-								return index
-							if grid[j][house_coordinates[2] + index] != "h":
-								pass
-							if grid[j][house_coordinates[0] - index] != "h":
-								pass
-							else:
-								return (index - 1)
+			for j in range((house_coordinates[3] - index), (house_coordinates[1] + index)):
+				if house_coordinates[0] - index >= 0 and house_coordinates[2] + index <= 360:
+					if house_coordinates[1] + index <= 320 and house_coordinates[3] - index >= 0:
+						if house_coordinates[3] - index == 0 or house_coordinates[0] - index == 0:
+							return index
+						if house_coordinates[1] + index == 320 or house_coordinates[2] + index == 360:
+							return index
+						if grid[j][house_coordinates[2] + index] != "h":
+							pass
+						if grid[j][house_coordinates[0] - index] != "h":
+							pass
 						else:
 							return (index - 1)
 					else:
 						return (index - 1)
+				else:
+					return (index - 1)
 
 	def create_space(self, house_coordinates, grid):
 		for i in range(house_coordinates[0], (house_coordinates[2])):

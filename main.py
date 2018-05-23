@@ -13,6 +13,8 @@ from houses import single
 from houses import bungalow
 from houses import maison
 
+from Kerkhof import kerkhof
+
 from grid import Area
 from Hill_climber import HillClimber
 from random_algoritme import Random
@@ -60,8 +62,15 @@ def main():
 			Area().makegrid(coordinate_list, water_coordinates, total_value)
 
 	if alg == "B":
+
+		starting_state = (input("Is starting state Random(A) or Kerkhof(B)?"))
+		if starting_state == "A":
+			start = Random(nr_of_houses)
+		elif starting_state == "B":
+			start = kerkhof(nr_of_houses)
+		
 		start = time.time()
-		final = HillClimber(nr_of_houses)
+		final = HillClimber(nr_of_houses, start)
 
 		coordinate_list = final[0]
 		water_coordinates = final[1]
