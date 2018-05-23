@@ -7,6 +7,7 @@ __pycache__/
 .DS_Store
 dewi.py
 sylvie.py
+scores.csv
 
 # C extensions
 *.so
