@@ -21,14 +21,14 @@ from random_algoritme import Random
 from random import randint
 
 # Hill Climber algoritm
-def HillClimber(nr_of_houses):
+def HillClimber(nr_of_houses, starting_state):
 
 	with open('scores.csv', 'w', newline='') as csvfile:
 		fieldnames = ['algoritme', 'score', 'housecount', 'climb','swaps']
 		writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 		
 		# starts by running random algoritm to generate starting state
-		starting_state = Random(nr_of_houses)
+		# starting_state = Random(nr_of_houses)
 		current_coordinate_list = starting_state[0]
 		water_coordinates = starting_state[1]
 		total_value = starting_state[2]
@@ -39,7 +39,7 @@ def HillClimber(nr_of_houses):
 		climb = 0
 		
 		# set number of changes needed to make
-		while (swaps < 200 and climb < 2000):
+		while (swaps < 200 and climb < 1000):
 			worth = 0
 
 			swapresults = create_change(current_coordinate_list, nr_of_houses, grid)
@@ -60,6 +60,7 @@ def HillClimber(nr_of_houses):
 					total_value = worth
 					grid = new_grid
 					swaps += 1
+					print("ja{}".format(swaps))
 					climb += 1
 					no_swap = 0
 					writer.writeheader()
@@ -70,6 +71,7 @@ def HillClimber(nr_of_houses):
 					current_coordinate_list = cancel[0]
 					grid = cancel[1]
 					no_swap += 1
+					print("nee{}".format(no_swap))
 					climb += 1
 					
 					if no_swap > 100:

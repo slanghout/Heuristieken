@@ -16,9 +16,11 @@ from random_algoritme import Random
 from random_algoritme import Create_water
 from water import MakeWater
 
-grid = Area().make_basic_grid()
 
-def kerkhof(grid, nr_of_houses):
+def kerkhof(nr_of_houses):
+	
+	grid = Area().make_basic_grid()
+
 	if nr_of_houses == 20:
 		location_space = []
 		location_list = []
@@ -106,6 +108,7 @@ def kerkhof(grid, nr_of_houses):
 		for i in range(2):
 			size = maison([0,0]).give_size()
 			house_next = [225, 80 + size[0] + (size[0] + 80) * i, 225 + size[1], 80 + (size[0] + 80) * i, 3]
+
 			cords = [house_next[0], house_next[1]]
 			
 			if Area().housecheck(grid, house_next) == True:
@@ -125,10 +128,28 @@ def kerkhof(grid, nr_of_houses):
 			elif coordinate[4] == 3:
 				build = maison
 			price = build(cords).giveworth(coordinate, grid)
+			# print(price)
 			if price != None:
 				total_value += price
 
-		water_coordinates = [[135, 270, 225, 14]]
-		Area().makegrid(location_list, water_coordinates, total_value)
+		# print(total_value)
 
+<<<<<<< HEAD
 kerkhof(grid, 20)
+=======
+		water_coordinates = [[52, 98, 308, 8]]
+		return([location_list, water_coordinates, total_value, grid])
+		# Area().makegrid(location_list, water_coordinates, total_value)
+# kerkhof(grid, 20)
+		
+
+	# 	left_x = house_coordinates[0]
+	# 	up_y = house_coordinates[1]
+	# 	right_x = house_coordinates[2]
+	# 	down_y = house_coordinates[3]
+
+	# if nr_of_houses == 40:
+
+	# if nr_of_houses == 60:
+
+>>>>>>> a19e0f40305cc00c9328049fb4ed72486f0f6267

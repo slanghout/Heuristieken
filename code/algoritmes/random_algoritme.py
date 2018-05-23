@@ -54,6 +54,7 @@ def Create_water(grid):
 
 	if water_bodies > 1:
 		water_coordinates = MakeWater(water_bodies)
+		print(water_coordinates)
 		for body in range(water_bodies):
 			if water_coordinates != None:
 				if body == 0:
