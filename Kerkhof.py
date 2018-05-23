@@ -107,12 +107,8 @@ def kerkhof(nr_of_houses):
 
 		for i in range(2):
 			size = maison([0,0]).give_size()
-<<<<<<< HEAD
-			house_next = [70 + 99 * i, 128, 70 + size[1] + 99 * i, 128 - size[0], 3]
-			# print(house_next)
-=======
 			house_next = [225, 80 + size[0] + (size[0] + 80) * i, 225 + size[1], 80 + (size[0] + 80) * i, 3]
->>>>>>> f74b15a97440e8f6f92d3fc8863a6a8b0a3309e2
+
 			cords = [house_next[0], house_next[1]]
 			
 			if Area().housecheck(grid, house_next) == True:
@@ -132,7 +128,6 @@ def kerkhof(nr_of_houses):
 			elif coordinate[4] == 3:
 				build = maison
 			price = build(cords).giveworth(coordinate, grid)
-<<<<<<< HEAD
 			# print(price)
 			if price != None:
 				total_value += price
@@ -142,14 +137,6 @@ def kerkhof(nr_of_houses):
 		water_coordinates = [[52, 98, 308, 8]]
 		return([location_list, water_coordinates, total_value, grid])
 		# Area().makegrid(location_list, water_coordinates, total_value)
-=======
-			if price != None:
-				total_value += price
-
-		water_coordinates = [[135, 270, 225, 14]]
-		Area().makegrid(location_list, water_coordinates, total_value)
->>>>>>> f74b15a97440e8f6f92d3fc8863a6a8b0a3309e2
-
 # kerkhof(grid, 20)
 		
 
