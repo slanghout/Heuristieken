@@ -47,11 +47,9 @@ def SimulatedAnnealing(nr_of_houses):
 		while swaps <= 200:
 			worth = 0
 
-			print("start")
 			swapresults = create_change(current_coordinate_list, nr_of_houses, grid)
 
 			if swapresults != None:
-				print("gaan we")
 				new_coordinate_list = swapresults[0]
 				new_grid = swapresults[1]
 				old_house_cords = swapresults[2]
@@ -63,7 +61,6 @@ def SimulatedAnnealing(nr_of_houses):
 
 				# if new grid is worth more, accept this grid
 				if worth > total_value:
-					print("ja")
 					current_coordinate_list = new_coordinate_list
 					total_value = worth
 					grid = new_grid
@@ -71,13 +68,12 @@ def SimulatedAnnealing(nr_of_houses):
 					climb += 1
 					no_swap = 0
 					writer.writeheader()
-					writer.writerow({'algoritme': 'HillClimber', 'score': worth, 'housecount': nr_of_houses, 'climb': climb, 'swaps' : swaps})
+					writer.writerow({'algoritme': 'SimulatedAnnealing', 'score': worth, 'housecount': nr_of_houses, 'climb': climb, 'swaps' : swaps})
 
 				elif worth < total_value:
 					randomnumber = uniform(0, 1)
 					ap = acceptance(total_value, worth, temperature)
 					if ap > randomnumber:
-						print("alsnog")
 						current_coordinate_list = new_coordinate_list
 						total_value = worth
 						grid = new_grid
@@ -85,10 +81,9 @@ def SimulatedAnnealing(nr_of_houses):
 						climb += 1
 						no_swap = 0
 						writer.writeheader()
-						writer.writerow({'algoritme': 'HillClimber', 'score': worth, 'housecount': nr_of_houses, 'climb': climb, 'swaps' : swaps})
+						writer.writerow({'algoritme': 'SimulatedAnnealing', 'score': worth, 'housecount': nr_of_houses, 'climb': climb, 'swaps' : swaps})
 
 					else:
-						print("cancel stim")
 						cancel = cancel_change(current_coordinate_list, grid, old_house_cords, old_space_cords, coordinate_number, new_space_cords)
 						current_coordinate_list = cancel[0]
 						grid = cancel[1]
@@ -97,7 +92,6 @@ def SimulatedAnnealing(nr_of_houses):
 						if no_swap > 100:
 							break
 				else:
-					print("cancel want even veel waard")
 					cancel = cancel_change(current_coordinate_list, grid, old_house_cords, old_space_cords, coordinate_number, new_space_cords)
 					current_coordinate_list = cancel[0]
 					grid = cancel[1]
@@ -109,6 +103,7 @@ def SimulatedAnnealing(nr_of_houses):
 			temperature = temperature * 0.97
 
 		# return the new grid
+		print(total_value)
 		return([current_coordinate_list, water_coordinates, total_value])
 
 def acceptance(old, new, temperature):
