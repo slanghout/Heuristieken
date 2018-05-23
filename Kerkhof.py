@@ -27,9 +27,9 @@ def kerkhof(nr_of_houses):
 		total_value = 0
 
 		# singles
-		for i in range(12):
+		for i in range(9):
 			size = single([0,0]).give_size()
-			house_next = [12 + 29 * i, 307, 12 + size[1] + 29 * i, 307 - size[0], 1]
+			house_next = [24 + (21 + size[1]) * i, 300, 24 + size[1] + (21 + size[1]) * i, 300 - size[0], 1]
 			cords = [house_next[0], house_next[1]]
 			
 			if Area().housecheck(grid, house_next) == True:
@@ -39,13 +39,36 @@ def kerkhof(nr_of_houses):
 					grid = Area().update_grid(grid, house_next, "house")
 					location_space.append(space)
 					grid = Area().update_grid(grid, space, "space")
-					# price = single(cords).giveworth(house_next, grid)
-					# total_value += price
+
+		for i in range(3):
+			size = single([0,0]).give_size()
+			house_next = [24 + (21 + size[1]) * i, 36, 24 + size[1] + (21 + size[1]) * i, 36 - size[0], 1]
+			cords = [house_next[0], house_next[1]]
+			
+			if Area().housecheck(grid, house_next) == True:
+				space = single(cords).spacehouse(house_next)
+				if Area().spacecheck(grid, space) == True:
+					location_list.append(house_next)
+					grid = Area().update_grid(grid, house_next, "house")
+					location_space.append(space)
+					grid = Area().update_grid(grid, space, "space")
 
 		# bungalows
-		for i in range(5):
+		size = bungalow([0,0]).give_size()
+		house_next = [28, 170, 28 + size[1], 170 - size[0], 2]
+		cords = [house_next[0], house_next[1]]
+		
+		if Area().housecheck(grid, house_next) == True:
+			space = bungalow(cords).spacehouse(house_next)
+			if Area().spacecheck(grid, space) == True:
+				location_list.append(house_next)
+				grid = Area().update_grid(grid, house_next, "house")
+				location_space.append(space)
+				grid = Area().update_grid(grid, space, "space")
+
+		for i in range(2):
 			size = bungalow([0,0]).give_size()
-			house_next = [58 + 57 * i, 250, 58 + size[1] + 57 * i, 250 - size[0], 2]
+			house_next = [71, 105 + size[0] + (70 + size[0]) * i, 71 + size[1], 105 + (70 + size[0]) * i, 2]
 			cords = [house_next[0], house_next[1]]
 			
 			if Area().housecheck(grid, house_next) == True:
@@ -55,14 +78,41 @@ def kerkhof(nr_of_houses):
 					grid = Area().update_grid(grid, house_next, "house")
 					location_space.append(space)
 					grid = Area().update_grid(grid, space, "space")
-					# price = bungalow(cords).giveworth(house_next, grid)
-					# total_value += price
+
+		for i in range(2):
+			size = bungalow([0,0]).give_size()
+			house_next = [295, 30 + size[0] + (size[0] + 82) * i, 295 + size[1], 30 + (size[0] + 82) * i, 2]
+			cords = [house_next[0], house_next[1]]
+			
+			if Area().housecheck(grid, house_next) == True:
+				space = bungalow(cords).spacehouse(house_next)
+				if Area().spacecheck(grid, space) == True:
+					location_list.append(house_next)
+					grid = Area().update_grid(grid, house_next, "house")
+					location_space.append(space)
+					grid = Area().update_grid(grid, space, "space")
 
 		# maisons
-		for i in range(3):
+		size = maison([0,0]).give_size()
+		house_next = [135 - size[1], 149 + size[0], 135, 171 - size[0], 3]
+		cords = [house_next[0], house_next[1]]
+		
+		if Area().housecheck(grid, house_next) == True:
+			space = maison(cords).spacehouse(house_next)
+			if Area().spacecheck(grid, space) == True:
+				location_list.append(house_next)
+				grid = Area().update_grid(grid, house_next, "house")
+				location_space.append(space)
+				grid = Area().update_grid(grid, space, "space")
+
+		for i in range(2):
 			size = maison([0,0]).give_size()
+<<<<<<< HEAD
 			house_next = [70 + 99 * i, 128, 70 + size[1] + 99 * i, 128 - size[0], 3]
 			# print(house_next)
+=======
+			house_next = [225, 80 + size[0] + (size[0] + 80) * i, 225 + size[1], 80 + (size[0] + 80) * i, 3]
+>>>>>>> f74b15a97440e8f6f92d3fc8863a6a8b0a3309e2
 			cords = [house_next[0], house_next[1]]
 			
 			if Area().housecheck(grid, house_next) == True:
@@ -72,12 +122,6 @@ def kerkhof(nr_of_houses):
 					grid = Area().update_grid(grid, house_next, "house")
 					location_space.append(space)
 					grid = Area().update_grid(grid, space, "space")
-					# price = 100
-					# price = maison(cords).giveworth(house_next, grid)
-					# if price == None:
-					# 	print("hier gaat het mis")
-					# else:
-					# 	total_value += price
 
 		for coordinate in location_list:
 			cords = [coordinate[0], coordinate[1]]
@@ -88,6 +132,7 @@ def kerkhof(nr_of_houses):
 			elif coordinate[4] == 3:
 				build = maison
 			price = build(cords).giveworth(coordinate, grid)
+<<<<<<< HEAD
 			# print(price)
 			if price != None:
 				total_value += price
@@ -97,6 +142,13 @@ def kerkhof(nr_of_houses):
 		water_coordinates = [[52, 98, 308, 8]]
 		return([location_list, water_coordinates, total_value, grid])
 		# Area().makegrid(location_list, water_coordinates, total_value)
+=======
+			if price != None:
+				total_value += price
+
+		water_coordinates = [[135, 270, 225, 14]]
+		Area().makegrid(location_list, water_coordinates, total_value)
+>>>>>>> f74b15a97440e8f6f92d3fc8863a6a8b0a3309e2
 
 # kerkhof(grid, 20)
 		
