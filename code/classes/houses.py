@@ -62,8 +62,9 @@ class house(object):
 
 	def giveworth(self, house_coordinates, grid):
 		space_vertical = Area().calculate_space_vertical(house_coordinates, grid)
+		print("space vert = {}".format(space_vertical))
 		space_horizontal = Area().calculate_space_horizontal(house_coordinates, grid)
-		
+		print("space hor = {}".format(space_horizontal))
 		if space_horizontal != None and space_vertical != None:
 			if space_horizontal < space_vertical:
 				space = space_horizontal
