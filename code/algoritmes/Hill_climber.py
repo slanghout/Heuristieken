@@ -71,8 +71,10 @@ def HillClimber(nr_of_houses):
 					grid = cancel[1]
 					no_swap += 1
 					climb += 1
+					
 					if no_swap > 100:
 						break
 
 		# return the new grid
+		print(total_value)
 		return([current_coordinate_list, water_coordinates, total_value])
