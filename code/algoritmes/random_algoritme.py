@@ -16,7 +16,7 @@ def Random(nr_of_houses):
 		total_value = 0
 		grid = Area().make_basic_grid()
 		water_coordinates = Create_water(grid)
-	
+
 	if water_coordinates != None:
 		coordinate_list = Build_Amstelhaege(nr_of_houses, grid)
 		for cordinate in coordinate_list:
@@ -30,7 +30,7 @@ def Random(nr_of_houses):
 			price = build(cord).giveworth(cordinate, grid)
 			if price != None:
 				total_value += price
-		
+
 		return([coordinate_list, water_coordinates, total_value, grid])
 
 
@@ -48,9 +48,9 @@ def Randomizer(amount):
 	return [random_x, random_y]
 
 def Create_water(grid):
-	# water_options = [1, 2, 3, 4]
+	water_options = [1, 2, 3, 4]
 
-	water_bodies = 1 #random.choice(water_options)
+	water_bodies = random.choice(water_options)
 
 	if water_bodies > 1:
 		water_coordinates = MakeWater(water_bodies)
