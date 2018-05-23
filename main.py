@@ -41,6 +41,7 @@ def main():
 			repeats = int(input("How many times do you want to run the algoritm? "))
 			start = time.time()
 			for repeat in range(repeats):
+				print(repeat)
 				gridvalue = Random(int(nr_of_houses))
 				writer.writeheader()
 				writer.writerow({'algoritme': 'Random', 'score': gridvalue[2], 'housecount': nr_of_houses})
