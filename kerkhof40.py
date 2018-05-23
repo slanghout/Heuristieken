@@ -20,103 +20,103 @@ grid = Area().make_basic_grid()
 
 def kerkhof(grid, nr_of_houses):
 
-	# if nr_of_houses == 20:
-	location_space = []
-	location_list = []
-	total_value = 0
+    # if nr_of_houses == 20:
+    location_space = []
+    location_list = []
+    total_value = 0
 
-	# SINGLES
-	for i in range(8):
-		size = single([0,0]).give_size()
-		house_next = [20 + (size[1] + 27) * i, 310, 20 + size[1] + (27 + size[1]) * i, 310 - size[0], 1]
-		cords = [house_next[0], house_next[1]]
+    # SINGLES
+    for i in range(8):
+    	size = single([0,0]).give_size()
+    	house_next = [20 + (size[1] + 27) * i, 310, 20 + size[1] + (27 + size[1]) * i, 310 - size[0], 1]
+    	cords = [house_next[0], house_next[1]]
 
-		if Area().housecheck(grid, house_next) == True:
-			space = single(cords).spacehouse(house_next)
-			if Area().spacecheck(grid, space) == True:
-				location_list.append(house_next)
-				grid = Area().update_grid(grid, house_next, "house")
-				location_space.append(space)
-				grid = Area().update_grid(grid, space, "space")
+    	if Area().housecheck(grid, house_next) == True:
+    		space = single(cords).spacehouse(house_next)
+    		if Area().spacecheck(grid, space) == True:
+    			location_list.append(house_next)
+    			grid = Area().update_grid(grid, house_next, "house")
+    			location_space.append(space)
+    			grid = Area().update_grid(grid, space, "space")
 
-	for i in range(8):
-		size = single([0,0]).give_size()
-		house_next = [20 + (size[1] + 27) * i, 30, 20 + size[1] + (27 + size[1]) * i, 30 - size[0], 1]
-		cords = [house_next[0], house_next[1]]
+    for i in range(8):
+    	size = single([0,0]).give_size()
+    	house_next = [20 + (size[1] + 27) * i, 30, 20 + size[1] + (27 + size[1]) * i, 30 - size[0], 1]
+    	cords = [house_next[0], house_next[1]]
 
-		if Area().housecheck(grid, house_next) == True:
-			space = single(cords).spacehouse(house_next)
-			if Area().spacecheck(grid, space) == True:
-				location_list.append(house_next)
-				grid = Area().update_grid(grid, house_next, "house")
-				location_space.append(space)
-				grid = Area().update_grid(grid, space, "space")
+    	if Area().housecheck(grid, house_next) == True:
+    		space = single(cords).spacehouse(house_next)
+    		if Area().spacecheck(grid, space) == True:
+    			location_list.append(house_next)
+    			grid = Area().update_grid(grid, house_next, "house")
+    			location_space.append(space)
+    			grid = Area().update_grid(grid, space, "space")
 
-	for i in range(4):
-		size = single([0,0]).give_size()
-		house_next = [20, 280 - (size[0] + 55) * i , 20 + size[1], 280 - size[0] - (55 + size[0]) * i, 1]
-		cords = [house_next[0], house_next[1]]
+    for i in range(4):
+    	size = single([0,0]).give_size()
+    	house_next = [20, 280 - (size[0] + 55) * i , 20 + size[1], 280 - size[0] - (55 + size[0]) * i, 1]
+    	cords = [house_next[0], house_next[1]]
 
-		if Area().housecheck(grid, house_next) == True:
-			space = single(cords).spacehouse(house_next)
-			if Area().spacecheck(grid, space) == True:
-				location_list.append(house_next)
-				grid = Area().update_grid(grid, house_next, "house")
-				location_space.append(space)
-				grid = Area().update_grid(grid, space, "space")
+    	if Area().housecheck(grid, house_next) == True:
+    		space = single(cords).spacehouse(house_next)
+    		if Area().spacecheck(grid, space) == True:
+    			location_list.append(house_next)
+    			grid = Area().update_grid(grid, house_next, "house")
+    			location_space.append(space)
+    			grid = Area().update_grid(grid, space, "space")
 
-	for i in range(4):
-		size = single([0,0]).give_size()
-		house_next = [324, 280 - (size[0] + 55) * i , 324 + size[1], 280 - size[0] - (55 + size[0]) * i, 1]
-		cords = [house_next[0], house_next[1]]
+    for i in range(4):
+    	size = single([0,0]).give_size()
+    	house_next = [324, 280 - (size[0] + 55) * i , 324 + size[1], 280 - size[0] - (55 + size[0]) * i, 1]
+    	cords = [house_next[0], house_next[1]]
 
-		if Area().housecheck(grid, house_next) == True:
-			space = single(cords).spacehouse(house_next)
-			if Area().spacecheck(grid, space) == True:
-				location_list.append(house_next)
-				grid = Area().update_grid(grid, house_next, "house")
-				location_space.append(space)
-				grid = Area().update_grid(grid, space, "space")
+    	if Area().housecheck(grid, house_next) == True:
+    		space = single(cords).spacehouse(house_next)
+    		if Area().spacecheck(grid, space) == True:
+    			location_list.append(house_next)
+    			grid = Area().update_grid(grid, house_next, "house")
+    			location_space.append(space)
+    			grid = Area().update_grid(grid, space, "space")
 
-	# BUNGLOWS
-	for i in range(3):
-		size = bungalow([0,0]).give_size()
-		house_next = [324, 250 - (size[0] + 55) * i , 324 + size[1], 250 - size[0] - (55 + size[0]) * i, 2]
-		cords = [house_next[0], house_next[1]]
+    # BUNGLOWS
+    for i in range(3):
+    	size = bungalow([0,0]).give_size()
+    	house_next = [324, 250 - (size[0] + 55) * i , 324 + size[1], 250 - size[0] - (55 + size[0]) * i, 2]
+    	cords = [house_next[0], house_next[1]]
 
-		if Area().housecheck(grid, house_next) == True:
-			space = bungalow(cords).spacehouse(house_next)
-			if Area().spacecheck(grid, space) == True:
-				location_list.append(house_next)
-				grid = Area().update_grid(grid, house_next, "house")
-				location_space.append(space)
-				grid = Area().update_grid(grid, space, "space")
+    	if Area().housecheck(grid, house_next) == True:
+    		space = bungalow(cords).spacehouse(house_next)
+    		if Area().spacecheck(grid, space) == True:
+    			location_list.append(house_next)
+    			grid = Area().update_grid(grid, house_next, "house")
+    			location_space.append(space)
+    			grid = Area().update_grid(grid, space, "space")
 
-	for i in range(3):
-		size = bungalow([0,0]).give_size()
-		house_next = [20, 250 - (size[0] + 55) * i , 20 + size[1], 250 - size[0] - (55 + size[0]) * i, 2]
-		cords = [house_next[0], house_next[1]]
+    for i in range(3):
+        size = bungalow([0,0]).give_size()
+        house_next = [20, 250 - (size[0] + 55) * i , 20 + size[1], 250 - size[0] - (55 + size[0]) * i, 2]
+        cords = [house_next[0], house_next[1]]
 
-		if Area().housecheck(grid, house_next) == True:
-			space = bungalow(cords).spacehouse(house_next)
-			if Area().spacecheck(grid, space) == True:
-				location_list.append(house_next)
-				grid = Area().update_grid(grid, house_next, "house")
-				location_space.append(space)
-				grid = Area().update_grid(grid, space, "space")
+        if Area().housecheck(grid, house_next) == True:
+            space = bungalow(cords).spacehouse(house_next)
+            if Area().spacecheck(grid, space) == True:
+                location_list.append(house_next)
+                grid = Area().update_grid(grid, house_next, "house")
+                location_space.append(space)
+                grid = Area().update_grid(grid, space, "space")
 
     for i in range(6):
-		size = maison([0,0]).give_size()
-		house_next = [60 + (size[1] + 30) * i, 60 + (size[0] + 30) * i, 60 + size[1] + (30 + size[1]) * i, 60 - size[0] + (30 + size[0]) * i, 3]
-		cords = [house_next[0], house_next[1]]
+        size = maison([0,0]).give_size()
+    	house_next = [60 + (size[1] + 30) * i, 60 + (size[0] + 30) * i, 60 + size[1] + (30 + size[1]) * i, 60 - size[0] + (30 + size[0]) * i, 3]
+    	cords = [house_next[0], house_next[1]]
 
-		if Area().housecheck(grid, house_next) == True:
-			space = maison(cords).spacehouse(house_next)
-			if Area().spacecheck(grid, space) == True:
-				location_list.append(house_next)
-				grid = Area().update_grid(grid, house_next, "house")
-				location_space.append(space)
-				grid = Area().update_grid(grid, space, "space")
+    	if Area().housecheck(grid, house_next) == True:
+    		space = maison(cords).spacehouse(house_next)
+    		if Area().spacecheck(grid, space) == True:
+    			location_list.append(house_next)
+    			grid = Area().update_grid(grid, house_next, "house")
+    			location_space.append(space)
+    			grid = Area().update_grid(grid, space, "space")
 
 	for coordinate in location_list:
 		cords = [coordinate[0], coordinate[1]]
