@@ -19,7 +19,6 @@ from water import MakeWater
 grid = Area().make_basic_grid()
 
 def kerkhof(grid, nr_of_houses):
-
 	if nr_of_houses == 20:
 		location_space = []
 		location_list = []
@@ -38,8 +37,8 @@ def kerkhof(grid, nr_of_houses):
 					grid = Area().update_grid(grid, house_next, "house")
 					location_space.append(space)
 					grid = Area().update_grid(grid, space, "space")
-					price = single(cords).giveworth(house_next, grid)
-					total_value += price
+					# price = single(cords).giveworth(house_next, grid)
+					# total_value += price
 
 		# bungalows
 		for i in range(5):
@@ -54,13 +53,13 @@ def kerkhof(grid, nr_of_houses):
 					grid = Area().update_grid(grid, house_next, "house")
 					location_space.append(space)
 					grid = Area().update_grid(grid, space, "space")
-					price = bungalow(cords).giveworth(house_next, grid)
-					total_value += price
+					# price = bungalow(cords).giveworth(house_next, grid)
+					# total_value += price
 
 		# maisons
 		for i in range(3):
 			size = maison([0,0]).give_size()
-			house_next = [58 + 99 * i, 128, 58 + size[1] + 99 * i, 128 - size[0], 3]
+			house_next = [70 + 99 * i, 128, 70 + size[1] + 99 * i, 128 - size[0], 3]
 			print(house_next)
 			cords = [house_next[0], house_next[1]]
 			
@@ -72,11 +71,26 @@ def kerkhof(grid, nr_of_houses):
 					location_space.append(space)
 					grid = Area().update_grid(grid, space, "space")
 					# price = 100
-					price = maison(cords).giveworth(house_next, grid)
-					if price == None:
-						print("hier gaat het mis")
-					else:
-						total_value += price
+					# price = maison(cords).giveworth(house_next, grid)
+					# if price == None:
+					# 	print("hier gaat het mis")
+					# else:
+					# 	total_value += price
+
+		for coordinate in location_list:
+			cords = [coordinate[0], coordinate[1]]
+			if coordinate[4] == 1:
+				build = single
+			elif coordinate[4] == 2:
+				build = bungalow
+			elif coordinate[4] == 3:
+				build = maison
+			price = build(cords).giveworth(coordinate, grid)
+			print(price)
+			if price != None:
+				total_value += price
+
+		print(total_value)
 
 		water_coordinates = [[52, 98, 308, 8]]
 		Area().makegrid(location_list, water_coordinates, total_value)
