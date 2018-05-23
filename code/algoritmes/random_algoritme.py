@@ -48,12 +48,13 @@ def Randomizer(amount):
 	return [random_x, random_y]
 
 def Create_water(grid):
-	# water_options = [1, 2, 3, 4]
+	water_options = [1, 2, 3, 4]
 
-	water_bodies = 1 #random.choice(water_options)
+	water_bodies = random.choice(water_options)
 
 	if water_bodies > 1:
 		water_coordinates = MakeWater(water_bodies)
+		print(water_coordinates)
 		for body in range(water_bodies):
 			if water_coordinates != None:
 				if body == 0:

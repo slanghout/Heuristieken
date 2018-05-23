@@ -60,6 +60,7 @@ def HillClimber(nr_of_houses, starting_state):
 					total_value = worth
 					grid = new_grid
 					swaps += 1
+					print("ja{}".format(swaps))
 					climb += 1
 					no_swap = 0
 					writer.writeheader()
@@ -70,6 +71,7 @@ def HillClimber(nr_of_houses, starting_state):
 					current_coordinate_list = cancel[0]
 					grid = cancel[1]
 					no_swap += 1
+					print("nee{}".format(no_swap))
 					climb += 1
 					
 					if no_swap > 100:

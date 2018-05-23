@@ -43,6 +43,7 @@ def main():
 			repeats = int(input("How many times do you want to run the algoritm? "))
 			start = time.time()
 			for repeat in range(repeats):
+				print(repeat)
 				gridvalue = Random(int(nr_of_houses))
 				writer.writeheader()
 				writer.writerow({'algoritme': 'Random', 'score': gridvalue[2], 'housecount': nr_of_houses})
@@ -62,21 +63,21 @@ def main():
 			Area().makegrid(coordinate_list, water_coordinates, total_value)
 
 	if alg == "B":
-
 		starting_state = (input("Is starting state Random(A) or Kerkhof(B)?"))
 		if starting_state == "A":
 			start = Random(nr_of_houses)
 		elif starting_state == "B":
 			start = kerkhof(nr_of_houses)
+			print(start[0])
 		
-		start = time.time()
+		starttime = time.time()
 		final = HillClimber(nr_of_houses, start)
 
 		coordinate_list = final[0]
 		water_coordinates = final[1]
 		total_value = final[2]
 		end = time.time()
-		print(end - start)
+		print(end - starttime)
 		Area().makegrid(coordinate_list, water_coordinates, total_value)
 
 	if alg == "C":
