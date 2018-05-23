@@ -132,14 +132,3 @@ def kerkhof(grid, nr_of_houses):
 		Area().makegrid(location_list, water_coordinates, total_value)
 
 kerkhof(grid, 20)
-		
-
-	# 	left_x = house_coordinates[0]
-	# 	up_y = house_coordinates[1]
-	# 	right_x = house_coordinates[2]
-	# 	down_y = house_coordinates[3]
-
-	# if nr_of_houses == 40:
-
-	# if nr_of_houses == 60:
-
