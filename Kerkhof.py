@@ -117,7 +117,7 @@ def kerkhof(nr_of_houses):
 	water_coordinates = [[52, 98, 308, 8]]
 	return([location_list, water_coordinates, total_value, grid])
 		# Area().makegrid(location_list, water_coordinates, total_value)
-# kerkhof(grid, 20)
+kerkhof(20)
 		
 
 	# 	left_x = house_coordinates[0]
@@ -127,5 +127,9 @@ def kerkhof(nr_of_houses):
 
 	# if nr_of_houses == 40:
 
-
 	# if nr_of_houses == 60:
+	# 	location_space = []
+	# 	location_list = []
+	# 	total_value = 0
+
+
