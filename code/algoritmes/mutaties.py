@@ -1,17 +1,10 @@
 import csv
-
-from houses import house
-from houses import single
-from houses import bungalow
-from houses import maison
-
+from houses import House, Single, Bungalow, Maison
 from grid import Area
-from random_algoritme import Random
-
 from random import randint
 
+# function to determine what mutation to be made on grid
 def create_change(current_coordinate_list, nr_of_houses, grid):
-	# choose between different mutations to change grid
 	change = randint(1, 3)
 
 	# change 1 then swap two houses
@@ -28,13 +21,13 @@ def create_change(current_coordinate_list, nr_of_houses, grid):
 
 	return swapresults
 
-# determine of new grid is worth more than old grid
+# function to determine if new grid is worth more than old grid
 def determine_worth(coordinate_list, grid):
 	worth = 0
 	for cordinate in coordinate_list:
 		build = housetype(cordinate[4])
 		cord = (cordinate[0], cordinate[1])
-		price = build(cord).giveworth(cordinate, grid)
+		price = build(cord).give_worth(cordinate, grid)
 		if price != None:
 			worth += price
 
@@ -49,6 +42,7 @@ def house_swap(coordinate_list, nr_of_houses, grid):
 	if house_one == house_two:
 		return None
 
+	# look at old coordinates
 	old_cords_one = coordinate_list[house_one]
 	old_cords_two = coordinate_list[house_two]
 
@@ -58,9 +52,6 @@ def house_swap(coordinate_list, nr_of_houses, grid):
 	width_two = old_cords_two[2] - old_cords_two[0]
 	height_two = old_cords_two[1] - old_cords_two[3]
 
-	# new_cord_one = create_coordinates(cord_rotate_house, 1, 0)
-	# create new coordinates for the houses
-	# take the left upper corner
 	# determine new coordinates with height and width
 	x_l_one = old_cords_two[0]
 	y_u_one = old_cords_two[1]
@@ -276,11 +267,11 @@ def move(coordinates):
 
 def housetype(housenumber):
 		if housenumber == 1:
-			build = single
+			build = Single
 		elif housenumber == 2:
-			build = bungalow
+			build = Bungalow
 		elif housenumber == 3:
-			build = maison
+			build = Maison
 
 		return build
 

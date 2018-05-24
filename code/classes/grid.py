@@ -22,7 +22,6 @@ class Area(object):
 					if grid[j][i] == "0":
 						grid[j][i] = "h"
 					else:
-						print("nee hier {}{} print hij {}".format(i, j, grid[j][i]))
 						exit(0)
 
 		# if water is places set w on spot
@@ -32,7 +31,6 @@ class Area(object):
 					if grid[j][i] == "0":
 						grid[j][i] = "w"
 					else:
-						print("nah")
 						exit(0)
 
 		# if space next to house, set s if it's empty
@@ -136,7 +134,6 @@ class Area(object):
 				elif grid[j][i] == "w":
 					pass
 				else:
-					print("exit space{}".format(grid[j][i]))
 					exit(0)
 
 		return grid
@@ -152,13 +149,6 @@ class Area(object):
 		# make axes grid
 		major_ticks = np.arange(0, 320, 40)
 		minor_ticks = np.arange(0, 400, 1)
-
-		# # makes lines for grid
-		# ax.set_xticks(major_ticks)
-		# ax.set_xticks(minor_ticks, minor=True)
-		# ax.set_yticks(major_ticks)
-		# ax.set_yticks(minor_ticks, minor=True)
-		# ax.grid(which='both')
 
 		# set limits for the plot
 		ax.set_xlim(left=0, right=self.width, auto=False)
@@ -190,24 +180,20 @@ class Area(object):
 			if element[4] == 1:
 				ax.fill(x, y, color = "#ffffbf")
 			elif element[4] == 2:
-				# total_value += bungalow(element).giveworth()
 				ax.fill(x, y, color = "#fdae61")
 			elif element[4] == 3:
-				# total_value += maison(element).giveworth()
 				ax.fill(x, y, color = "#d7191c")
 
 		plt.xlabel('width')
 		plt.ylabel('height')
 		plt.title('Amstelhaege, worth: ${:,.2f}' .format(total_value))
 
-		# bij deze beide manieren gaat de grid een beetje uit proportie
-		#plt.subplots_adjust(right = 0.75)
 		plt.tight_layout(rect=[0,0,0.75,1])
 
-		legend_single = mpatches.Patch(color = "#ffffbf", label = "single")
-		legend_bungalow = mpatches.Patch(color = "#fdae61", label = "bungalow")
-		legend_maison = mpatches.Patch(color = "#d7191c", label = "maison")
-		legend_water = mpatches.Patch(color = "#2c7bb6", label = "water")
+		legend_single = mpatches.Patch(color = "#ffffbf", label = "Eensgezins")
+		legend_bungalow = mpatches.Patch(color = "#fdae61", label = "Bungalow")
+		legend_maison = mpatches.Patch(color = "#d7191c", label = "Maison")
+		legend_water = mpatches.Patch(color = "#2c7bb6", label = "Water")
 		plt.legend(handles=[legend_single, legend_bungalow, legend_maison, legend_water], bbox_to_anchor = (1.05, 1), loc = 2, borderaxespad = 0.)
 
 		plt.show()
