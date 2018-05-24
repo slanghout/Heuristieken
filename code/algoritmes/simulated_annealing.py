@@ -28,7 +28,7 @@ import csv
 # Hill Climber algoritm
 def SimulatedAnnealing(nr_of_houses):
 
-	with open('scores.csv', 'w', newline='') as csvfile:
+	with open('zekerheid.csv', 'w', newline='') as csvfile:
 		fieldnames = ['algoritme', 'score', 'housecount', 'climb','swaps']
 		writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 		# starts with running random algoritm to generate starting state

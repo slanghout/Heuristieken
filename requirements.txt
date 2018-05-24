@@ -1,3 +1,7 @@
+De volgende packages zijn nodig om de code succesvol te kunnen runnen.
+
+math
 matplotlib
 numpy
 random
+time

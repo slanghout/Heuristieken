@@ -18,36 +18,35 @@ from Kerkhof import kerkhof
 from grid import Area
 from Hill_climber import HillClimber
 from random_algoritme import Random
+from simulated_annealing import SimulatedAnnealing
 from water import MakeWater
 
 import time
 
 def main():
-	nr_of_houses = int(input("Would you like 20, 40 or 60 houses?"))
+	nr_of_houses = int(input("Would you like 20, 40 or 60 houses? "))
 	if nr_of_houses != 20 and nr_of_houses != 40 and nr_of_houses != 60:
 		print("invalid number of houses")
 		exit(0)
 
-	alg = input("Select A for Random, B for Hill Climber")
-	if alg != "A" and alg != "B":
+	alg = input("Select A for Random, B for Hill Climber, C for Simulated Annealing ")
+	if alg != "A" and alg != "B" and alg != "C":
 		print("this is not what I wanted")
 		exit(0)
 
-	repeats = int(input("How many times do you want to run the algoritm?"))
+	best_gridvalues = []
 
-	with open('scores.csv', 'w', newline='') as csvfile:
-		fieldnames = ['algoritme', 'score', 'housecount']
-		writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-
-		start = time.time()
-		best_gridvalues = []
-
-		if alg == "A":
+	if alg == "A":
+		with open('zekerheid.csv', 'w', newline='') as csvfile:
+			fieldnames = ['algoritme', 'score', 'housecount', 'water']
+			writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+			repeats = int(input("How many times do you want to run the algoritm? "))
+			start = time.time()
 			for repeat in range(repeats):
 				print(repeat)
 				gridvalue = Random(int(nr_of_houses))
 				writer.writeheader()
-				writer.writerow({'algoritme': 'Random', 'score': gridvalue[2], 'housecount': nr_of_houses})
+				writer.writerow({'algoritme': 'Random', 'score': gridvalue[2], 'housecount': nr_of_houses, 'water': gridvalue[1]})
 				if len(best_gridvalues) != 0:
 					if best_gridvalues[2] > gridvalue[2]:
 						pass
@@ -93,12 +92,6 @@ def main():
 		Area().makegrid(coordinate_list, water_coordinates, total_value)
 
 
-			coordinate_list = final[0]
-			water_coordinates = final[1]
-			total_value = final[2]
-			end = time.time()
-			print(end - start)
-			Area().makegrid(coordinate_list, water_coordinates, total_value)
 
 if __name__ == "__main__":
 	main()
