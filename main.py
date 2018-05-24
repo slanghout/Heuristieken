@@ -8,7 +8,7 @@ sys.path.append(os.path.join(directory, "code", "classes"))
 sys.path.append(os.path.join(directory, "code", "algoritmes"))
 sys.path.append(os.path.join(directory, "code", "grid"))
 
-from houses import house
+from houses import House
 from houses import single
 from houses import bungalow
 from houses import maison
@@ -37,8 +37,8 @@ def main():
 	best_gridvalues = []
 
 	if alg == "A":
-		with open('scores.csv', 'w', newline='') as csvfile:
-			fieldnames = ['algoritme', 'score', 'housecount']
+		with open('hallo.csv', 'w', newline='') as csvfile:
+			fieldnames = ['algoritme', 'score', 'housecount', 'water']
 			writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 			repeats = int(input("How many times do you want to run the algoritm? "))
 			start = time.time()
@@ -46,7 +46,7 @@ def main():
 				print(repeat)
 				gridvalue = Random(int(nr_of_houses))
 				writer.writeheader()
-				writer.writerow({'algoritme': 'Random', 'score': gridvalue[2], 'housecount': nr_of_houses})
+				writer.writerow({'algoritme': 'Random', 'score': gridvalue[2], 'housecount': nr_of_houses, 'water': gridvalue[1]})
 				if len(best_gridvalues) != 0:
 					if best_gridvalues[2] > gridvalue[2]:
 						pass
@@ -68,7 +68,8 @@ def main():
 			start = Random(nr_of_houses)
 		elif starting_state == "B":
 			start = kerkhof(nr_of_houses)
-			print(start[0])
+		
+		print(start)
 		
 		starttime = time.time()
 		final = HillClimber(nr_of_houses, start)

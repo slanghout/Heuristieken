@@ -6,7 +6,7 @@ sys.path.append(os.path.join(directory, "code", "classes"))
 sys.path.append(os.path.join(directory, "code", "algoritmes"))
 sys.path.append(os.path.join(directory, "code", "grid"))
 
-from houses import house
+from houses import House
 from houses import single
 from houses import bungalow
 from houses import maison
@@ -134,8 +134,8 @@ def kerkhof(nr_of_houses):
 
 		# print(total_value)
 
-		water_coordinates = [[52, 98, 308, 8]]
-		return([location_list, water_coordinates, total_value, grid])
+	water_coordinates = [[52, 98, 308, 8]]
+	return([location_list, water_coordinates, total_value, grid])
 		# Area().makegrid(location_list, water_coordinates, total_value)
 # kerkhof(grid, 20)
 		
