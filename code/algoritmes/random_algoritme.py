@@ -1,8 +1,5 @@
 # from overlap_check import *
-from houses import House
-from houses import single
-from houses import bungalow
-from houses import maison
+from houses import House, single, bungalow, maison
 from grid import Area
 from water import MakeWater
 
@@ -16,7 +13,7 @@ def Random(nr_of_houses):
 		total_value = 0
 		grid = Area().make_basic_grid()
 		water_coordinates = Create_water(grid)
-	
+
 	if water_coordinates != None:
 		coordinate_list = Build_Amstelhaege(nr_of_houses, grid)
 		for cordinate in coordinate_list:
@@ -30,7 +27,7 @@ def Random(nr_of_houses):
 			price = build(cord).giveworth(cordinate, grid)
 			if price != None:
 				total_value += price
-		
+
 		return([coordinate_list, water_coordinates, total_value, grid])
 
 

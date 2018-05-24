@@ -18,7 +18,7 @@ from water import MakeWater
 
 
 def kerkhof(nr_of_houses):
-	
+
 	grid = Area().make_basic_grid()
 
 	if nr_of_houses == 20:
@@ -31,7 +31,7 @@ def kerkhof(nr_of_houses):
 			size = single([0,0]).give_size()
 			house_next = [24 + (21 + size[1]) * i, 300, 24 + size[1] + (21 + size[1]) * i, 300 - size[0], 1]
 			cords = [house_next[0], house_next[1]]
-			
+
 			if Area().housecheck(grid, house_next) == True:
 				space = single(cords).spacehouse(house_next)
 				if Area().spacecheck(grid, space) == True:
@@ -44,7 +44,7 @@ def kerkhof(nr_of_houses):
 			size = single([0,0]).give_size()
 			house_next = [24 + (21 + size[1]) * i, 36, 24 + size[1] + (21 + size[1]) * i, 36 - size[0], 1]
 			cords = [house_next[0], house_next[1]]
-			
+
 			if Area().housecheck(grid, house_next) == True:
 				space = single(cords).spacehouse(house_next)
 				if Area().spacecheck(grid, space) == True:
@@ -57,7 +57,7 @@ def kerkhof(nr_of_houses):
 		size = bungalow([0,0]).give_size()
 		house_next = [28, 170, 28 + size[1], 170 - size[0], 2]
 		cords = [house_next[0], house_next[1]]
-		
+
 		if Area().housecheck(grid, house_next) == True:
 			space = bungalow(cords).spacehouse(house_next)
 			if Area().spacecheck(grid, space) == True:
@@ -70,7 +70,7 @@ def kerkhof(nr_of_houses):
 			size = bungalow([0,0]).give_size()
 			house_next = [71, 105 + size[0] + (70 + size[0]) * i, 71 + size[1], 105 + (70 + size[0]) * i, 2]
 			cords = [house_next[0], house_next[1]]
-			
+
 			if Area().housecheck(grid, house_next) == True:
 				space = bungalow(cords).spacehouse(house_next)
 				if Area().spacecheck(grid, space) == True:
@@ -83,36 +83,22 @@ def kerkhof(nr_of_houses):
 			size = bungalow([0,0]).give_size()
 			house_next = [295, 30 + size[0] + (size[0] + 82) * i, 295 + size[1], 30 + (size[0] + 82) * i, 2]
 			cords = [house_next[0], house_next[1]]
-			
+
 			if Area().housecheck(grid, house_next) == True:
-				space = bungalow(cords).spacehouse(house_next)
+				space = single(cords).spacehouse(house_next)
 				if Area().spacecheck(grid, space) == True:
 					location_list.append(house_next)
 					grid = Area().update_grid(grid, house_next, "house")
 					location_space.append(space)
 					grid = Area().update_grid(grid, space, "space")
 
-		# maisons
-		size = maison([0,0]).give_size()
-		house_next = [135 - size[1], 149 + size[0], 135, 171 - size[0], 3]
-		cords = [house_next[0], house_next[1]]
-		
-		if Area().housecheck(grid, house_next) == True:
-			space = maison(cords).spacehouse(house_next)
-			if Area().spacecheck(grid, space) == True:
-				location_list.append(house_next)
-				grid = Area().update_grid(grid, house_next, "house")
-				location_space.append(space)
-				grid = Area().update_grid(grid, space, "space")
-
-		for i in range(2):
-			size = maison([0,0]).give_size()
-			house_next = [225, 80 + size[0] + (size[0] + 80) * i, 225 + size[1], 80 + (size[0] + 80) * i, 3]
-
+		for i in range(3):
+			size = bungalow([0,0]).give_size()
+			house_next = [20, 250 - (size[0] + 55) * i , 20 + size[1], 250 - size[0] - (55 + size[0]) * i, 2]
 			cords = [house_next[0], house_next[1]]
-			
+
 			if Area().housecheck(grid, house_next) == True:
-				space = maison(cords).spacehouse(house_next)
+				space = single(cords).spacehouse(house_next)
 				if Area().spacecheck(grid, space) == True:
 					location_list.append(house_next)
 					grid = Area().update_grid(grid, house_next, "house")
@@ -133,7 +119,6 @@ def kerkhof(nr_of_houses):
 				total_value += price
 
 		# print(total_value)
-
 	water_coordinates = [[52, 98, 308, 8]]
 	return([location_list, water_coordinates, total_value, grid])
 		# Area().makegrid(location_list, water_coordinates, total_value)
@@ -147,5 +132,5 @@ def kerkhof(nr_of_houses):
 
 	# if nr_of_houses == 40:
 
-	# if nr_of_houses == 60:
 
+	# if nr_of_houses == 60:
