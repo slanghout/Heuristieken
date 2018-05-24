@@ -1,5 +1,6 @@
 # Authors: Dewi Mooij, Sylvie Langhout & Pernille Deijlen
 # Amstelhaege
+
 import os, sys
 import csv
 import time
@@ -8,11 +9,10 @@ directory = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(os.path.join(directory, "code"))
 sys.path.append(os.path.join(directory, "code", "classes"))
 sys.path.append(os.path.join(directory, "code", "algoritmes"))
-sys.path.append(os.path.join(directory, "code", "grid"))
 
 from grid import Area
-# from Kerkhof import kerkhof
-from Hill_climber import hill_climber
+from kerkhof import kerkhof
+from hill_climber import hill_climber
 from random_algoritme import random_algoritme
 from simulated_annealing import simulated_annealing
 
@@ -89,7 +89,7 @@ def main():
 	# print runtime, value of grid and grid
 	print("time{}".format(end - starttime))
 	print("value: {}".format(total_value))
-	Area().makegrid(coordinate_list, water_coordinates, total_value)
+	Area().make_grid(coordinate_list, water_coordinates, total_value)
 
 
 if __name__ == "__main__":

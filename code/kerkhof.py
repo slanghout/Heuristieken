@@ -11,6 +11,7 @@ from houses import House, Single, Bungalow, Maison
 from grid import Area
 from random_algoritme import random, create_water
 from water import make_water
+from mutaties import house_type
 
 
 # creating a state we think has a high worth
@@ -34,11 +35,11 @@ def kerkhof(nr_of_houses):
 			cords = [house_next[0], house_next[1]]
 
 			# checking if there is place for house
-			if Area().housecheck(grid, house_next) == True:
-				space = Single(cords).spacehouse(house_next)
+			if Area().house_check(grid, house_next) == True:
+				space = Single(cords).space_house(house_next)
 			
 				# checking if there is place for space
-				if Area().spacecheck(grid, space) == True:
+				if Area().space_check(grid, space) == True:
 			
 					# if all true place house and space
 					location_list.append(house_next)
@@ -55,11 +56,11 @@ def kerkhof(nr_of_houses):
 			cords = [house_next[0], house_next[1]]
 
 			# checking if there is place for house		
-			if Area().housecheck(grid, house_next) == True:
-				space = Single(cords).spacehouse(house_next)
+			if Area().house_check(grid, house_next) == True:
+				space = Single(cords).space_house(house_next)
 			
 				# checking if there is place for space
-				if Area().spacecheck(grid, space) == True:
+				if Area().space_check(grid, space) == True:
 			
 					# if all true place house and space
 					location_list.append(house_next)
@@ -75,11 +76,11 @@ def kerkhof(nr_of_houses):
 		cords = [house_next[0], house_next[1]]
 
 		# checking if there is place for house	
-		if Area().housecheck(grid, house_next) == True:
-			space = Bungalow(cords).spacehouse(house_next)
+		if Area().house_check(grid, house_next) == True:
+			space = Bungalow(cords).space_house(house_next)
 		
 			# checking if there is place for space
-			if Area().spacecheck(grid, space) == True:
+			if Area().space_check(grid, space) == True:
 		
 				# if all true place house and space
 				location_list.append(house_next)
@@ -96,11 +97,11 @@ def kerkhof(nr_of_houses):
 			cords = [house_next[0], house_next[1]]
 
 			# checking if there is place for house	
-			if Area().housecheck(grid, house_next) == True:
-				space = Bungalow(cords).spacehouse(house_next)
+			if Area().house_check(grid, house_next) == True:
+				space = Bungalow(cords).space_house(house_next)
 			
 				# checking if there is place for space
-				if Area().spacecheck(grid, space) == True:
+				if Area().space_check(grid, space) == True:
 			
 					# if all true place house and space
 					location_list.append(house_next)
@@ -117,11 +118,11 @@ def kerkhof(nr_of_houses):
 			cords = [house_next[0], house_next[1]]
 			
 			# checking if there is place for house
-			if Area().housecheck(grid, house_next) == True:
-				space = Bungalow(cords).spacehouse(house_next)
+			if Area().house_check(grid, house_next) == True:
+				space = Bungalow(cords).space_house(house_next)
 				
 				# checking if there is place for space
-				if Area().spacecheck(grid, space) == True:
+				if Area().space_check(grid, space) == True:
 				
 					# if all true place house and space
 					location_list.append(house_next)
@@ -137,11 +138,11 @@ def kerkhof(nr_of_houses):
 		cords = [house_next[0], house_next[1]]
 		
 		# checking if there is place for house	
-		if Area().housecheck(grid, house_next) == True:
-			space = Maison(cords).spacehouse(house_next)
+		if Area().house_check(grid, house_next) == True:
+			space = Maison(cords).space_house(house_next)
 		
 			# checking if there is place for space
-			if Area().spacecheck(grid, space) == True:
+			if Area().space_check(grid, space) == True:
 		
 				# if all true place house and space
 				location_list.append(house_next)
@@ -158,11 +159,11 @@ def kerkhof(nr_of_houses):
 			cords = [house_next[0], house_next[1]]
 			
 			# checking if there is place for house		
-			if Area().housecheck(grid, house_next) == True:
-				space = Maison(cords).spacehouse(house_next)
+			if Area().house_check(grid, house_next) == True:
+				space = Maison(cords).space_house(house_next)
 			
 				# checking if there is place for space
-				if Area().spacecheck(grid, space) == True:
+				if Area().space_check(grid, space) == True:
 			
 					# if all true place house and space
 					location_list.append(house_next)
@@ -173,15 +174,11 @@ def kerkhof(nr_of_houses):
 		# determining worth
 		for coordinate in location_list:
 			cords = [coordinate[0], coordinate[1]]
-			if coordinate[4] == 1:
-				build = Single
-			elif coordinate[4] == 2:
-				build = Bungalow
-			elif coordinate[4] == 3:
-				build = Maison
+			build = house_type(coordinate[4])
 			price = build(cords).give_worth(coordinate, grid)
 			if price != None:
 				total_value += price
+
 
 		# placing water
 		water = 1
@@ -189,7 +186,7 @@ def kerkhof(nr_of_houses):
 		
 		# checking if there is place for water
 		for body in range(water):
-			if Area().watercheck(grid, water_coordinates[body]) == True:
+			if Area().water_check(grid, water_coordinates[body]) == True:
 					grid = Area().update_grid(grid, water_coordinates[body], "water")
 
 		return([location_list, water_coordinates, total_value, grid])
@@ -210,11 +207,11 @@ def kerkhof(nr_of_houses):
 				cords = [house_next[0], house_next[1]]
 
 				# checking if there is place for house			
-				if Area().housecheck(grid, house_next) == True:
-					space = Single(cords).spacehouse(house_next)
+				if Area().house_check(grid, house_next) == True:
+					space = Single(cords).space_house(house_next)
 				
 					# checking if there is place for space
-					if Area().spacecheck(grid, space) == True:
+					if Area().space_check(grid, space) == True:
 				
 						# if all true place house and space
 						location_list.append(house_next)
@@ -232,11 +229,11 @@ def kerkhof(nr_of_houses):
 				cords = [house_next[0], house_next[1]]
 
 				# checking if there is place for house			
-				if Area().housecheck(grid, house_next) == True:
-					space = Single(cords).spacehouse(house_next)
+				if Area().house_check(grid, house_next) == True:
+					space = Single(cords).space_house(house_next)
 				
 					# checking if there is place for space
-					if Area().spacecheck(grid, space) == True:
+					if Area().space_check(grid, space) == True:
 				
 						# if all true place house and space
 						location_list.append(house_next)
@@ -254,11 +251,11 @@ def kerkhof(nr_of_houses):
 				cords = [house_next[0], house_next[1]]
 
 				# checking if there is place for house
-				if Area().housecheck(grid, house_next) == True:
-					space = Bungalow(cords).spacehouse(house_next)
+				if Area().house_check(grid, house_next) == True:
+					space = Bungalow(cords).space_house(house_next)
 				
 					# checking if there is place for space
-					if Area().spacecheck(grid, space) == True:
+					if Area().space_check(grid, space) == True:
 						
 						# if all true place house and space
 						location_list.append(house_next)	
@@ -275,11 +272,11 @@ def kerkhof(nr_of_houses):
 				cords = [house_next[0], house_next[1]]
 
 				# checking if there is place for house			
-				if Area().housecheck(grid, house_next) == True:
-					space = Bungalow(cords).spacehouse(house_next)
+				if Area().house_check(grid, house_next) == True:
+					space = Bungalow(cords).space_house(house_next)
 				
 					# checking if there is place for space
-					if Area().spacecheck(grid, space) == True:
+					if Area().space_check(grid, space) == True:
 				
 						# if all true place house and space
 						location_list.append(house_next)
@@ -296,11 +293,11 @@ def kerkhof(nr_of_houses):
 			cords = [house_next[0], house_next[1]]
 
 			# checking if there is place for house	
-			if Area().housecheck(grid, house_next) == True:
-				space = Maison(cords).spacehouse(house_next)
+			if Area().house_check(grid, house_next) == True:
+				space = Maison(cords).space_house(house_next)
 			
 				# checking if there is place for space
-				if Area().spacecheck(grid, space) == True:
+				if Area().space_check(grid, space) == True:
 					
 					# if all true place house and space
 					location_list.append(house_next)
@@ -311,12 +308,7 @@ def kerkhof(nr_of_houses):
 		# determining worth
 		for coordinate in location_list:
 			cords = [coordinate[0], coordinate[1]]
-			if coordinate[4] == 1:
-				build = Single
-			elif coordinate[4] == 2:
-				build = Bungalow
-			elif coordinate[4] == 3:
-				build = Maison
+			build = house_type(coordinate[4])
 			price = build(cords).give_worth(coordinate, grid)
 			if price != None:
 				total_value += price
@@ -327,7 +319,7 @@ def kerkhof(nr_of_houses):
 
 		# checking if there is place for water
 		for body in range(water):
-			if Area().watercheck(grid, water_coordinates[body]) == True:
+			if Area().water_check(grid, water_coordinates[body]) == True:
 				grid = Area().update_grid(grid, water_coordinates[body], "water")
 
 		return([location_list, water_coordinates, total_value, grid])	
@@ -348,11 +340,11 @@ def kerkhof(nr_of_houses):
 				cords = [house_next[0], house_next[1]]
 
 				# checking if there is place for house			
-				if Area().housecheck(grid, house_next) == True:
-					space = Single(cords).spacehouse(house_next)
+				if Area().house_check(grid, house_next) == True:
+					space = Single(cords).space_house(house_next)
 					
 					# checking if there is place for space
-					if Area().spacecheck(grid, space) == True:			
+					if Area().space_check(grid, space) == True:			
 					
 						# if all true place house and space
 						location_list.append(house_next)
@@ -370,11 +362,11 @@ def kerkhof(nr_of_houses):
 				cords = [house_next[0], house_next[1]]
 
 				# checking if there is place for house			
-				if Area().housecheck(grid, house_next) == True:
-					space = Single(cords).spacehouse(house_next)
+				if Area().house_check(grid, house_next) == True:
+					space = Single(cords).space_house(house_next)
 					
 					# checking if there is place for space
-					if Area().spacecheck(grid, space) == True:
+					if Area().space_check(grid, space) == True:
 					
 						# if all true place house and space
 						location_list.append(house_next)
@@ -392,11 +384,11 @@ def kerkhof(nr_of_houses):
 				cords = [house_next[0], house_next[1]]
 
 				# checking if there is place for house				
-				if Area().housecheck(grid, house_next) == True:
-					space = Bungalow(cords).spacehouse(house_next)
+				if Area().house_check(grid, house_next) == True:
+					space = Bungalow(cords).space_house(house_next)
 				
 					# checking if there is place for space
-					if Area().spacecheck(grid, space) == True:
+					if Area().space_check(grid, space) == True:
 				
 						# if all true place house and space
 						location_list.append(house_next)
@@ -414,11 +406,11 @@ def kerkhof(nr_of_houses):
 				cords = [house_next[0], house_next[1]]
 
 				# checking if there is place for house		
-				if Area().housecheck(grid, house_next) == True:
-					space = Bungalow(cords).spacehouse(house_next)
+				if Area().house_check(grid, house_next) == True:
+					space = Bungalow(cords).space_house(house_next)
 					
 					# checking if there is place for space
-					if Area().spacecheck(grid, space) == True:
+					if Area().space_check(grid, space) == True:
 					
 						# if all true place house and space
 						location_list.append(house_next)
@@ -436,11 +428,11 @@ def kerkhof(nr_of_houses):
 				cords = [house_next[0], house_next[1]]
 
 				# checking if there is place for house
-				if Area().housecheck(grid, house_next) == True:
-					space = Bungalow(cords).spacehouse(house_next)
+				if Area().house_check(grid, house_next) == True:
+					space = Bungalow(cords).space_house(house_next)
 				
 					# checking if there is place for space
-					if Area().spacecheck(grid, space) == True:
+					if Area().space_check(grid, space) == True:
 				
 						# if all true place house and space
 						location_list.append(house_next)
@@ -457,11 +449,11 @@ def kerkhof(nr_of_houses):
 			cords = [house_next[0], house_next[1]]
 
 			# checking if there is place for house			
-			if Area().housecheck(grid, house_next) == True:
-				space = Bungalow(cords).spacehouse(house_next)
+			if Area().house_check(grid, house_next) == True:
+				space = Bungalow(cords).space_house(house_next)
 			
 				# checking if there is place for space
-				if Area().spacecheck(grid, space) == True:
+				if Area().space_check(grid, space) == True:
 			
 					# if all true place house and space
 					location_list.append(house_next)
@@ -477,11 +469,11 @@ def kerkhof(nr_of_houses):
 		cords = [house_next[0], house_next[1]]
 
 		# checking if there is place for house
-		if Area().housecheck(grid, house_next) == True:
-			space = Bungalow(cords).spacehouse(house_next)
+		if Area().house_check(grid, house_next) == True:
+			space = Bungalow(cords).space_house(house_next)
 			
 			# checking if there is place for space
-			if Area().spacecheck(grid, space) == True:
+			if Area().space_check(grid, space) == True:
 			
 				# if all true place house and space
 				location_list.append(house_next)
@@ -497,11 +489,11 @@ def kerkhof(nr_of_houses):
 		cords = [house_next[0], house_next[1]]
 		
 		# checking if there is place for house
-		if Area().housecheck(grid, house_next) == True:
-			space = Maison(cords).spacehouse(house_next)
+		if Area().house_check(grid, house_next) == True:
+			space = Maison(cords).space_house(house_next)
 			
 			# checking if there is place for space
-			if Area().spacecheck(grid, space) == True:
+			if Area().space_check(grid, space) == True:
 			
 				# if all true place house and space
 				location_list.append(house_next)
@@ -519,11 +511,11 @@ def kerkhof(nr_of_houses):
 				cords = [house_next[0], house_next[1]]
 				
 				# checking if there is place for house
-				if Area().housecheck(grid, house_next) == True:
-					space = Maison(cords).spacehouse(house_next)
+				if Area().house_check(grid, house_next) == True:
+					space = Maison(cords).space_house(house_next)
 					
 					# checking if there is place for space
-					if Area().spacecheck(grid, space) == True:
+					if Area().space_check(grid, space) == True:
 						
 						# if all true place house and space
 						location_list.append(house_next)
@@ -541,11 +533,11 @@ def kerkhof(nr_of_houses):
 				cords = [house_next[0], house_next[1]]
 
 				# checking if there is place for house
-				if Area().housecheck(grid, house_next) == True:
-					space = Maison(cords).spacehouse(house_next)
+				if Area().house_check(grid, house_next) == True:
+					space = Maison(cords).space_house(house_next)
 					
 					# checking if there is place for space
-					if Area().spacecheck(grid, space) == True:
+					if Area().space_check(grid, space) == True:
 						
 						# if all true place house and space
 						location_list.append(house_next)
@@ -556,12 +548,7 @@ def kerkhof(nr_of_houses):
 		# determining worth
 		for coordinate in location_list:
 			cords = [coordinate[0], coordinate[1]]
-			if coordinate[4] == 1:
-				build = Single
-			elif coordinate[4] == 2:
-				build = Bungalow
-			elif coordinate[4] == 3:
-				build = Maison
+			build = house_type(coordinate[4])
 			price = build(cords).give_worth(coordinate, grid)
 			if price != None:
 				total_value += price
@@ -572,7 +559,7 @@ def kerkhof(nr_of_houses):
 		
 		# checking if there is place for water
 		for body in range(water):
-			if Area().watercheck(grid, water_coordinates[body]) == True:
+			if Area().water_check(grid, water_coordinates[body]) == True:
 					grid = Area().update_grid(grid, water_coordinates[body], "water")
 
 		return([location_list, water_coordinates, total_value, grid])

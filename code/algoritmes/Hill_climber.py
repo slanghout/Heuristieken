@@ -1,12 +1,12 @@
 import csv
 from random import randint
 from mutaties import determine_worth, house_swap, rotate_house, move_house
-from mutaties import housetype, reset, move, create_change, cancel_change
+from mutaties import house_type, reset, move, create_change, cancel_change
 from houses import House, Single, Bungalow, Maison
 from grid import Area
 from random_algoritme import random
 
-# Hill Climber algoritm
+# Hill Climber algorithm
 def hill_climber(nr_of_houses, starting_state):
 
 	with open('hallo.csv', 'w', newline='') as csvfile:

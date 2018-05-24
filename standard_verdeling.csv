@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 algoritme;standard;housecount
 Random;24326355.0;60
 Random;23486835.0;60
@@ -198,3 +199,7 @@ algoritme;score;housecount
 algoritme;score;housecount
 algoritme;score;housecount
 algoritme;score;housecount
+=======
+algoritme,score,housecount
+Random,9729285.0,20
+>>>>>>> 5e9ee47974daa40324f69640d21a2a67f4eaac70

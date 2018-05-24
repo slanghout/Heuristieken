@@ -25,7 +25,7 @@ def create_change(current_coordinate_list, nr_of_houses, grid):
 def determine_worth(coordinate_list, grid):
 	worth = 0
 	for cordinate in coordinate_list:
-		build = housetype(cordinate[4])
+		build = house_type(cordinate[4])
 		cord = (cordinate[0], cordinate[1])
 		price = build(cord).give_worth(cordinate, grid)
 		if price != None:
@@ -65,25 +65,25 @@ def house_swap(coordinate_list, nr_of_houses, grid):
 	y_d_two = old_cords_one[1] - height_two
 	new_cord_two = [x_l_two, y_u_two, x_r_two, y_d_two, old_cords_two[4]]
 
-	build = housetype(old_cords_one[4])
+	build = house_type(old_cords_one[4])
 	cord_one = (x_l_one, y_u_one)
-	space_old_cords_one = build(cord_one).spacehouse(old_cords_one)
+	space_old_cords_one = build(cord_one).space_house(old_cords_one)
 
-	build = housetype(old_cords_two[4])
+	build = house_type(old_cords_two[4])
 	cord_two = (x_l_two, y_u_two)
-	space_old_cords_two = build(cord_two).spacehouse(old_cords_two)
+	space_old_cords_two = build(cord_two).space_house(old_cords_two)
 
-	build = housetype(new_cord_one[4])
+	build = house_type(new_cord_one[4])
 	cord_one_new = (x_l_one, y_d_one)
-	new_space_cords_one = build(cord_one_new).spacehouse(new_cord_one)
+	new_space_cords_one = build(cord_one_new).space_house(new_cord_one)
 
 	if (new_space_cords_one[0] < 0 or new_space_cords_one[3] < 0 or
 		new_space_cords_one[1] > 320 or new_space_cords_one[2] > 360):
 		return None
 
-	build = housetype(new_cord_two[4])
+	build = house_type(new_cord_two[4])
 	cord_two_new = (x_l_two, y_d_two)
-	new_space_cords_two = build(cord_two_new).spacehouse(new_cord_two)
+	new_space_cords_two = build(cord_two_new).space_house(new_cord_two)
 
 	if (new_space_cords_two[0] < 0 or new_space_cords_two[3] < 0 or
 		new_space_cords_two[1] > 320 or new_space_cords_two[2] > 360):
@@ -94,13 +94,13 @@ def house_swap(coordinate_list, nr_of_houses, grid):
 	grid = Area().create_space(space_old_cords_two, grid)
 
 	# check if there is enough space to place house
-	if Area().housecheck(grid, new_cord_one) == True:
-		if Area().spacecheck(grid, new_space_cords_one) == True:
+	if Area().house_check(grid, new_cord_one) == True:
+		if Area().space_check(grid, new_space_cords_one) == True:
 			grid = reset(grid, new_cord_one, new_space_cords_one)
 			coordinate_list[house_one] = new_cord_two
 			
-			if Area().housecheck(grid, new_cord_two) == True:
-				if Area().spacecheck(grid, new_space_cords_two) == True:
+			if Area().house_check(grid, new_cord_two) == True:
+				if Area().space_check(grid, new_space_cords_two) == True:
 					grid = reset(grid, new_cord_two, new_space_cords_two)
 					coordinate_list[house_two] = new_cord_one
 
@@ -141,14 +141,14 @@ def move_house(coordinate_list, nr_of_houses, grid):
 	new_cord = move(cord_move_house)
 
 	# determine space needed first
-	build = housetype(cord_move_house[4])
+	build = house_type(cord_move_house[4])
 	cord = (cord_move_house[0], cord_move_house[1])
-	space_cords = build(cord).spacehouse(cord_move_house)
+	space_cords = build(cord).space_house(cord_move_house)
 
 	# determine space needed after move
-	build = housetype(new_cord[4])
+	build = house_type(new_cord[4])
 	cord = (new_cord[0], new_cord[1])
-	new_space_cords = build(cord).spacehouse(new_cord)
+	new_space_cords = build(cord).space_house(new_cord)
 
 	if (new_space_cords[0] < 0 or new_space_cords[3] < 0 or
 		new_space_cords[1] > 320 or new_space_cords[2] > 360):
@@ -158,10 +158,10 @@ def move_house(coordinate_list, nr_of_houses, grid):
 	grid = Area().create_space(space_cords, grid)
 
 	# check if there is enough space to place house
-	if Area().housecheck(grid, new_cord) == True:
+	if Area().house_check(grid, new_cord) == True:
 
 		# check if there is space to place house with extra space
-		if Area().spacecheck(grid, new_space_cords) == True:
+		if Area().space_check(grid, new_space_cords) == True:
 
 			# if everything is true move the house
 			grid = reset(grid, new_cord, new_space_cords)
@@ -186,12 +186,12 @@ def rotate_house(coordinate_list, nr_of_houses, grid):
 	cord_rotate_house = coordinate_list[rotate_house]
 
 	new_cord = create_coordinates(cord_rotate_house, 0, 1)
-	build = housetype(cord_rotate_house[4])
+	build = house_type(cord_rotate_house[4])
 	cord = (cord_rotate_house[0], cord_rotate_house[1])
-	space_cords = build(cord).spacehouse(cord_rotate_house)
+	space_cords = build(cord).space_house(cord_rotate_house)
 
 	cord = (new_cord[0], new_cord[1])
-	new_space_cords = build(cord).spacehouse(new_cord)
+	new_space_cords = build(cord).space_house(new_cord)
 
 	if (new_space_cords[0] < 0 or new_space_cords[3] < 0 or
 		new_space_cords[1] > 320 or new_space_cords[2] > 360):
@@ -201,10 +201,10 @@ def rotate_house(coordinate_list, nr_of_houses, grid):
 	grid = Area().create_space(space_cords, grid)
 
 	# check if there is enough space to place house
-	if Area().housecheck(grid, new_cord) == True:
+	if Area().house_check(grid, new_cord) == True:
 
 		# check if there is space to place house with extra space
-		if Area().spacecheck(grid, new_space_cords) == True:
+		if Area().space_check(grid, new_space_cords) == True:
 
 			# if everything is true swap the houses
 			grid = reset(grid, new_cord, new_space_cords)
@@ -265,7 +265,7 @@ def move(coordinates):
 
 	return new_cord
 
-def housetype(housenumber):
+def house_type(housenumber):
 		if housenumber == 1:
 			build = Single
 		elif housenumber == 2:
@@ -299,7 +299,7 @@ def cancel_change(current_coordinate_list, grid, old_house_cords, old_space_cord
 	return [current_coordinate_list, grid]
 
 def create_coordinates(coordinates, i, j):
-	build = housetype(coordinates[4])
+	build = house_type(coordinates[4])
 	cords = (coordinates[0], coordinates[1])
 	size = build(cords).give_size()
 	height = size[i]
