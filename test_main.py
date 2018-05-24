@@ -11,7 +11,7 @@ sys.path.append(os.path.join(directory, "code", "algoritmes"))
 sys.path.append(os.path.join(directory, "code", "grid"))
 
 from grid import Area
-from Kerkhof import kerkhof
+from kerkhof import kerkhof
 from Hill_climber import hill_climber
 from random_algoritme import random_algoritme
 from simulated_annealing import simulated_annealing
@@ -44,13 +44,12 @@ def main():
 			fieldnames = ['algoritme', 'score', 'housecount', 'water']
 			writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 			repeats = int(input("How many times do you want to run the algoritm? "))
-			distribution = input("Standard (A) or random (B) distribution of houses? ")
 			starttime = time.time()
 			for repeat in range(repeats):
-				print(repear)
+				print(repeat)
 				new_gridvalue = random_algoritme(nr_of_houses, distribution)
 				writer.writeheader()
-				writer.writerow({'algoritme': 'Random', 'score': new_gridvalue[2], 'housecount': nr_of_houses, 'water' :len(water_coordinates)})
+				writer.writerow({'algoritme': 'Random', 'score': new_gridvalue[2], 'housecount': nr_of_houses, 'water' :len(new_gridvalue[1])})
 				if len(gridvalue) != 0:
 					if gridvalue[2] > new_gridvalue[2]:
 						pass
@@ -58,7 +57,6 @@ def main():
 						gridvalue = new_gridvalue
 				else:
 					gridvalue = new_gridvalue
-
 
 		starttime = time.time()
 		gridvalue = random_algoritme(nr_of_houses, distribution)
@@ -103,7 +101,7 @@ def main():
 	# print runtime, value of grid and grid
 	print("time{}".format(end - starttime))
 	print("value: {}".format(total_value))
-	Area().makegrid(coordinate_list, water_coordinates, total_value)
+	Area().make_grid(coordinate_list, water_coordinates, total_value)
 
 
 if __name__ == "__main__":
