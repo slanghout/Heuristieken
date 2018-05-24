@@ -1,116 +1,128 @@
-from mutaties import determine_worth
-from mutaties import house_swap
-from mutaties import rotate_house
-from mutaties import move_house
-from mutaties import housetype
-from mutaties import reset
-from mutaties import move
-from mutaties import create_change
-from mutaties import cancel_change
-
-from houses import house
-from houses import single
-from houses import bungalow
-from houses import maison
-
-from grid import Area
-from random_algoritme import Random
-
-from Hill_climber import house_swap
-from Hill_climber import move_house
-from Hill_climber import rotate_house
-
-from random import randint
-from random import uniform
+from random import randint, uniform
 import math
 import csv
+from mutaties import determine_worth, house_swap, rotate_house, move_house
+from mutaties import housetype, reset, move, create_change, cancel_change
+from houses import House, Single, Bungalow, Maison
+from grid import Area
+from random_algoritme import random_algoritme
 
 # Hill Climber algoritm
-def SimulatedAnnealing(nr_of_houses):
+def simulated_annealing(nr_of_houses):
 
-	with open('zekerheid.csv', 'w', newline='') as csvfile:
+	with open('hallo.csv', 'w', newline='') as csvfile:
 		fieldnames = ['algoritme', 'score', 'housecount', 'climb','swaps']
 		writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
 		# starts with running random algoritm to generate starting state
-		starting_state = Random(nr_of_houses)
+		starting_state = random_algoritme(nr_of_houses, "A")
 		current_coordinate_list = starting_state[0]
 		water_coordinates = starting_state[1]
 		total_value = starting_state[2]
 		grid = starting_state[3]
 
+		# set temperature at 1 and counters at 0
 		temperature = 1.0
 		swaps = 0
 		no_swap = 0
 		climb = 0
+		i = 0
+		j = 1
 
-		# set number of changes needed to make
-		while swaps <= 500 :
-			worth = 0
+		# continue algoritm while temperature is above 0.01
+		while temperature > 0.01:
+			swaps = 0
+			climb = 0
 
-			swapresults = create_change(current_coordinate_list, nr_of_houses, grid)
+			# after every 20 iterations reset temperature
+			while climb < 20:
+				climb += 1
 
-			if swapresults != None:
-				new_coordinate_list = swapresults[0]
-				new_grid = swapresults[1]
-				old_house_cords = swapresults[2]
-				old_space_cords = swapresults[3]
-				coordinate_number = swapresults[4]
-				new_space_cords = swapresults[5]
+				# create mutation on existing grid
+				swapresults = create_change(current_coordinate_list,
+					nr_of_houses, grid)
 
-				worth = determine_worth(new_coordinate_list, new_grid)
+				# if the change was succesful take the results
+				if swapresults != None:
+					new_coordinate_list = swapresults[0]
+					new_grid = swapresults[1]
+					old_house_cords = swapresults[2]
+					old_space_cords = swapresults[3]
+					coordinate_number = swapresults[4]
+					new_space_cords = swapresults[5]
 
-				# if new grid is worth more, accept this grid
-				if worth > total_value:
-					current_coordinate_list = new_coordinate_list
-					total_value = worth
-					grid = new_grid
-					swaps += 1
-					climb += 1
-					no_swap = 0
-					writer.writeheader()
-					writer.writerow({'algoritme': 'SimulatedAnnealing', 'score': worth, 'housecount': nr_of_houses, 'climb': climb, 'swaps' : swaps})
+					# determine new price of grid after change
+					worth = determine_worth(new_coordinate_list, new_grid)
 
-				elif worth < total_value:
-					randomnumber = uniform(0, 1)
-					print(randomnumber)
-					ap = acceptance(total_value, worth, temperature)
-					if ap > randomnumber:
+					# if new grid is worth more, accept this grid
+					if worth > total_value:
 						current_coordinate_list = new_coordinate_list
 						total_value = worth
 						grid = new_grid
 						swaps += 1
-						climb += 1
 						no_swap = 0
 						writer.writeheader()
-						writer.writerow({'algoritme': 'SimulatedAnnealing', 'score': worth, 'housecount': nr_of_houses, 'climb': climb, 'swaps' : swaps})
+						writer.writerow({'algoritme': 'SimulatedAnnealing',
+							'score': worth, 'housecount': nr_of_houses,
+							'climb': climb, 'swaps' : swaps})
 
+					# if worth is less create acceptance and random value
+					elif worth < total_value:
+						randomnumber = uniform(0.5, 1.0)
+						ap = acceptance(total_value, worth, temperature)
+
+						# accept it if acceptance higher than random number
+						if ap > randomnumber:
+							current_coordinate_list = new_coordinate_list
+							total_value = worth
+							grid = new_grid
+							swaps += 1
+							no_swap = 0
+							writer.writeheader()
+							writer.writerow({'algoritme': 'SimulatedAnnealing',
+								'score': worth, 'housecount': nr_of_houses,
+								'climb': climb, 'swaps' : swaps})
+
+						# else cancel the change made
+						else:
+							cancel = cancel_change(current_coordinate_list,
+								grid, old_house_cords, old_space_cords,
+								coordinate_number, new_space_cords)
+							current_coordinate_list = cancel[0]
+							grid = cancel[1]
+							no_swap += 1
+
+							# if there has been no change for 100 tries stop
+							if no_swap > 100:
+								break
+
+					# if value is the same cancel the change
 					else:
-						cancel = cancel_change(current_coordinate_list, grid, old_house_cords, old_space_cords, coordinate_number, new_space_cords)
+						cancel = cancel_change(current_coordinate_list, grid,
+							old_house_cords, old_space_cords,
+							coordinate_number, new_space_cords)
 						current_coordinate_list = cancel[0]
 						grid = cancel[1]
 						no_swap += 1
-						climb += 1
+
+						# if there has been no change for 100 tries stop
 						if no_swap > 100:
 							break
-				else:
-					cancel = cancel_change(current_coordinate_list, grid, old_house_cords, old_space_cords, coordinate_number, new_space_cords)
-					current_coordinate_list = cancel[0]
-					grid = cancel[1]
-					no_swap += 1
-					climb += 1
-					if no_swap > 100:
-						break
 
-			print(no_swap)
-			print(temperature)
+				# after 40 temperature coolings, reset the temperature
+				if i == 40 * j:
+					temperature = 1.0*(0.9**j)
+					j += 1
+
+			# lower temperature after 20 iterations
 			temperature = temperature * 0.95
-			if no_swap == 80:
-				temperature = 1.0
+			i += 1
 
 		# return the new grid
 		print(total_value)
 		return([current_coordinate_list, water_coordinates, total_value])
 
+# function to create acceptance from value and temperature
 def acceptance(old, new, temperature):
-	delta = (new-old)/10000000
+	delta = (new-old)/100000
 	return (math.e)**(delta/temperature)
