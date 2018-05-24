@@ -42,7 +42,7 @@ def SimulatedAnnealing(nr_of_houses):
 		swaps = 0
 		no_swap = 0
 		climb = 0
-		
+
 		# set number of changes needed to make
 		while swaps <= 500 :
 			worth = 0
@@ -114,4 +114,3 @@ def SimulatedAnnealing(nr_of_houses):
 def acceptance(old, new, temperature):
 	delta = (new-old)/10000000
 	return (math.e)**(delta/temperature)
-

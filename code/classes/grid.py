@@ -101,7 +101,7 @@ class Area(object):
 						return (index - 1)
 				else:
 					return (index - 1)
-	
+
 	def calculate_space_horizontal(self, house_coordinates, grid):
 		for index in range(1, 300):
 			for j in range((house_coordinates[3] - index), (house_coordinates[1] + index)):
