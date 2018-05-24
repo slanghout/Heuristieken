@@ -2,92 +2,88 @@
 # Amstelhaege
 import os, sys
 import csv
+import time
+
 directory = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(os.path.join(directory, "code"))
 sys.path.append(os.path.join(directory, "code", "classes"))
 sys.path.append(os.path.join(directory, "code", "algoritmes"))
 sys.path.append(os.path.join(directory, "code", "grid"))
 
-from houses import House, Single, Bungalow, Maison
-
-from Kerkhof import kerkhof
-
 from grid import Area
+from Kerkhof import kerkhof
 from Hill_climber import hill_climber
 from random_algoritme import random_algoritme
 from simulated_annealing import simulated_annealing
-from water import make_water
-
-import time
 
 def main():
+	
+	# ask user for nr of houses they want
 	nr_of_houses = int(input("Would you like 20, 40 or 60 houses? "))
 	if nr_of_houses != 20 and nr_of_houses != 40 and nr_of_houses != 60:
 		print("invalid number of houses")
 		exit(0)
 
+	best_gridvalues = []
+
+	# ask what algoritm they want
 	alg = input("Select A for Random, B for Hill Climber, C for Simulated Annealing ")
-	if alg != "A" and alg != "B" and alg != "C":
+	if alg != "A" and alg != "B" and alg != "C" and alg != "D":
 		print("this is not what I wanted")
 		exit(0)
 
-	best_gridvalues = []
-
-	if alg == "A":
-		with open('scores.csv', 'w', newline='') as csvfile:
-			fieldnames = ['algoritme', 'score', 'housecount']
-			writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-			repeats = int(input("How many times do you want to run the algoritm? "))
-			start = time.time()
-			for repeat in range(repeats):
-				print(repeat)
-				gridvalue = random_algoritme(int(nr_of_houses))
-				writer.writeheader()
-				writer.writerow({'algoritme': 'Random', 'score': gridvalue[2], 'housecount': nr_of_houses})
-				if len(best_gridvalues) != 0:
-					if best_gridvalues[2] > gridvalue[2]:
-						pass
-					else:
-						best_gridvalues = gridvalue
-				else:
-					best_gridvalues = gridvalue
-
-			coordinate_list = best_gridvalues[0]
-			water_coordinates = best_gridvalues[1]
-			total_value = best_gridvalues[2]
-			end = time.time()
-			print(end - start)
-			Area().makegrid(coordinate_list, water_coordinates, total_value)
-
-	if alg == "B":
-		starting_state = (input("Is starting state Random(A) or Kerkhof(B)?"))
-		if starting_state == "A":
-			start = random_algoritme(nr_of_houses)
-		elif starting_state == "B":
-			start = kerkhof(nr_of_houses)
-			print(start[0])
+	# if uses picks A, run random algoritm
+	elif alg == "A":
+		distribution = input("Standard (A) or random (B) distribution of houses? ")
 		
+		if distribution != "A" and distribution != "B":
+			print("Choose a distribution please")
+			exit(0)
+
 		starttime = time.time()
-		final = hill_climber(nr_of_houses, start)
+		gridvalue = random_algoritme(nr_of_houses, distribution)
+			
+	# if uses picks B or C, choose starting grid
+	elif alg == "B" or alg == "C":
+		
+		starting_state = (input("Is starting state Random(A) or Kerkhof(B)?"))
+		
+		if starting_state == "A":
+			distribution = input("Standard (A) or random (B) distribution of houses? ")
+			starttime = time.time()
+			start = random_algoritme(nr_of_houses, distribution)
+		
+		# if startinf state is B then start with kerkhof
+		elif starting_state == "B":
+			starttime = time.time()
+			start = kerkhof(nr_of_houses)
 
-		coordinate_list = final[0]
-		water_coordinates = final[1]
-		total_value = final[2]
-		end = time.time()
-		print(end - starttime)
-		Area().makegrid(coordinate_list, water_coordinates, total_value)
+		else:
+			print("Enter A or B for starting state")
+			exit(0)
 
-	if alg == "C":
-		start = time.time()
-		final = simulated_annealing(nr_of_houses)
+		# if B then run hill climber
+		if alg == "B":
+			gridvalue = hill_climber(nr_of_houses, start)
 
-		coordinate_list = final[0]
-		water_coordinates = final[1]
-		total_value = final[2]
-		end = time.time()
-		print(end - start)
-		Area().makegrid(coordinate_list, water_coordinates, total_value)
+		# if C then run simulated annealing
+		elif alg == "C":
+			gridvalue = simulated_annealing(nr_of_houses)
+	
+	# if D then run kerkhof algoritm
+	elif alg == "D":
+		starttime = time.time()
+		gridvalue = kerkhof(nr_of_houses)
+	
+	end = time.time()
+	coordinate_list = gridvalue[0]
+	water_coordinates = gridvalue[1]
+	total_value = gridvalue[2]
 
+	# print runtime, value of grid and grid
+	print("time{}".format(end - starttime))
+	print("value: {}".format(total_value))
+	Area().makegrid(coordinate_list, water_coordinates, total_value)
 
 
 if __name__ == "__main__":

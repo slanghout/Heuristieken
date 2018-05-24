@@ -12,7 +12,6 @@ from grid import Area
 from random_algoritme import random, create_water
 from water import make_water
 
-
 def kerkhof(nr_of_houses):
 
 	grid = Area().make_basic_grid()
