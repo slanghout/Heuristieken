@@ -22,7 +22,6 @@ class Area(object):
 					if grid[j][i] == "0":
 						grid[j][i] = "h"
 					else:
-						print("nee hier {}{} print hij {}".format(i, j, grid[j][i]))
 						exit(0)
 
 		# if water is places set w on spot
@@ -32,7 +31,6 @@ class Area(object):
 					if grid[j][i] == "0":
 						grid[j][i] = "w"
 					else:
-						print("nah")
 						exit(0)
 
 		# if space next to house, set s if it's empty
@@ -136,7 +134,6 @@ class Area(object):
 				elif grid[j][i] == "w":
 					pass
 				else:
-					print("exit space{}".format(grid[j][i]))
 					exit(0)
 
 		return grid

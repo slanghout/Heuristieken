@@ -12,6 +12,7 @@ from grid import Area
 from random_algoritme import random, create_water
 from water import make_water
 
+
 # creating a state we think has a high worth
 def kerkhof(nr_of_houses):
 
@@ -191,8 +192,7 @@ def kerkhof(nr_of_houses):
 			if Area().watercheck(grid, water_coordinates[body]) == True:
 					grid = Area().update_grid(grid, water_coordinates[body], "water")
 
-		# return([location_list, water_coordinates, total_value, grid])
-		Area().makegrid(location_list, water_coordinates, total_value)
+		return([location_list, water_coordinates, total_value, grid])
 
 	# if 40 houses are chosen
 	if nr_of_houses == 40:
@@ -330,8 +330,7 @@ def kerkhof(nr_of_houses):
 			if Area().watercheck(grid, water_coordinates[body]) == True:
 				grid = Area().update_grid(grid, water_coordinates[body], "water")
 
-		# return([location_list, water_coordinates, total_value, grid])
-		Area().makegrid(location_list, water_coordinates, total_value)
+		return([location_list, water_coordinates, total_value, grid])	
 
 	# if 60 houses are chosen
 	if nr_of_houses == 60:
@@ -576,7 +575,4 @@ def kerkhof(nr_of_houses):
 			if Area().watercheck(grid, water_coordinates[body]) == True:
 					grid = Area().update_grid(grid, water_coordinates[body], "water")
 
-		# return([location_list, water_coordinates, total_value, grid])
-		Area().makegrid(location_list, water_coordinates, total_value)
-
-kerkhof(60)
+		return([location_list, water_coordinates, total_value, grid])
