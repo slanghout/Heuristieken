@@ -61,6 +61,7 @@ def simulated_annealing(nr_of_houses):
 						grid = new_grid
 						swaps += 1
 						no_swap = 0
+						print("def yes")
 						writer.writeheader()
 						writer.writerow({'algoritme': 'SimulatedAnnealing',
 							'score': worth, 'housecount': nr_of_houses,
@@ -73,6 +74,7 @@ def simulated_annealing(nr_of_houses):
 
 						# accept it if acceptance higher than random number
 						if ap > randomnumber:
+							print("ok then")
 							current_coordinate_list = new_coordinate_list
 							total_value = worth
 							grid = new_grid
@@ -91,10 +93,12 @@ def simulated_annealing(nr_of_houses):
 							current_coordinate_list = cancel[0]
 							grid = cancel[1]
 							no_swap += 1
-
+							
+							print("no{}".format(no_swap))
+							
 							# if there has been no change for 100 tries stop
 							if no_swap > 100:
-								break
+								temperature = 0.0001
 
 					# if value is the same cancel the change
 					else:
@@ -107,16 +111,17 @@ def simulated_annealing(nr_of_houses):
 
 						# if there has been no change for 100 tries stop
 						if no_swap > 100:
-							break
+							temperature = 0.0001
 
 				# after 40 temperature coolings, reset the temperature
-				if i == 40 * j:
+				if coolings == 40 * heatings:
+					print("REHEAT")
 					temperature = 1.0*(0.9**j)
-					j += 1
+					heatings += 1
 
 			# lower temperature after 20 iterations
 			temperature = temperature * 0.95
-			i += 1
+			coolings += 1
 
 		# return the new grid
 		print(total_value)

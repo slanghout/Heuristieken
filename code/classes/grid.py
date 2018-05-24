@@ -80,6 +80,7 @@ class Area(object):
 					return False
 		return True
 
+	# calculate distance to next house in vertical direction
 	def calculate_space_vertical(self, house_coordinates, grid):
 		for index in range(1, 300):
 			for i in range((house_coordinates[0] - index), (house_coordinates[2] + index)):
@@ -100,6 +101,7 @@ class Area(object):
 				else:
 					return (index - 1)
 
+	# calculate distance to next house in horiontal direction
 	def calculate_space_horizontal(self, house_coordinates, grid):
 		for index in range(1, 300):
 			for j in range((house_coordinates[3] - index), (house_coordinates[1] + index)):
@@ -120,6 +122,7 @@ class Area(object):
 				else:
 					return (index - 1)
 
+	# create space where house used to be
 	def create_space(self, house_coordinates, grid):
 		for i in range(house_coordinates[0], (house_coordinates[2])):
 			for j in range(house_coordinates[3], (house_coordinates[1])):
@@ -138,6 +141,7 @@ class Area(object):
 
 		return grid
 
+	# function to make grid
 	def makegrid(self, coordinate_list, water, total_value):
 
 		# make the figure
