@@ -1,33 +1,26 @@
-# from overlap_check import *
-from houses import house
-from houses import single
-from houses import bungalow
-from houses import maison
+from houses import House, Single, Bungalow, Maison
 from grid import Area
-from water import MakeWater
+from water import make_water
+from mutaties import housetype
 
 import random as random
 
-def random(nr_of_houses):
+
+def random_algoritme(nr_of_houses):
 	# make empty coordinate list
 
 	water_coordinates = None
 	while water_coordinates == None:
 		total_value = 0
 		grid = Area().make_basic_grid()
-		water_coordinates = Create_water(grid)
+		water_coordinates = create_water(grid)
 
 	if water_coordinates != None:
-		coordinate_list = Build_Amstelhaege(nr_of_houses, grid)
+		coordinate_list = build_amstelhaege(nr_of_houses, grid)
 		for cordinate in coordinate_list:
 			cord = (cordinate[0], cordinate[1])
-			if cordinate[4] == 1:
-				build = single
-			elif cordinate[4] == 2:
-				build = bungalow
-			elif cordinate[4] == 3:
-				build = maison
-			price = build(cord).giveworth(cordinate, grid)
+			build = housetype(cordinate[4])
+			price = build(cord).give_worth(cordinate, grid)
 			if price != None:
 				total_value += price
 
@@ -35,7 +28,7 @@ def random(nr_of_houses):
 
 
 # Random coordinate generation after grid boundaries are given
-def Randomizer(amount):
+def randomizer(amount):
 	# max and min value of the coordinates are grid outliers
 	maxX = 320
 	maxY = 360
@@ -47,14 +40,13 @@ def Randomizer(amount):
 	random_y = random.randint(minY, maxY)
 	return [random_x, random_y]
 
-def Create_water(grid):
+def create_water(grid):
 	water_options = [1, 2, 3, 4]
 
 	water_bodies = random.choice(water_options)
 
 	if water_bodies > 1:
-		water_coordinates = MakeWater(water_bodies)
-		print(water_coordinates)
+		water_coordinates = make_water(water_bodies)
 		for body in range(water_bodies):
 			if water_coordinates != None:
 				if body == 0:
@@ -66,14 +58,14 @@ def Create_water(grid):
 						return None
 
 	elif water_bodies == 1:
-		water_coordinates = MakeWater(water_bodies)
+		water_coordinates = make_water(water_bodies)
 		if water_coordinates != None:
 			grid = Area().update_grid(grid, water_coordinates[0], "water")
 
 	return water_coordinates
 
 
-def Set_house_in_list(build, cord, coordinate_list, grid):
+def set_house_in_list(build, cord, coordinate_list, grid):
 
 	# create coordinates for house
 	house_coordinates = build(cord).coordinates_house()
@@ -100,7 +92,7 @@ def Set_house_in_list(build, cord, coordinate_list, grid):
 		elif Area().housecheck(grid, house_coordinates) != True:
 			return False
 
-def Build_Amstelhaege(amount, grid):
+def build_amstelhaege(amount, grid):
 	build_single = int(amount*0.6)
 	build_bungalow = int(amount*0.25)
 	build_maison = int(amount*0.15)
@@ -121,21 +113,21 @@ def Build_Amstelhaege(amount, grid):
 	# 		housecount += 1
 
 	while housecount < build_bungalow:
-		cord = Randomizer(1)
-		build = bungalow
-		if Set_house_in_list(build, cord, coordinate_list, grid) == True:
+		cord = randomizer(1)
+		build = Bungalow
+		if set_house_in_list(build, cord, coordinate_list, grid) == True:
 			housecount += 1
 
 	while housecount < (build_bungalow + build_maison):
-		cord = Randomizer(1)
-		build = maison
-		if Set_house_in_list(build, cord, coordinate_list, grid) == True:
+		cord = randomizer(1)
+		build = Maison
+		if set_house_in_list(build, cord, coordinate_list, grid) == True:
 			housecount += 1
 
 	while housecount < amount:
-		cord = Randomizer(1)
-		build = single
-		if Set_house_in_list(build, cord, coordinate_list, grid) == True:
+		cord = randomizer(1)
+		build = Single
+		if set_house_in_list(build, cord, coordinate_list, grid) == True:
 			housecount += 1
 
 	# Area().fillgrid(grid)

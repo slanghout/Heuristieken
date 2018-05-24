@@ -3,7 +3,7 @@ from grid import Area
 import random as random
 
 # define the specifics needed to know per house
-class house(object):
+class House(object):
 	def __init__(self, x, y, height, width, price, space, percentage, count):
 		self.x = x
 		self.y = y
@@ -60,7 +60,7 @@ class house(object):
 
 		return space_coordinates
 
-	def giveworth(self, house_coordinates, grid):
+	def give_worth(self, house_coordinates, grid):
 		space_vertical = Area().calculate_space_vertical(house_coordinates, grid)
 		space_horizontal = Area().calculate_space_horizontal(house_coordinates, grid)
 		if space_horizontal != None and space_vertical != None:
@@ -78,19 +78,19 @@ class house(object):
 		return [self.height, self.width]
 
 # define specifics for single house
-class single(house):
+class Single(House):
 	def __init__(self, coordinates):
 		super().__init__(x = coordinates[0], y=coordinates[1], height = 16,
 		 width = 16, price = 285000, space = 4, percentage = 0.03, count = 1)
 
 # define specifics for bungalow house
-class bungalow(house):
+class Bungalow(House):
 	def __init__(self, coordinates):
 		super().__init__(x = coordinates[0], y=coordinates[1], height = 20,
 		 width = 15, price = 399000, space = 6, percentage = 0.04, count = 2)
 
 # define specifics for maison house
-class maison(house):
+class Maison(House):
 	def __init__(self, coordinates):
 		super().__init__(x = coordinates[0], y=coordinates[1], height = 22,
 		 width = 21, price = 610000, space = 12, percentage = 0.06, count = 3)

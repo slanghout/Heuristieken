@@ -10,20 +10,17 @@ from mutaties import move
 from mutaties import create_change
 from mutaties import cancel_change
 
-from houses import house
-from houses import single
-from houses import bungalow
-from houses import maison
+from houses import House, Single, Bungalow, Maison
 
 from grid import Area
-from random_algoritme import Random
+from random_algoritme import random
 
 from random import randint
 
 # Hill Climber algoritm
-def HillClimber(nr_of_houses, starting_state):
+def hill_climber(nr_of_houses, starting_state):
 
-	with open('scores.csv', 'w', newline='') as csvfile:
+	with open('hallo.csv', 'w', newline='') as csvfile:
 		fieldnames = ['algoritme', 'score', 'housecount', 'climb','swaps']
 		writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 		

@@ -1,12 +1,9 @@
 import csv
 
-from houses import house
-from houses import single
-from houses import bungalow
-from houses import maison
+from houses import House, Single, Bungalow, Maison
 
 from grid import Area
-from random_algoritme import Random
+# from random_algoritme import random
 
 from random import randint
 
@@ -34,7 +31,7 @@ def determine_worth(coordinate_list, grid):
 	for cordinate in coordinate_list:
 		build = housetype(cordinate[4])
 		cord = (cordinate[0], cordinate[1])
-		price = build(cord).giveworth(cordinate, grid)
+		price = build(cord).give_worth(cordinate, grid)
 		if price != None:
 			worth += price
 
@@ -276,11 +273,11 @@ def move(coordinates):
 
 def housetype(housenumber):
 		if housenumber == 1:
-			build = single
+			build = Single
 		elif housenumber == 2:
-			build = bungalow
+			build = Bungalow
 		elif housenumber == 3:
-			build = maison
+			build = Maison
 
 		return build
 
