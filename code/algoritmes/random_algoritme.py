@@ -8,7 +8,7 @@ from water import MakeWater
 
 import random as random
 
-def Random(nr_of_houses):
+def random(nr_of_houses):
 	# make empty coordinate list
 
 	water_coordinates = None

@@ -122,5 +122,9 @@ def kerkhof(nr_of_houses):
 	water_coordinates = [[52, 98, 308, 8]]
 	return([location_list, water_coordinates, total_value, grid])
 
+	if nr_of_houses == 60:
+		location_space = []
+		location_list = []
+		total_value = 0
 
-	# if nr_of_houses == 60:
+

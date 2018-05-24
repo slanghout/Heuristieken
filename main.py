@@ -13,11 +13,11 @@ from houses import single
 from houses import bungalow
 from houses import maison
 
-from Kerkhof import kerkhof
+from kerkhof import kerkhof
 
 from grid import Area
 from Hill_climber import HillClimber
-from random_algoritme import Random
+from random_algoritme import random
 from water import MakeWater
 
 import time
