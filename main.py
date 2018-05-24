@@ -38,7 +38,7 @@ def main():
 
 	if alg == "A":
 		with open('scores.csv', 'w', newline='') as csvfile:
-			fieldnames = ['algoritme', 'score', 'housecount']
+			fieldnames = ['algoritme', 'score', 'housecount', 'water']
 			writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 			repeats = int(input("How many times do you want to run the algoritm? "))
 			start = time.time()
@@ -46,7 +46,7 @@ def main():
 				print(repeat)
 				gridvalue = Random(int(nr_of_houses))
 				writer.writeheader()
-				writer.writerow({'algoritme': 'Random', 'score': gridvalue[2], 'housecount': nr_of_houses})
+				writer.writerow({'algoritme': 'Random', 'score': gridvalue[2], 'housecount': nr_of_houses, 'water': gridvalue[1]})
 				if len(best_gridvalues) != 0:
 					if best_gridvalues[2] > gridvalue[2]:
 						pass
