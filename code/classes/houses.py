@@ -45,7 +45,7 @@ class House(object):
 		else:
 			return house_coordinates
 
-	def spacehouse(self, house_coordinates):
+	def space_house(self, house_coordinates):
 		left_x = house_coordinates[0]
 		up_y = house_coordinates[1]
 		right_x = house_coordinates[2]

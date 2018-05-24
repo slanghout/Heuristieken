@@ -51,7 +51,7 @@ class Area(object):
 		return grid
 
 	# check if around house enough space for free space
-	def spacecheck(self, grid, housecords):
+	def space_check(self, grid, housecords):
 		for i in range(housecords[0], (housecords[2])):
 			for j in range(housecords[3], (housecords[1])):
 				if grid[j][i] != "h":
@@ -61,7 +61,7 @@ class Area(object):
 		return True
 
 	# check if there is enough space to buid a house
-	def housecheck(self, grid, housecords):
+	def house_check(self, grid, housecords):
 		for i in range(housecords[0], (housecords[2])):
 			for j in range(housecords[3], (housecords[1])):
 				if grid[j][i] == "0":
@@ -71,7 +71,7 @@ class Area(object):
 		return True
 
 	# check if there is enough space for water (same as for house dus eventueel combineren)
-	def watercheck(self, grid, water_coordinates):
+	def water_check(self, grid, water_coordinates):
 		for i in range(water_coordinates[0], water_coordinates[2]):
 			for j in range(water_coordinates[3], water_coordinates[1]):
 				if grid[j][i] == "0":
@@ -142,7 +142,7 @@ class Area(object):
 		return grid
 
 	# function to make grid
-	def makegrid(self, coordinate_list, water, total_value):
+	def make_grid(self, coordinate_list, water, total_value):
 
 		# make the figure
 		fig = plt.figure()

@@ -1,7 +1,7 @@
 from houses import House, Single, Bungalow, Maison
 from grid import Area
 from water import make_water
-from mutaties import housetype
+from mutaties import house_type
 
 import random as random
 
@@ -29,7 +29,7 @@ def random_algoritme(nr_of_houses, distribution):
 		# determine worth of the houses build
 		for cordinate in coordinate_list:
 			cord = (cordinate[0], cordinate[1])
-			build = housetype(cordinate[4])
+			build = house_type(cordinate[4])
 			price = build(cord).give_worth(cordinate, grid)
 			if price != None:
 				total_value += price
@@ -70,7 +70,7 @@ def create_water(grid):
 					grid = Area().update_grid(grid, water_coordinates[body],
 						"water")
 				elif body > 0:
-					if Area().watercheck(grid, water_coordinates[body]) == True:
+					if Area().water_check(grid, water_coordinates[body]) == True:
 						grid = Area().update_grid(grid, water_coordinates[body],
 							"water")
 					else:
@@ -94,13 +94,13 @@ def set_house_in_list(build, cord, coordinate_list, grid):
 	if house_coordinates != None:
 
 		# if house coordinates are given create coordinates for house with space
-		space_coordinates = build(cord).spacehouse(house_coordinates)
+		space_coordinates = build(cord).space_house(house_coordinates)
 
 		# check room for house
-		if Area().housecheck(grid, house_coordinates) == True:
+		if Area().house_check(grid, house_coordinates) == True:
 
 			# check room for house with space around
-			if Area().spacecheck(grid, space_coordinates) == True:
+			if Area().space_check(grid, space_coordinates) == True:
 				coordinate_list.append(house_coordinates)
 
 				# set house in grid
@@ -109,9 +109,9 @@ def set_house_in_list(build, cord, coordinate_list, grid):
 				return True
 
 			# if not enough room for house or space return false
-			elif Area().spacecheck(grid, space_coordinates) != True:
+			elif Area().space_check(grid, space_coordinates) != True:
 				return False
-		elif Area().housecheck(grid, house_coordinates) != True:
+		elif Area().house_check(grid, house_coordinates) != True:
 			return False
 
 # function to build amstelhaege according to house distribution
@@ -158,7 +158,7 @@ def random_amstelhaege(amount, grid):
 	# build that house
 	while housecount < amount:
 		house = random.randint(1, 3)
-		build = housetype(house)
+		build = house_type(house)
 		cord = randomizer(1)
 		if set_house_in_list(build, cord, coordinate_list, grid) == True:
 			housecount += 1
