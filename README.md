@@ -1,8 +1,9 @@
 # Het Project
 
-In dit project wordt de nieuwe woonwijk Amstelhaege ingericht. De wijk beslaat een totaal oppervlak van 28 800 m2, waarvan 20% water is. De woonwijk moet worden bebouwd met drie typen huizen. Onder het kopje vereisten worden de precieze eisen waaraan de woonwijk moet voldoen weergegeven. De wijk wordt op drie verschillende manier bebouwd; met 20, 40 of 60 huizen. Het doel van de opdracht is om de wijk een zo hoog mogelijke waarde te geven.
+In dit project wordt de nieuwe woonwijk Amstelhaege ingericht. De wijk beslaat een totaal oppervlak van 28 800 m2, waarvan 20% water is. De woonwijk moet worden bebouwd met drie typen huizen. Onder het kopje vereisten worden de precieze eisen waaraan de woonwijk moet voldoen weergegeven. De wijk wordt op drie verschillende manier bebouwd; met 20, 40 en 60 huizen. Het doel van de opdracht is om de wijk een zo hoog mogelijke waarde te geven.
 
 # Vereisten
+
 1. De wijk komt te staan op een stuk land van 160x180 meter.
 2. Het aantal woningen in de wijk bestaat voor 60% uit eengezinswoningen, 25% uit bungalows en 15% uit maisons.
 3. Een eengezinswoning is 8x8 meter (breed x diep) en heeft een waarde van 285.000,-. De woning heeft rondom twee meter vrijstand nodig; iedere meter extra levert een prijsverhoging op van 3%.
@@ -23,8 +24,7 @@ In de map code zitten 2 mappen, de map algoritme en de map classes. In de map al
 
 # Test
 
-Om de code te draaien met de standaardconfiguratie gebruik
-main.py, deze vraagt hoeveel huizen je wilt plaatsen in de wijk, welk algoritme je hiervoor wilt gebruiken en hoe vaak je het gekozen algoritme wilt runnen. De wijk met de hoogste waarde zal worden laten zien met een plot.
+Om de code te draaien met de standaardconfiguratie gebruik main.py. Er wordt om input gevraagd voor het aantal huizen dat gebouwd moet worden, welk algoritme je hiervoor wilt gebruiken en hoe vaak je het gekozen algoritme wilt runnen. De wijk met de hoogste waarde zal worden laten zien met een plot.
 
 # Auteurs
 
@@ -32,4 +32,4 @@ Sylvie Langhout, Dewi Mooij & Pernille Deijlen
 
 # Dankwoord
 
-
+Met dank aan Angelo Groot, Wouter Vrielink, Daan van den Berg en de minor programmeren van de UvA

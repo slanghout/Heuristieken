@@ -1,3 +1,3 @@
 # results
 
-Onze experimenten!
+In deze map staan de verkregen resultaten.

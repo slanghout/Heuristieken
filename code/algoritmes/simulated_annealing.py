@@ -13,7 +13,7 @@ def simulated_annealing(nr_of_houses):
 	with open('hallo.csv', 'w', newline='') as csvfile:
 		fieldnames = ['algoritme', 'score', 'housecount', 'climb','swaps']
 		writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-		
+
 		# starts with running random algoritm to generate starting state
 		starting_state = random_algoritme(nr_of_houses, "A")
 		current_coordinate_list = starting_state[0]
@@ -28,12 +28,12 @@ def simulated_annealing(nr_of_houses):
 		climb = 0
 		i = 0
 		j = 1
-		
+
 		# continue algoritm while temperature is above 0.01
 		while temperature > 0.01:
 			swaps = 0
 			climb = 0
-			
+
 			# after every 20 iterations reset temperature
 			while climb < 20:
 				climb += 1
@@ -64,14 +64,14 @@ def simulated_annealing(nr_of_houses):
 						print("def yes")
 						writer.writeheader()
 						writer.writerow({'algoritme': 'SimulatedAnnealing',
-							'score': worth, 'housecount': nr_of_houses, 
+							'score': worth, 'housecount': nr_of_houses,
 							'climb': climb, 'swaps' : swaps})
 
 					# if worth is less create acceptance and random value
 					elif worth < total_value:
 						randomnumber = uniform(0.5, 1.0)
 						ap = acceptance(total_value, worth, temperature)
-						
+
 						# accept it if acceptance higher than random number
 						if ap > randomnumber:
 							print("ok then")
@@ -87,18 +87,19 @@ def simulated_annealing(nr_of_houses):
 
 						# else cancel the change made
 						else:
-							cancel = cancel_change(current_coordinate_list, 
+							cancel = cancel_change(current_coordinate_list,
 								grid, old_house_cords, old_space_cords,
 								coordinate_number, new_space_cords)
 							current_coordinate_list = cancel[0]
 							grid = cancel[1]
 							no_swap += 1
+							
 							print("no{}".format(no_swap))
 							
 							# if there has been no change for 100 tries stop
 							if no_swap > 100:
 								temperature = 0.0001
-					
+
 					# if value is the same cancel the change
 					else:
 						cancel = cancel_change(current_coordinate_list, grid,
@@ -107,7 +108,7 @@ def simulated_annealing(nr_of_houses):
 						current_coordinate_list = cancel[0]
 						grid = cancel[1]
 						no_swap += 1
-						
+
 						# if there has been no change for 100 tries stop
 						if no_swap > 100:
 							temperature = 0.0001

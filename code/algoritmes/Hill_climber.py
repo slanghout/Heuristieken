@@ -12,7 +12,7 @@ def hill_climber(nr_of_houses, starting_state):
 	with open('hallo.csv', 'w', newline='') as csvfile:
 		fieldnames = ['algoritme', 'score', 'housecount', 'climb','swaps']
 		writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-		
+
 		# starts by running random algoritm to generate starting state
 		current_coordinate_list = starting_state[0]
 		water_coordinates = starting_state[1]
@@ -23,7 +23,7 @@ def hill_climber(nr_of_houses, starting_state):
 		swaps = 0
 		no_swap = 0
 		climb = 0
-		
+
 		# climb until 200 changes are made or 1000 tries
 		while (swaps < 200 and climb < 1000):
 
@@ -54,7 +54,7 @@ def hill_climber(nr_of_houses, starting_state):
 					writer.writerow({'algoritme': 'HillClimber',
 						'score': worth, 'housecount': nr_of_houses,
 						'climb': climb, 'swaps' : swaps})
-				
+
 				# if new grid is worth less cancel the changes
 				else:
 					cancel = cancel_change(current_coordinate_list,
@@ -64,7 +64,7 @@ def hill_climber(nr_of_houses, starting_state):
 					grid = cancel[1]
 					no_swap += 1
 					climb += 1
-					
+
 					# if there has been no change for 100 tries stop
 					if no_swap > 100:
 						break
