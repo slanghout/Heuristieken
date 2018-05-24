@@ -5,7 +5,7 @@ total_height = 320
 water_percentage = 0.2
 total_water_size = total_width * total_height * water_percentage
 
-def MakeWater(amount_water):
+def make_water(amount_water):
 	if amount_water == 1:
 		water_coordinates_1 = []
 		while not water_coordinates_1:

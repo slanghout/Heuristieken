@@ -8,10 +8,10 @@ from mutaties import move
 from mutaties import create_change
 from mutaties import cancel_change
 
-from houses import House, single, bungalow, maison
+from houses import House, Single, Bungalow, Maison
 
 from grid import Area
-from random_algoritme import Random
+from random_algoritme import random_algoritme
 
 from Hill_climber import house_swap
 from Hill_climber import move_house
@@ -23,13 +23,13 @@ import math
 import csv
 
 # Hill Climber algoritm
-def SimulatedAnnealing(nr_of_houses):
+def simulated_annealing(nr_of_houses):
 
 	with open('hallo.csv', 'w', newline='') as csvfile:
 		fieldnames = ['algoritme', 'score', 'housecount', 'climb','swaps']
 		writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 		# starts with running random algoritm to generate starting state
-		starting_state = Random(nr_of_houses)
+		starting_state = random_algoritme(nr_of_houses)
 		current_coordinate_list = starting_state[0]
 		water_coordinates = starting_state[1]
 		total_value = starting_state[2]
