@@ -40,7 +40,7 @@ def main():
 			print("Choose a distribution please")
 			exit(0)
 
-		with open('score.csv', 'w', newline='') as csvfile:
+		with open('kerkhof.csv', 'w', newline='') as csvfile:
 			fieldnames = ['algoritme', 'score', 'housecount', 'water']
 			writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 			repeats = int(input("How many times do you want to run the algoritm? "))

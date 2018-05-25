@@ -9,7 +9,7 @@ from random_algoritme import random
 # Hill Climber algorithm
 def hill_climber(nr_of_houses, starting_state):
 
-	with open('hallo.csv', 'w', newline='') as csvfile:
+	with open('hill_climb_climberuit.csv', 'w', newline='') as csvfile:
 		fieldnames = ['algoritme', 'score', 'housecount', 'climb','swaps']
 		writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
@@ -26,7 +26,7 @@ def hill_climber(nr_of_houses, starting_state):
 		climb = 0
 
 		# climb until 200 changes are made or 1000 tries
-		while (swaps < 200 and climb < 1000):
+		while (swaps < 200):
 
 			# create a mutation on the grid
 			swapresults = create_change(current_coordinate_list, nr_of_houses, grid)
@@ -44,17 +44,18 @@ def hill_climber(nr_of_houses, starting_state):
 				worth = determine_worth(new_coordinate_list, new_grid)
 
 				# if new grid is worth more, accept this grid
-				if worth > total_value:
+				if worth >= total_value:
+					if worth > total_value:
+						swaps += 1
 					current_coordinate_list = new_coordinate_list
 					total_value = worth
 					grid = new_grid
-					swaps += 1
-					climb += 1
-					no_swap = 0
 					writer.writeheader()
 					writer.writerow({'algoritme': 'HillClimber',
 						'score': worth, 'housecount': nr_of_houses,
 						'climb': climb, 'swaps' : swaps})
+					climb += 1
+					no_swap = 0
 
 				# if new grid is worth less cancel the changes
 				else:

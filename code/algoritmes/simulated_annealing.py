@@ -10,7 +10,7 @@ from random_algoritme import random_algoritme
 # Hill Climber algoritm
 def simulated_annealing(nr_of_houses, starting_state):
 
-	with open('hallo.csv', 'w', newline='') as csvfile:
+	with open('sim_an.csv', 'w', newline='') as csvfile:
 		fieldnames = ['algoritme', 'score', 'housecount', 'climb','swaps']
 		writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
@@ -25,8 +25,8 @@ def simulated_annealing(nr_of_houses, starting_state):
 		swaps = 0
 		no_swap = 0
 		climb = 0
-		i = 0
-		j = 1
+		coolings = 0
+		heatings = 1
 
 		# continue algoritm while temperature is above 0.01
 		while temperature > 0.01:
@@ -115,7 +115,7 @@ def simulated_annealing(nr_of_houses, starting_state):
 				# after 40 temperature coolings, reset the temperature
 				if coolings == 40 * heatings:
 					print("REHEAT")
-					temperature = 1.0*(0.9**j)
+					temperature = 1.0*(0.9**heatings)
 					heatings += 1
 
 			# lower temperature after 20 iterations

@@ -22,6 +22,16 @@ def kerkhof(nr_of_houses):
 
 	# if 20 houses are chosen
 	if nr_of_houses == 20:
+
+		# placing water
+		water = 1
+		water_coordinates = [[135, 272, 225, 14]]
+		
+		# checking if there is place for water
+		for body in range(water):
+			if Area().water_check(grid, water_coordinates[body]) == True:
+					grid = Area().update_grid(grid, water_coordinates[body], "water")
+
 		location_space = []
 		location_list = []
 		total_value = 0
@@ -179,20 +189,20 @@ def kerkhof(nr_of_houses):
 			if price != None:
 				total_value += price
 
-
-		# placing water
-		water = 1
-		water_coordinates = [[135, 272, 225, 14]]
-		
-		# checking if there is place for water
-		for body in range(water):
-			if Area().water_check(grid, water_coordinates[body]) == True:
-					grid = Area().update_grid(grid, water_coordinates[body], "water")
-
 		return([location_list, water_coordinates, total_value, grid])
 
 	# if 40 houses are chosen
 	if nr_of_houses == 40:
+
+		# placing water
+		water = 2
+		water_coordinates = [[36, 294, 164, 204], [193, 120, 321, 30]]
+
+		# checking if there is place for water
+		for body in range(water):
+			if Area().water_check(grid, water_coordinates[body]) == True:
+				grid = Area().update_grid(grid, water_coordinates[body], "water")
+
 		location_space = []
 		location_list = []
 		total_value = 0
@@ -313,19 +323,21 @@ def kerkhof(nr_of_houses):
 			if price != None:
 				total_value += price
 
-		# placing water
-		water = 2
-		water_coordinates = [[36, 294, 164, 204], [193, 120, 321, 30]]
-
-		# checking if there is place for water
-		for body in range(water):
-			if Area().water_check(grid, water_coordinates[body]) == True:
-				grid = Area().update_grid(grid, water_coordinates[body], "water")
-
 		return([location_list, water_coordinates, total_value, grid])	
 
 	# if 60 houses are chosen
 	if nr_of_houses == 60:
+
+		# placing water
+		water = 4
+		water_coordinates = [[28, 224, 73, 96], [286, 224, 331, 96], [116, 74, 244, 29], [116, 291, 244, 246]]
+		
+		# checking if there is place for water
+		for body in range(water):
+			print(water_coordinates[body])
+			if Area().water_check(grid, water_coordinates[body]) == True:
+				grid = Area().update_grid(grid, water_coordinates[body], "water")
+
 		location_space = []
 		location_list = []
 		total_value = 0
@@ -552,14 +564,5 @@ def kerkhof(nr_of_houses):
 			price = build(cords).give_worth(coordinate, grid)
 			if price != None:
 				total_value += price
-		
-		# placing water
-		water = 4
-		water_coordinates = [[28, 224, 73, 96], [286, 224, 331, 96], [116, 74, 244, 29], [116, 291, 244, 246]]
-		
-		# checking if there is place for water
-		for body in range(water):
-			if Area().water_check(grid, water_coordinates[body]) == True:
-					grid = Area().update_grid(grid, water_coordinates[body], "water")
 
 		return([location_list, water_coordinates, total_value, grid])
