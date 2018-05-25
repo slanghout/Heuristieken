@@ -24,12 +24,12 @@ In de map code zitten 2 mappen, de map algoritme en de map classes. In de map al
 
 # Test
 
-Om de code te draaien met de standaardconfiguratie gebruik main.py. Er wordt om input gevraagd voor het aantal huizen dat gebouwd moet worden, welk algoritme je hiervoor wilt gebruiken en hoe vaak je het gekozen algoritme wilt runnen. De wijk met de hoogste waarde zal worden laten zien met een plot.
+Om de code te draaien met de standaardconfiguratie gebruik main.py. Er wordt om input gevraagd voor het aantal huizen dat gebouwd moet worden, welk algoritme je hiervoor wilt gebruiken. Indien random wordt gekozen moet worden ingevuld of de wijk bebouwd moet worden volgens de basis verdeling of een random verdeling en hoe vaak het algoritme gerund dient te worden. Indien hill climber of simulated annealing wordt gekozen, wordt er gevraagd van welke beginsituatie uit moet worden gegaan; random of kerkhof.
 
 # Auteurs
 
-Sylvie Langhout, Dewi Mooij & Pernille Deijlen
+Sylvie Langhout 10792368, Dewi Mooij 10752978 & Pernille Deijlen 10747354
 
 # Dankwoord
 
-Met dank aan Angelo Groot, Wouter Vrielink, Daan van den Berg en de minor programmeren van de UvA
+Met dank aan Angelo Groot, Wouter Vrielink, Daan van den Berg en de minor programmeren van de UvA.
