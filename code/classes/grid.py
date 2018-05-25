@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 
+# defines the grid
 class Area(object):
 	def __init__(self):
 		self.width = 360

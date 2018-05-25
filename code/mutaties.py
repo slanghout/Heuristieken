@@ -221,11 +221,13 @@ def rotate_house(coordinate_list, nr_of_houses, grid):
 	# if the houses were swapped return the grid information
 	return [coordinate_list, grid, cord_rotate_house, space_cords, rotate_house, new_space_cords]
 
+# function that resets grid
 def reset(grid, house_coordinates, space_coordinates):
 	grid = Area().update_grid(grid, house_coordinates, "house")
 	grid = Area().update_grid(grid, space_coordinates, "space")
 	return grid
 
+# function to move houses
 def move(coordinates):
 
 	# choose in which direction the house will move
@@ -265,6 +267,7 @@ def move(coordinates):
 
 	return new_cord
 
+# function that defines which type the house is
 def house_type(housenumber):
 		if housenumber == 1:
 			build = Single
@@ -275,6 +278,7 @@ def house_type(housenumber):
 
 		return build
 
+# function to go back to previous state
 def cancel_change(current_coordinate_list, grid, old_house_cords, old_space_cords, coordinate_number, new_space_cords):
 	if len(old_house_cords) == 2 and len(new_space_cords) == 2:
 		grid = Area().create_space(new_space_cords[0], grid)
@@ -298,6 +302,7 @@ def cancel_change(current_coordinate_list, grid, old_house_cords, old_space_cord
 	
 	return [current_coordinate_list, grid]
 
+# function that returns new coordinates
 def create_coordinates(coordinates, i, j):
 	build = house_type(coordinates[4])
 	cords = (coordinates[0], coordinates[1])

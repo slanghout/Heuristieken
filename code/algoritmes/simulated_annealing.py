@@ -7,7 +7,7 @@ from houses import House, Single, Bungalow, Maison
 from grid import Area
 from random_algoritme import random_algoritme
 
-# Hill Climber algoritm
+# simulated annealing algorithm
 def simulated_annealing(nr_of_houses, starting_state):
 
 	with open('sim_an.csv', 'w', newline='') as csvfile:

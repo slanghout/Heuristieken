@@ -5,7 +5,7 @@ from mutaties import house_type
 
 import random as random
 
-# function that creates crandom grid
+# function that creates a random state
 def random_algoritme(nr_of_houses, distribution):
 
 	# create water coordinates for the grid
@@ -14,7 +14,7 @@ def random_algoritme(nr_of_houses, distribution):
 		total_value = 0
 		grid = Area().make_basic_grid()
 		water_coordinates = create_water(grid)
-
+		
 	# after water is succesful determine house distribution
 	# and build the grid
 	if water_coordinates != None:
@@ -36,7 +36,6 @@ def random_algoritme(nr_of_houses, distribution):
 
 		# return the neighbourhood specifics
 		return([coordinate_list, water_coordinates, total_value, grid])
-
 
 # function to create random houses
 def randomizer(amount):
