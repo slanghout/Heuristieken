@@ -10,7 +10,7 @@ In dit project wordt de nieuwe woonwijk Amstelhaege ingericht. De wijk beslaat e
 4. Een bungalow is 10x7.5 meter (breed x diep) en heeft een waarde van 399.000,-. De woning heeft rondom drie meter vrijstand nodig; iedere meter extra levert een prijsverhoging op van 4%.
 5. Een maison is 11x10.5 meter (breed x diep) en heeft een waarde van 610.000,-. De woning heeft rondom zes meter vrijstand nodig, iedere meter extra levert een prijsverhoging op van 6%.
 6. De vrijstand van een woning is de kleinste afstand tot de dichtstbijzijnde andere woning in de wijk. Oftewel, voor een vrijstand van 6 meter moeten alle andere woningen in de wijk op minimaal 6 meter afstand staan. Deze afstand is bepaald als de kortste afstand tussen twee muren, dus niet vanuit het centrum van de woning.
-7. De verplichte vrijstand voor iedere woning moet binnen de kaart vallen.
+7. De verplichte vrijstand en de eventuele extra vrijstand voor iedere woning moet binnen de kaart vallen.
 8. In geval van percentuele waardevermeerdering per meter is de toename niet cumulatief.
 9. De wijk moet voor 20% uit oppervlaktewater bestaan, opgedeeld in niet meer dan vier lichamen die rechthoekig of ovaal van vorm zijn. Om de wijk aantrekkelijk te houden, moeten de lichamen een hoogte-breedteverhoudingen tussen de 1 en de 4 liggen.
 

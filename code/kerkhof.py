@@ -274,29 +274,30 @@ def kerkhof(nr_of_houses):
 						grid = Area().update_grid(grid, space, "space")
 
 		# placing 2 bungalows
-		for i in range (2):
-				size = Bungalow([0,0]).give_size()
+		for i in range(2):
+			size = Bungalow([0,0]).give_size()
 
-				# choosing coordinates
-				house_next = [101 + 140 * i, 204 - 64 * i, 101 + size[1] + 140 * i, 204 - size[0] - 64 * i, 2]
-				cords = [house_next[0], house_next[1]]
+			# choosing coordinates
+			house_next = [101 + 140 * i, 204 - 64 * i, 101 + size[1] + 140 * i, 204 - size[0] - 64 * i, 2]
+			cords = [house_next[0], house_next[1]]
 
-				# checking if there is place for house
-				if Area().house_check(grid, house_next) == True:
-					space = Bungalow(cords).space_house(house_next)
+			# checking if there is place for house
+			if Area().house_check(grid, house_next) == True:
+				space = Bungalow(cords).space_house(house_next)
 
-					# checking if there is place for space
-					if Area().space_check(grid, space) == True:
+				# checking if there is place for space
+				if Area().space_check(grid, space) == True:
 
-						# if all true place house and space
-						location_list.append(house_next)
-						grid = Area().update_grid(grid, house_next, "house")
-						location_space.append(space)
-						grid = Area().update_grid(grid, space, "space")
+					# if all true place house and space
+					location_list.append(house_next)
+					grid = Area().update_grid(grid, house_next, "house")
+					location_space.append(space)
+					grid = Area().update_grid(grid, space, "space")
 
 		# placing 1 bungalow
 		size = Bungalow([0,0]).give_size()
 		house_next = [165, 259, 165 + size[1] , 259 - size[0], 2]
+		cords = [house_next[0], house_next[1]]
 
 		if Area().house_check(grid, house_next) == True:
 			space = Bungalow(cords).space_house(house_next)
@@ -312,8 +313,12 @@ def kerkhof(nr_of_houses):
 
 		# placing 1 bungalow
 		size = Bungalow([0,0]).give_size()
-		house_next = [193, 85, 193 - size[1], 85 - size[0], 2]
 
+		# choosing coordinates
+		house_next = [193 - size[1], 85, 193, 85 - size[0], 2]
+		cords = [house_next[0], house_next[1]]
+
+		# checking if there is place for house
 		if Area().house_check(grid, house_next) == True:
 			space = Bungalow(cords).space_house(house_next)
 
@@ -325,7 +330,6 @@ def kerkhof(nr_of_houses):
 				grid = Area().update_grid(grid, house_next, "house")
 				location_space.append(space)
 				grid = Area().update_grid(grid, space, "space")
-
 
 		# placing 6 maisons
 		for i in range(6):

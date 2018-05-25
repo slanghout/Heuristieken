@@ -42,7 +42,6 @@ def hill_climber(nr_of_houses, starting_state):
 
 			# if new grid is worth more, accept this grid
 			if worth >= total_value:
-				print("yes")
 				if worth > total_value:
 					print("YESSS")
 					swaps += 1
