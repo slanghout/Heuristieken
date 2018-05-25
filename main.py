@@ -61,7 +61,7 @@ def main():
 		else:
 			print("Enter A or B for starting state")
 			exit(0)
-		print("start value : {}".format(start[2]))
+		print("start value: {}".format(start[2]))
 
 		# if B then run hill climber
 		if alg == "B":
@@ -69,7 +69,7 @@ def main():
 
 		# if C then run simulated annealing
 		elif alg == "C":
-			gridvalue = simulated_annealing(nr_of_houses)
+			gridvalue = simulated_annealing(nr_of_houses, start)
 
 	# if D then run kerkhof algoritm
 	elif alg == "D":
@@ -82,10 +82,9 @@ def main():
 	total_value = gridvalue[2]
 
 	# print runtime, value of grid and grid
-	print("time{} ".format(end - starttime))
-	print("value: {}".format(total_value))
+	print("time: {}".format(end - starttime))
+	print("final value: {}".format(total_value))
 	Area().make_grid(coordinate_list, water_coordinates, total_value)
-
 
 if __name__ == "__main__":
 	main()

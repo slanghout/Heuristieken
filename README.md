@@ -24,7 +24,7 @@ In de map code zitten 2 mappen, de map algoritme en de map classes. In de map al
 
 # Test
 
-Om de code te draaien met de standaardconfiguratie gebruik main.py. Er wordt om input gevraagd voor het aantal huizen dat gebouwd moet worden, welk algoritme je hiervoor wilt gebruiken. Indien random wordt gekozen moet worden ingevuld of de wijk bebouwd moet worden volgens de basis verdeling of een random verdeling en hoe vaak het algoritme gerund dient te worden. Indien hill climber of simulated annealing wordt gekozen, wordt er gevraagd van welke beginsituatie uit moet worden gegaan; random of kerkhof.
+Om de code te draaien met de standaardconfiguratie gebruik main.py. Er wordt om input gevraagd voor het aantal huizen dat gebouwd moet worden, welk algoritme je hiervoor wilt gebruiken. Indien random wordt gekozen moet worden ingevuld of de wijk bebouwd moet worden volgens de basis verdeling. Indien hill climber of simulated annealing wordt gekozen, wordt er gevraagd van welke beginsituatie uit moet worden gegaan; random of kerkhof.
 
 # Auteurs
 

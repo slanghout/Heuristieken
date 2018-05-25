@@ -371,7 +371,6 @@ def kerkhof(nr_of_houses):
 
 		# checking if there is place for water
 		for body in range(water):
-			print(water_coordinates[body])
 			if Area().water_check(grid, water_coordinates[body]) == True:
 				grid = Area().update_grid(grid, water_coordinates[body], "water")
 
