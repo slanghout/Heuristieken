@@ -14,7 +14,6 @@ def hill_climber(nr_of_houses, starting_state):
 	water_coordinates = starting_state[1]
 	total_value = starting_state[2]
 	grid = starting_state[3]
-	print(len(current_coordinate_list))
 
 	# set counters at 0
 	swaps = 0
@@ -43,7 +42,6 @@ def hill_climber(nr_of_houses, starting_state):
 			# if new grid is worth more, accept this grid
 			if worth >= total_value:
 				if worth > total_value:
-					print("YESSS")
 					swaps += 1
 					same = 0
 					no_swap = 0
@@ -56,7 +54,6 @@ def hill_climber(nr_of_houses, starting_state):
 
 			# if new grid is worth less cancel the changes
 			else:
-				print(no_swap)
 				cancel = cancel_change(current_coordinate_list,
 					grid, old_house_cords, old_space_cords,
 					coordinate_number, new_space_cords)

@@ -61,6 +61,7 @@ def main():
 		else:
 			print("Enter A or B for starting state")
 			exit(0)
+		print("start value : {}".format(start[2]))
 
 		# if B then run hill climber
 		if alg == "B":
