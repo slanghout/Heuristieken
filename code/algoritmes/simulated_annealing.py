@@ -7,7 +7,7 @@ from houses import House, Single, Bungalow, Maison
 from grid import Area
 from random_algoritme import random_algoritme
 
-# Simulated annealing algoritm
+# simulated annealing algoritm
 def simulated_annealing(nr_of_houses, starting_state):
 
 	# starts by running random algoritm to generate starting state

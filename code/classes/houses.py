@@ -45,6 +45,7 @@ class House(object):
 		else:
 			return house_coordinates
 
+	# returns space coordinates for house
 	def space_house(self, house_coordinates):
 		left_x = house_coordinates[0]
 		up_y = house_coordinates[1]
@@ -60,6 +61,7 @@ class House(object):
 
 		return space_coordinates
 
+	# returns worth of each house
 	def give_worth(self, house_coordinates, grid):
 		space_vertical = Area().calculate_space_vertical(house_coordinates, grid)
 		space_horizontal = Area().calculate_space_horizontal(house_coordinates, grid)
@@ -74,6 +76,7 @@ class House(object):
 
 			return price
 
+	# returns dimensions of house
 	def give_size(self):
 		return [self.height, self.width]
 
