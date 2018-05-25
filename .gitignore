@@ -8,6 +8,8 @@ __pycache__/
 dewi.py
 sylvie.py
 scores.csv
+simulated_annealing_test.py
+hill_climber_test.py
 
 # C extensions
 *.so

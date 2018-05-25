@@ -12,7 +12,7 @@ sys.path.append(os.path.join(directory, "code", "grid"))
 
 from grid import Area
 from kerkhof import kerkhof
-from Hill_climber import hill_climber
+from hill_climber import hill_climber
 from random_algoritme import random_algoritme
 from simulated_annealing import simulated_annealing
 
@@ -99,7 +99,7 @@ def main():
 	total_value = gridvalue[2]
 
 	# print runtime, value of grid and grid
-	print("time{}".format(end - starttime))
+	print("time{} ".format(end - starttime))
 	print("value: {}".format(total_value))
 	Area().make_grid(coordinate_list, water_coordinates, total_value)
 
