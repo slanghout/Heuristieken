@@ -14,7 +14,6 @@ def hill_climber(nr_of_houses, starting_state):
 	water_coordinates = starting_state[1]
 	total_value = starting_state[2]
 	grid = starting_state[3]
-	print(len(current_coordinate_list))
 
 	# set counters at 0
 	swaps = 0
