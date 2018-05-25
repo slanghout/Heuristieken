@@ -1,16 +1,23 @@
 from mpl_toolkits import mplot3d
-
 import numpy as np
 import matplotlib.pyplot as plt
 
 fig = plt.figure()
-ax = plt.axes(projection="3d")
+ax = fig.add_subplot(111, projection="3d")
 
-x = [[20, 10, 20, 10], [20, 10, 20, 10]]
-y = [[15, 15, 30, 30], [15, 15, 30, 30]]
-z = [[10, 10, 10, 10], [2, 2, 2, 2]]
+a = [[16, 16, 0, 0], [16, 16, 0, 0]]
+b = [[16, 0, 16, 0], [16, 0, 16, 0]]
+c = [[10, 10, 10, 10], [0, 0, 0, 0]]
 
-ax.scatter3D(x, y, z, "pink")
+
+x = np.array(a)
+y = np.array(b)
+z = np.array(c)
+
+# hele surface een kleur
+ax.plot_surface(x, y, z, color="pink")
+
+# lijnen tussen de punten
+# ax.plot_wireframe(x, y, z, color='black')
 
 plt.show()
-
