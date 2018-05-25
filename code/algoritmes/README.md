@@ -1,3 +1,3 @@
 # algoritmes
 
-In deze map staan onze random algoritme, de hill climber en de simulated annealing.
+In deze map staan het random algoritme, de hill climber en de simulated annealing.
