@@ -27,14 +27,14 @@ def main():
 	best_gridvalues = []
 
 	# ask what algoritm they want
-	alg = input("Select A for Random, B for Hill Climber, C for Simulated Annealing ")
+	alg = input("Select A for Random, B for Hill Climber, C for Simulated Annealing, or D for Kerkhof algoritm ")
 	if alg != "A" and alg != "B" and alg != "C" and alg != "D":
 		print("this is not what I wanted")
 		exit(0)
 
 	# if uses picks A, run random algoritm
 	elif alg == "A":
-		distribution = input("Standard (A) or random (B) distribution of houses? ")
+		distribution = input("Required (A) or random (B) distribution of houses? ")
 
 		if distribution != "A" and distribution != "B":
 			print("Choose a distribution please")
@@ -46,10 +46,10 @@ def main():
 	# if uses picks B or C, choose starting grid
 	elif alg == "B" or alg == "C":
 
-		starting_state = (input("Is starting state Random(A) or Kerkhof(B)?"))
+		starting_state = (input("Is starting state Random(A) or Kerkhof(B)? "))
 
 		if starting_state == "A":
-			distribution = input("Standard (A) or random (B) distribution of houses? ")
+			distribution = input("Required (A) or random (B) distribution of houses? ")
 			starttime = time.time()
 			start = random_algoritme(nr_of_houses, distribution)
 
@@ -81,7 +81,7 @@ def main():
 	total_value = gridvalue[2]
 
 	# print runtime, value of grid and grid
-	print("time{}".format(end - starttime))
+	print("time{} ".format(end - starttime))
 	print("value: {}".format(total_value))
 	Area().make_grid(coordinate_list, water_coordinates, total_value)
 

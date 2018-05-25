@@ -46,43 +46,32 @@ def house_swap(coordinate_list, nr_of_houses, grid):
 	old_cords_one = coordinate_list[house_one]
 	old_cords_two = coordinate_list[house_two]
 
-	# determine height and width of the houses
-	width_one = old_cords_one[2] - old_cords_one[0]
-	height_one = old_cords_one[1] - old_cords_one[3]
-	width_two = old_cords_two[2] - old_cords_two[0]
-	height_two = old_cords_two[1] - old_cords_two[3]
+	# create new coordinates
+	new_cord_one = create_coordinates(old_cords_two, old_cords_one[4], 1, 0)
+	new_cord_two = create_coordinates(old_cords_one, old_cords_two[4], 1, 0)
 
-	# determine new coordinates with height and width
-	x_l_one = old_cords_two[0]
-	y_u_one = old_cords_two[1]
-	x_r_one = old_cords_two[0] + width_one
-	y_d_one = old_cords_two[1] - height_one
-	new_cord_one = [x_l_one, y_u_one, x_r_one, y_d_one, old_cords_one[4]]
-
-	x_l_two = old_cords_one[0]
-	y_u_two = old_cords_one[1]
-	x_r_two = old_cords_one[0] + width_two
-	y_d_two = old_cords_one[1] - height_two
-	new_cord_two = [x_l_two, y_u_two, x_r_two, y_d_two, old_cords_two[4]]
-
+	# create space coordinates of old coordinates
 	build = house_type(old_cords_one[4])
-	cord_one = (x_l_one, y_u_one)
+	cord_one = (old_cords_one[0], old_cords_one[1])
 	space_old_cords_one = build(cord_one).space_house(old_cords_one)
-
+	
 	build = house_type(old_cords_two[4])
-	cord_two = (x_l_two, y_u_two)
+	cord_two = (old_cords_two[0], old_cords_two[1])
 	space_old_cords_two = build(cord_two).space_house(old_cords_two)
 
+	# create coordinates with space for new coordinates
 	build = house_type(new_cord_one[4])
-	cord_one_new = (x_l_one, y_d_one)
+	cord_one_new = (new_cord_one[0], new_cord_one[1])
 	new_space_cords_one = build(cord_one_new).space_house(new_cord_one)
 
+	# check if space is in grid
 	if (new_space_cords_one[0] < 0 or new_space_cords_one[3] < 0 or
 		new_space_cords_one[1] > 320 or new_space_cords_one[2] > 360):
 		return None
 
+	# also for the second house
 	build = house_type(new_cord_two[4])
-	cord_two_new = (x_l_two, y_d_two)
+	cord_two_new = (new_cord_two[0], new_cord_two[1])
 	new_space_cords_two = build(cord_two_new).space_house(new_cord_two)
 
 	if (new_space_cords_two[0] < 0 or new_space_cords_two[3] < 0 or
@@ -185,7 +174,7 @@ def rotate_house(coordinate_list, nr_of_houses, grid):
 	rotate_house = randint(0, (nr_of_houses -1))
 	cord_rotate_house = coordinate_list[rotate_house]
 
-	new_cord = create_coordinates(cord_rotate_house, 0, 1)
+	new_cord = create_coordinates(cord_rotate_house, cord_rotate_house[4], 0, 1)
 	build = house_type(cord_rotate_house[4])
 	cord = (cord_rotate_house[0], cord_rotate_house[1])
 	space_cords = build(cord).space_house(cord_rotate_house)
@@ -298,8 +287,8 @@ def cancel_change(current_coordinate_list, grid, old_house_cords, old_space_cord
 	
 	return [current_coordinate_list, grid]
 
-def create_coordinates(coordinates, i, j):
-	build = house_type(coordinates[4])
+def create_coordinates(coordinates, housenumber, i, j):
+	build = house_type(housenumber)
 	cords = (coordinates[0], coordinates[1])
 	size = build(cords).give_size()
 	height = size[i]
@@ -310,6 +299,6 @@ def create_coordinates(coordinates, i, j):
 	x_r = coordinates[0] + width
 	y_d = coordinates[1] - height
 
-	new_coordinates = [x_l, y_u, x_r, y_d, coordinates[4]]
+	new_coordinates = [x_l, y_u, x_r, y_d, housenumber]
 
 	return new_coordinates
