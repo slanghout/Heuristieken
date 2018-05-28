@@ -143,7 +143,7 @@ def move_house(coordinate_list, nr_of_houses, grid):
 		new_space_cords[1] > 320 or new_space_cords[2] > 360):
 		return None
 	
-	# clear the space the houses were using
+	# clear the space the house was using
 	grid = Area().create_space(space_cords, grid)
 
 	# check if there is enough space to place house
@@ -164,7 +164,7 @@ def move_house(coordinate_list, nr_of_houses, grid):
 		grid = reset(grid, cord_move_house, space_cords)
 		return None
 
-	# if the houses were swapped return the grid information
+	# if the house was moved return the grid information
 	return [coordinate_list, grid, cord_move_house, space_cords, move_house, new_space_cords]
 
 # function that rotates a house
@@ -186,16 +186,16 @@ def rotate_house(coordinate_list, nr_of_houses, grid):
 		new_space_cords[1] > 320 or new_space_cords[2] > 360):
 		return None
 
-	# clear the space the houses were using
+	# clear the space the house was using
 	grid = Area().create_space(space_cords, grid)
 
-	# check if there is enough space to place house
+	# check if there is enough space to rotate house
 	if Area().house_check(grid, new_cord) == True:
 
 		# check if there is space to place house with extra space
 		if Area().space_check(grid, new_space_cords) == True:
 
-			# if everything is true swap the houses
+			# if everything is true rotate house
 			grid = reset(grid, new_cord, new_space_cords)
 			coordinate_list[rotate_house] = new_cord
 
@@ -207,7 +207,7 @@ def rotate_house(coordinate_list, nr_of_houses, grid):
 		grid = reset(grid, cord_rotate_house, space_cords)
 		return None
 
-	# if the houses were swapped return the grid information
+	# if the house was rotated return the grid information
 	return [coordinate_list, grid, cord_rotate_house, space_cords, rotate_house, new_space_cords]
 
 # function that resets grid
